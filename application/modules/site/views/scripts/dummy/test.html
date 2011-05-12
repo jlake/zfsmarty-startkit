@@ -1,0 +1,42 @@
+{literal}
+<script>
+    $(document).ready(function() {
+        $('#test_form').validate({
+            errorClass: 'input-error'
+        });
+        $('#ajaxtext').click(function(e) {
+            jQuery.post('/dummy/jsontest', function(json) {
+                alert(json.data[0]);
+            }, 'json');
+        });
+    });
+</script>
+{/literal}
+{include file='scripts/dummy/topmsg_dummy.html'}
+<br />
+Validation テスト（数字ならOK）:
+<form id="test_form" action="" method="post">
+    <table class="extrainfo">
+        <tr>
+            <td align="right" width="100">
+                <label for="text1" class="required">文字列入力:</label>
+            </td>
+            <td align="left">
+                <input type="text" name="text1" id="text1" size="20" regex="^\d+$" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                &nbsp;
+            </td>
+            <td align="left">
+                <input type="submit" name="submit" id="submit" value="ＯＫ" /></form>
+            </td>
+        </tr>
+    </table>
+</form>
+<input type="button" name="ajaxtext" id="ajaxtext" value="AJAXテスト" />
+<br />
+<br />
+メッセージテスト: <br />
+{$msg}<br />

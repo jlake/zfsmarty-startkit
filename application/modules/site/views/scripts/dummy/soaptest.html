@@ -1,0 +1,31 @@
+{include file='scripts/dummy/topmsg_dummy.html'}
+<p> Soap 通信テストです。</p>
+<br />
+getDummyAll()： <br />
+{$this->paginator}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>カラム1</th>
+        <th>カラム2</th>
+    </tr>
+{foreach key=i item=row from=$this->paginator}
+    <tr>
+        <td>{$row.id|escape}</td>
+        <td>{$row.inf1|escape}</td>
+        <td>{$row.inf2|escape}</td>
+    </tr>
+{/foreach}
+</table>
+<br />
+<br />
+{$this->paginator}
+
+getDummyRow(1)： <br />
+ID: {$rowData.id|escape} <br />
+カラム1: {$rowData.inf1|escape} <br />
+カラム2： {$rowData.inf2|escape} <br />
+
+{if $errMsg}
+    <div class="error">{$errMsg}</div>
+{/if}

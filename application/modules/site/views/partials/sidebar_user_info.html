@@ -1,0 +1,15 @@
+<div id="user-info" class="box">
+    <label>ユーザ情報</label><br />
+{if $this->userInfo && $this->userInfo.user_id}
+    <form action="/auth/logout" method="post" accept-charset="utf-8">
+        <div><label for="user_id">ユーザID：</label>
+            {$this->userInfo.user_id}
+        </div>
+        <div><input type="submit" name="logout_submit" value="ログアウト" id="logout_submit"></div>
+    </form>
+{else}
+    <ul>
+        <li><a href="/auth/login" title="">ログイン</a></li>
+    </ul>
+{/if}
+</div>

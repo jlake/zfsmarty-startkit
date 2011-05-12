@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html>
+<head>
+    {$this->headTitle()}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {$this->headMeta()}
+    <meta name="author" content="Tenda">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/admin.css" type="text/css">
+    {$this->headLink()}
+    <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+    {$this->headScript()}
+</head>
+
+<body>
+    <div id="content" class="clear">
+    {if $this->flashMsg}
+        <div id="flash_msg" class="info">{$this->flashMsg}</div>
+    {/if}
+        {assign var=layout value=$this->layout()}
+        {$layout->content}
+    </div>
+
+    <div id="footer" class="clear">
+        <div id="copyright">Copyright(c) Company Name.</div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<h1>ダミーログイン | ダミーソニー</h1>
+
+{if $smarty.request.FNC == 'Auth:PCSSOTerminate'}
+<table class="login">
+    <tr class="T">
+        <td class="main" align="center">
+            <form action="http://bookasp.hlsys.net/dummy/sonyid/?FNC=PCSSOTerminate&amp;OTID={$smarty.request.OTID}" method="post">
+                <input type="hidden" name="dummylogin" value="1">
+                <input type="hidden" name="FNC" value="PCSSOTerminate">
+                <input type="submit" name="un115" value="ログアウト">
+            </form>
+
+            <br class="floatStop">
+        </td>
+    </tr>
+</table>
+{else}
+
+<!-- Login -->
+<table class="login">
+    <tr class="T">
+        <td class="main" align="center">
+            <form action="http://bookasp.hlsys.net/dummy/sonyid/?OTID={$smarty.request.OTID}" method="post">
+                <input type="hidden" name="dummylogin" value="1">
+                <table class="loginContentsL">
+                    <tr>
+                        <th >メールアドレス<br>または My Sony ID</th>
+                        <td><input type="text" class="text" id="mail" name="un027" maxlength="128" value="test"></td>
+                    </tr>
+                    <tr>
+                        <th >パスワード</th>
+                        <td>
+                            <input type="password" class="password" maxlength="10" id="pw" name="un023" value="test" autocomplete="off">
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" name="un115" value="ログイン">
+            </form>
+
+            <br class="floatStop">
+        </td>
+    </tr>
+</table>
+{/if}
+
+<hr>
+<!-- Button -->
+<div style="border-style:solid;boder-width:1px;border-color:silver;">
+    <a href="./?dummycancel=1" >戻る</a>
+</div>
+<!-- /Button -->
+
+<pre>
+{php}
+session_start();
+print_r($_SESSION);
+print_r($_SERVER);
+
+{/php}
+</pre>

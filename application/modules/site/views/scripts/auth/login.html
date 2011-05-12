@@ -1,0 +1,36 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#login_form').validate({
+        errorClass: 'input-error'
+    });
+});
+</script>
+{/literal}
+<div id="top-box" class="box">
+    <strong>ログイン</strong>
+</div>
+{if $this->errMsg}
+<div class="error">
+    {$this->errMsg}
+</div>
+{/if}
+<form id="login_form" action="/{$params.controller}/{$params.action}" method="post">
+    <fieldset>
+        <legend>ログイン（テストアカウント）</legend>
+        <p>
+            <label for="user_nm" class="required">ユーザID:</label><br>
+            <input type="text" name="user_nm" id="user_nm" class="required" style="width:220px;" maxlength="20" value="{$params.user_nm}" />
+        </p>
+
+        <p>
+            <label for="user_pwd" class="required">パスワード:</label><br />
+            <input type="password" name="user_pwd" id="user_pwd" class="required" style="width:220px;" maxlength="20" value="{$params.user_pwd}" />
+        </p>
+
+        <p>
+          <input type="submit" name="submit" id="submit"  value="ログイン">
+        </p>
+    </fieldset>
+</form>
+

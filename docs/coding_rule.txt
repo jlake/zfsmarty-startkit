@@ -1,0 +1,116 @@
+◆Zendコーディング規約
+  ZENDFRAMEWORK
+  http://zendframework.com/manual/ja/coding-standard.naming-conventions.html
+
+  Zendコーディング規約
+  http://www.yoshino-tech.com/w/index.php?Zend%2F%A5%B3%A1%BC%A5%C7%A5%A3%A5%F3%A5%B0%B5%AC%CC%F3
+
+
+◆文字コード
+  UTF-8
+
+
+◆改行コード
+  LF もしくは CR+LF
+
+
+◆iniファイル置換文字列（Zend）
+  [] ではなく %% を使用すること。例） %VALUE%
+  ※mkreiでは [] を使っているが、[] はiniファイルのセクションの表す為、使用禁止。
+
+
+◆サンプルソース
+  （コントローラ）
+    application\modules\site\controllers\DummyController.php
+  （モデル）
+    application\modules\site\models\Dummy.php
+  （ビュー）
+    application\modules\site\views\scripts\dummy\*.html
+
+
+◆画像指定方法
+  (1) docroot フォルダ下の画像
+    例：
+    <img src="/images/world-book.gif" />
+
+  (2) コンテンツ画像
+  ・直接HTMLで指定：
+    ①リサイズしない
+    <img src="/image/contents?src=samples/sample01.jpg" />
+    ②リサイズする
+    <img src="/image/contents?src=samples/sample01.jpg&w=100&h=100" />
+
+  ・Smartyプラグインで指定：
+    ①リサイズしない
+    {contents_img src=samples/sample01.jpg}
+    ②リサイズする
+    {contents_img src=samples/sample01.jpg w=100 h=100}
+
+  (3) アップロード画像
+  ・直接HTMLで指定：
+    ①リサイズしない
+    <img src="/image/uploads?src=dummy/sample01.jpg" />
+    ②リサイズする
+    <img src="/image/uploads?src=dummy/sample01.jpg&w=100&h=100" />
+
+  ・Smartyプラグインで指定：
+    ①リサイズしない
+    {uploads_img src=dummy/sample01.jpg}
+    ②リサイズする
+    {uploads_img src=dummy/sample01.jpg w=100 h=100}
+
+◆エラーコードからエラーメッセージを取得する方法
+  ①「/home/bookasp/application/configs/message.ini」へエラーコードとエラーメッセージを記述。
+    例）E0000 = "エラーが発生しました。"
+  ②ＰＧ内で、「Lib_Util_Message::get」のメソッドに対して、引数で区分(error,waning,info)、エラーコード(「E0000」等)をセット。
+  ③戻り値でエラーメッセージが取得できます。
+  -------------------------------------------------------
+  使用例：
+
+  (1) 置換文字列なし
+  設定:
+  E0000 = "エラーが発生しました。"
+
+  取得:
+  $this->view->msg = Lib_Util_Message::get('error', 'E0000');
+
+  (2) 置換文字列あり
+  設定: 
+  E1002 = "'%value%' は不正な文字 '%invalid%' を含んでいます。"
+
+  取得: 
+  $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力した文字列', 'invalid' => '文字列'));
+  -------------------------------------------------------
+
+◆サイトページ上でフリーテキスト枠やPickUp枠を組み込む方法
+  表示させたいテンプレート上に{$free_text1}や{$pick_up1}と記述する。
+  ページID・ジャンルIDを取得し、表示される。
+
+◆コントローラ内共通情報取得する方法
+  ① パラメータ
+  $module = $this->_params['module'];
+  $pp1 = $this->_params['pp1'];
+
+  ② ユーザ情報
+  $userId = $this->_userInfo['user_id'];
+
+  ※上記の共通情報、ビューに渡してあります、ビュー内変数名前は$params, $storeInfo, $userInfo。
+
+-------------------------------------------------------
+◆メール送信例
+Lib_Util_SimpleMail::send(array(
+    'from' => 'no-reply@bookasp.hlsys.net',
+    'to' => 'ozw@tenda.co.jp',
+    'subject' => 'BookAspメール送信テスト',
+    'body' => "BookAspメール送信テストです。 \n --  %name% \n -- %date%",
+    'replace' => array('name' => '欧', 'date' => Lib_Util_Date::getNow())
+));
+
+
+-------------------------------------------------------
+◆共通エラーページ表示
+① エラーコードと置換文字列の配列指定
+  $this->_displaySysError('E1002', array('value' => '入力した文字列あああああ', 'invalid' => '文字列'));
+② 直接エラーメッセージ指定
+  $this->_displaySysErrorMsg('エラーが発生しています');
+

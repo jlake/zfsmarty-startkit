@@ -1,0 +1,26 @@
+{if $totalItemCount > 1}
+<p><strong>{$firstItemNumber}</strong>件から<strong>{$lastItemNumber}</strong>件 （検索結果<strong>{$totalItemCount}</strong>件中）</p>
+{/if}
+{if $pageCount > 1}
+<div class="pagenation">
+    {if isset($previous)}
+      <a href="{$base_url}page={$previous}">前ページ</a>
+    {else}
+      <span class="disabled">前ページ</span>
+    {/if}
+
+    {foreach from=$pagesInRange item=page}
+        {if $page == $current}
+            <span class="disabled">{$page}</span>
+        {else}
+            <a href="{$base_url}page={$page}">{$page}</a>
+        {/if}
+    {/foreach}
+
+    {if isset($next)}
+      <a href="{$base_url}page={$next}">次ページ</a>
+    {else}
+      <span class="disabled">次ページ</span>
+    {/if}
+</div>
+{/if}

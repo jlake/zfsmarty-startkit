@@ -1,0 +1,166 @@
+/*************************************
+---   CUSTOM STYLESHEET  ---
+***************************************/
+
+/**************************************/
+/*           COLOR SCHEME             */
+/**************************************
+- black        #000
+- white        #fff
+***************************************/
+
+
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
+body {
+    font-family: "MS PGothic", "Osaka", Arial, sans-serif;
+}
+
+.reset {margin:0; padding:0;}
+/* #content-skip {letter-spacing:-9999em;} */
+.align_right    { text-align:right;}
+.align_left     { text-align:left;}
+.align_center   { text-align:center;}
+.align_justify  { text-align:justify;}
+
+/* Šp‚ÌŠÛ‚¢ƒŠƒ“ƒNƒ{ƒ^ƒ“ */
+a.btn_round {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    height: 25px;
+    color: #fff;
+    background: transparent url(../images/btn_act.gif) no-repeat 0px 0px;
+    margin: 3px 10px 3px 0px;
+    padding: 0px 0px 0px 10px;
+}
+a.btn_round span {
+    _position: relative;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 25px;
+    white-space: nowrap;
+    color: #fff;
+    background: transparent url(../images/btn_act.gif) no-repeat 100% 0px;
+    margin: 0px -10px 0px 0px;
+    padding: 0px 10px 0px 0px;
+}
+a.btn_round:hover {
+    color: #eef;
+    background: transparent url(../images/btn_sel.gif) no-repeat 0px 0px;
+}
+a.btn_round:hover span {
+    color: #eef;
+    background: transparent url(../images/btn_sel.gif) no-repeat 100% 0px;
+}
+
+/*
+.pagenation {border-top:1px solid #ccc; border-bottom:1px solid #ccc; text-align: center}
+.pagenation a, .pagenation span {margin: 0 5px;}
+.pagenation .disabled {color: #666}
+*/
+/* pagenation */
+.pagenation {
+	display:block;
+	text-align:left;
+	height:22px;
+	line-height:21px;
+	clear:both;
+	padding-top:3px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:normal;
+}
+
+.pagenation a:link, .pagenation a:visited{
+	padding:7px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border:1px solid #EBEBEB;
+	margin-left:10px;
+	text-decoration:none;
+	background-color:#F5F5F5;
+	color:#0072bc;
+	width:22px;
+	font-weight:normal;
+}
+
+.pagenation a:hover {
+	background-color:#DDEEFF;
+	border:1px solid #BBDDFF;
+	color:#0072BC;	
+}
+
+.pagenation .actived {
+	padding:7px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border:1px solid #BBDDFF;
+	margin-left:10px;
+	text-decoration:none;
+	background-color:#DDEEFF;
+	color:#0072BC;
+	cursor:default;
+}
+
+.pagenation .disabled {
+	padding:7px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border:1px solid #EBEBEB;
+	margin-left:10px;
+	text-decoration:none;
+	background-color:#F5F5F5;
+	color:#D7D7D7;
+	cursor:default;
+}
+
+label.input-error {color: red; margin: 0 5px;}
+input.input-error {border: 1px solid red;}
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+/* #header {position:relative;} */
+
+
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
+#header-nav {list-style:none; background:#ccc;margin-bottom:10px;}
+#header-nav li {width:100px; height:32px; line-height:32px; float:left; background:#bbb;}
+#header-nav li a {width:100px; height:32px; display:block; text-align:center; line-height:32px; background:#efefef; text-decoration:none; font-weight:bold;}
+#header-nav li a:hover {background:transparent;}
+#header-nav li a.active {background:#000; color:#fff;}
+
+#breadcrumb {width:100%; list-style:none;}
+#breadcrumb li {display:inline; margin:0 10px 0 0;}
+
+
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+.sidebar {padding:15px 10px 0 10px; background:#ccc;}
+.sidebar .box {line-height: 20px !important;}
+
+#content img {padding:5px; border:1px solid #ccc; background:#efefef;}
+.featured-image {margin:18px auto; display:block;}
+
+#flash_msg {font-weight: bold; text-align: center;}
+
+/**************************************/
+/*               FORM                 */
+/**************************************/
+#search-block div {display:inline;}
+#submit_search {margin:0 0 0 5px;}
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+#footer {border-top:1px dotted #ccc; padding:10px 0 0 0; margin:32px 0 0 0;}
+#footer-nav {width:100%; text-align:center; list-style:none;}
+#footer-nav li {display:inline; margin:0 10px 0;}
+
+#copyright {width:100%; text-align:center;}

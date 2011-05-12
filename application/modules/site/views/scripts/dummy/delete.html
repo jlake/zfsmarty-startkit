@@ -1,0 +1,13 @@
+{include file='scripts/dummy/topmsg_dummy.html'}
+<p>下記のデータを削除しますか？<br />
+<br />
+カラム1: {$this->row.inf1} <br />
+カラム2: {$this->row.inf2} <br />
+</p>
+<form action="/dummy/delete/" method="post">
+<div>
+<input type="hidden" name="id" value="{$this->row.id}" />
+<input type="submit" name="OK" value="はい" />
+<input type="submit" name="Cancel" value="いいえ" />
+</div>
+</form>

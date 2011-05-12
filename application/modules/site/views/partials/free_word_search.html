@@ -1,0 +1,12 @@
+<div id="search-block">
+    <form action="/search/list" method="post" accept-charset="utf-8">
+        <select name="keywordKbn">
+            <option value="all"    {if $this->params.keywordKbn == 'all'}selected{/if}>すべての情報
+            <option value="title"  {if $this->params.keywordKbn == 'title'}selected{/if}>タイトル
+            <option value="author" {if $this->params.keywordKbn == 'author'}selected{/if}>著者
+            <option value="genre"  {if $this->params.keywordKbn == 'genre'}selected{/if}>ジャンル
+        </select>
+        <div><input type="text" id="keyword" name="keyword" value="{$this->params.keyword|escape}" size="16"></div>
+        <div><input type="submit" id="submit_search" name="submit_search" value="検索"></div>
+    </form>
+</div>

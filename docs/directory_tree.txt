@@ -1,0 +1,67 @@
+﻿bookasp
+├ application
+│├ batchs ・・・・・・バッチファイル
+│├ configs ・・・・・・全体の設定のディレクトリ
+││└ application.ini
+│├ libs ・・・・・・プロジェクト内共通クラス（クラス名の先頭は Lib_ ）
+│├ modules
+││└ admin ・・・・・・管理側モジュール
+│││├ controllers ・・・・・・管理側コントローラ
+│││├ forms ・・・・・・管理側Zend_Formスクリプト
+│││├ models ・・・・・・管理側モデル
+│││└ views ・・・・・・管理側ビュー
+│││  ├ filters ・・・・・・管理側ビューフィルター
+│││  ├ helpers ・・・・・・管理側ビューヘルパー
+│││  ├ layouts ・・・・・・管理側ビューレイアウト
+│││  ├ partials ・・・・・・管理側ビュー共通ソース
+│││  └ scripts ・・・・・・管理側ビュースクリプト
+││└ site ・・・・・・サイト側モジュール
+│││├ controllers ・・・・・・サイト側コントローラ
+│││├ forms ・・・・・・サイト側Zend_Formスクリプト
+│││├ models ・・・・・・サイト側モデル
+│││└ views ・・・・・・サイト側ビュー
+│││  ├ filters ・・・・・・サイト側ビューフィルター
+│││  ├ helpers ・・・・・・サイト側ビューヘルパー
+│││  ├ layouts ・・・・・・サイト側ビューレイアウト
+│││  ├ partials ・・・・・・サイト側ビュー共通ソース
+│││  └ scripts ・・・・・・サイト側ビュースクリプト
+│├ plugins  ・・・・・・Zend Framework プラグイン
+││└ Dispatch.php ・・・・・・ログインチェック、Smartyコンパイルパス指定とか（重要）
+│└ Bootstrap.php ・・・・・・アプリケーションの起動スクリプト
+├ data  ・・・・・・データ階層(これ以下のディレクトリはパーミッションを書き込み可にする)
+│├ contents  ・・・・・・コンテンツファイル
+│├ cache  ・・・・・・キャッシュデータ
+│├ logs  ・・・・・・logファイル
+││├ site
+││├ admin
+││├ trace
+││└ batch 
+│├ sessions  ・・・・・・セッションファイル
+│└ uploads  ・・・・・・アップロードファイル
+├ docs  ・・・・・・ドキュメント類
+├ library  ・・・・・・共通ライブラリ
+│├ Smarty
+│├ Zend
+│└ ZFDebug  ・・・・・・Zend Framework デバッグ専用
+├ docroot ・・・・・・公開層(ドキュメントルート)
+│├ css ・・・・・・スタイルシート
+│├ images ・・・・・・画像
+│├ js ・・・・・・JavaScript
+│├ .htaccess ・・・・・・環境変数設定、Apacheのrewriteの実現
+│└ index.php ・・・・・・入り口
+├ scripts
+│└ sql ・・・・・・DB table、view、index などを作成&更新用SQL
+├ smarty
+│├ cache ・・・・・・Smarty用キャッシュ(書き込み可にする)
+│├ config ・・・・・・Smarty設定
+│├ helpers ・・・・・・ユーザ作成Smartyヘルパー
+│├ plugins ・・・・・・ユーザ作成Smartyプラグイン
+│└ compiled ・・・・・・コンパイル済Smartyテンプレート(書き込み可にする)
+└ tests ライブラリテスト用(PEAR::PHPUnit2が必要、Zend Framework提供)
+
+【URL形式】
+module（例：admin）指定の場合）：
+http://domain/module/controler/action/パラメータ
+
+module指定しない場合：
+http://domain/controler/action/パラメータ

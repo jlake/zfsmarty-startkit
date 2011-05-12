@@ -1,0 +1,56 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#login_form').validate({
+        errorClass: 'input-error'
+    });
+});
+</script>
+{/literal}
+
+<br><br><br><br><br><br>
+<div align="center">
+<form id="login_form" action="/admin/auth/login" method="post">
+	<table border="1" cellpadding="5">
+		<tr><td>
+		    <table>
+		        <tr>
+		            <td colspan="2" style="text-align: center;">
+				        <b>管理メニュー認証画面（仮）</b>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td colspan="2">　</td>
+		        </tr>
+		        <tr>
+		            <td align="right" width="140">
+		                <label for="admin_user_nm" class="required">管理者ユーザーID:</label>
+		            </td>
+		            <td align="left">
+		                <input type="text" name="admin_user_nm" id="admin_user_nm" class="required" style="width:120px;" maxlength="20" value="{$params.admin_user_nm}" />
+		            </td>
+		        </tr>
+		        <tr>
+		            <td align="right">
+		                <label for="admin_user_pwd" class="required">管理者パスワード:</label>
+		            </td>
+		            <td align="left">
+		                <input type="password" name="admin_user_pwd" id="admin_user_pwd" class="required" style="width:120px;" maxlength="20" value="{$params.admin_user_pwd}" />
+		            </td>
+		        </tr>
+		        <tr>
+		            <td colspan="2" style="text-align: center;">
+				        <br><input type="submit" name="submit" id="submit" value="ログイン" />
+		            </td>
+		        </tr>
+		    </table>
+		</td></tr>
+	</table>
+    {if $this->error_msg}
+    <label class="input-error">
+        {$this->error_msg}
+    </label>
+    {/if}
+</form>
+</div>
+<br><br><br><br>

@@ -1,0 +1,23 @@
+{include file='scripts/dummy/topmsg_dummy.html'}
+{if $errMsg}
+<div class="error">
+    {errMsg}
+</div>
+{/if}
+<form id="upload_test" action="/{$params.controller}/{$params.action}" method="post" enctype="multipart/form-data" >
+    <fieldset>
+        <legend>ファイルアップロードテスト</legend>
+        <p>
+            <label for="user_nm" class="required">画像ファイルを選択してください</label><br>
+            <input type="file" name="img_file" id="img_file" class="required" value="" />
+        </p>
+        <p>
+          <input type="submit" name="submit" id="submit"  value="アップロード">
+        </p>
+    </fieldset>
+</form>
+{if $imgSrc}
+<br />
+ファイルをアップロードしました。<br />
+{uploads_img src=$imgSrc w=200 h=200}
+{/if}
