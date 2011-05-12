@@ -1,0 +1,24 @@
+Name： Zend Framework & Smarty Project Startkit
+Author: Jlake Ou
+
+These folders need write permission：
+./data/cache
+./data/contents
+./data/logs
+./data/sessions
+./data/uploads
+
+
+./smarty/cache
+./smarty/compiled
+
+For example:
+-------------------------------------------------
+Set write permission
+
+$ chmod a+rw data/* smarty/cache smarty/compiled
+
+-------------------------------------------------
+Make symbol link to Zend library
+$ cd /home/myproject/library
+$ ln -s /home/ZendFramework-1.10.8/library/Zend
