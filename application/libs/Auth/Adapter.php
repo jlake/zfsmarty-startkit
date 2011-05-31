@@ -58,8 +58,8 @@ class Lib_Auth_Adapter implements Zend_Auth_Adapter_Interface
             // 管理側 ユーザ認証
             $userTable = new Lib_Db_Table_AdminUserMst();
             $select = $userTable->select()
-                ->where('admin_user_id = ?', $this->_username)
-                ->where('admin_user_pass = ?', md5($this->_password));
+                ->where('admin_user_nm = ?', $this->_username)
+                ->where('admin_user_pwd = ?', md5($this->_password));
             $user = $userTable->fetchRow($select);
             if ($user) {
                 // 認証成功
@@ -81,10 +81,10 @@ class Lib_Auth_Adapter implements Zend_Auth_Adapter_Interface
 
         } else if($this->_module == 'site') {
             // サイト側 ローカルテスト用ユーザ認証
-            $userTable = new Lib_Db_Table_UserTbl();
+            $userTable = new Lib_Db_Table_UserMst();
             $select = $userTable->select()
-                ->where('user_id = ?', $this->_username)
-                ->where('user_pass = ?', md5($this->_password));
+                ->where('user_nm = ?', $this->_username)
+                ->where('user_pwd = ?', md5($this->_password));
             $user = $userTable->fetchRow($select);
             if ($user) {
                 // 認証成功

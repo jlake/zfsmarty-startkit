@@ -239,7 +239,10 @@ class Site_Model_Dummy
                 if($cnt > 0) {
                     $id = $i;
                 } else {
-                    $id = $this->_dataObj->nextSeqId('dummy_id_seq');
+                	//pgsql
+                    //$id = $this->_dataObj->nextSeqId('dummy_id_seq');
+                    //mysql
+                    $id = NULL;
                 }
                 $this->_dataObj->save(array(
                     'id' => $id,

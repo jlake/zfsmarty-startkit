@@ -1,0 +1,621 @@
+2011-05-31T05:36:13+00:00 ERR (3): Exception Message:
+The pgsql driver is not currently installed
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Pgsql.php(87): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(858): Zend_Db_Adapter_Pdo_Pgsql->_connect()
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Pgsql.php(171): Zend_Db_Adapter_Abstract->quote('dummy')
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(834): Zend_Db_Adapter_Pdo_Pgsql->describeTable('dummy', NULL)
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata()
+#5 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(896): Zend_Db_Table_Abstract->_getCols()
+#6 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(980): Zend_Db_Table_Abstract->_setupPrimaryKey()
+#7 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(100): Zend_Db_Table_Abstract->info()
+#8 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(78): Zend_Db_Table_Select->setTable(Object(Lib_Db_Table_Dummy))
+#9 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1016): Zend_Db_Table_Select->__construct(Object(Lib_Db_Table_Dummy))
+#10 I:\www\zfsmarty-startkit\application\modules\site\controllers\DummyController.php(33): Zend_Db_Table_Abstract->select()
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): DummyController->topAction()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('topAction')
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#14 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#15 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#16 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#17 {main}
+2011-05-31T05:54:12+00:00 ERR (3): Exception Message:
+SQLSTATE[42000] [1115] Unknown character set: 'UTF-8'
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(109): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(459): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('DESCRIBE `dummy...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(169): Zend_Db_Adapter_Pdo_Abstract->query('DESCRIBE `dummy...')
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(834): Zend_Db_Adapter_Pdo_Mysql->describeTable('dummy', NULL)
+#5 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata()
+#6 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(896): Zend_Db_Table_Abstract->_getCols()
+#7 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(980): Zend_Db_Table_Abstract->_setupPrimaryKey()
+#8 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(100): Zend_Db_Table_Abstract->info()
+#9 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(78): Zend_Db_Table_Select->setTable(Object(Lib_Db_Table_Dummy))
+#10 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1016): Zend_Db_Table_Select->__construct(Object(Lib_Db_Table_Dummy))
+#11 I:\www\zfsmarty-startkit\application\modules\site\controllers\DummyController.php(33): Zend_Db_Table_Abstract->select()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): DummyController->topAction()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('topAction')
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#16 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#17 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#18 {main}
+2011-05-31T05:54:14+00:00 ERR (3): Exception Message:
+SQLSTATE[42000] [1115] Unknown character set: 'UTF-8'
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(109): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(459): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('DESCRIBE `dummy...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(169): Zend_Db_Adapter_Pdo_Abstract->query('DESCRIBE `dummy...')
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(834): Zend_Db_Adapter_Pdo_Mysql->describeTable('dummy', NULL)
+#5 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata()
+#6 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(896): Zend_Db_Table_Abstract->_getCols()
+#7 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(980): Zend_Db_Table_Abstract->_setupPrimaryKey()
+#8 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(100): Zend_Db_Table_Abstract->info()
+#9 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(78): Zend_Db_Table_Select->setTable(Object(Lib_Db_Table_Dummy))
+#10 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1016): Zend_Db_Table_Select->__construct(Object(Lib_Db_Table_Dummy))
+#11 I:\www\zfsmarty-startkit\application\modules\site\controllers\DummyController.php(33): Zend_Db_Table_Abstract->select()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): DummyController->topAction()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('topAction')
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#16 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#17 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#18 {main}
+2011-05-31T05:54:45+00:00 ERR (3): Exception Message:
+SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION zfsmarty.NEXTVAL does not exist
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(479): Zend_Db_Statement->execute(Array)
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT NEXTVAL(...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(825): Zend_Db_Adapter_Pdo_Abstract->query('SELECT NEXTVAL(...', Array)
+#4 I:\www\zfsmarty-startkit\application\libs\Db\DataObject.php(399): Zend_Db_Adapter_Abstract->fetchOne('SELECT NEXTVAL(...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\models\Dummy.php(90): Lib_Db_DataObject->nextSeqId('dummy_id_seq')
+#6 I:\www\zfsmarty-startkit\application\modules\site\controllers\DummyController.php(51): Site_Model_Dummy->saveData(Array)
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): DummyController->editAction()
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('editAction')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#10 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#11 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#12 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#13 {main}
+2011-05-31T06:07:54+00:00 ERR (3): Exception Message:
+SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION zfsmarty.NEXTVAL does not exist
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(479): Zend_Db_Statement->execute(Array)
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT NEXTVAL(...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(825): Zend_Db_Adapter_Pdo_Abstract->query('SELECT NEXTVAL(...', Array)
+#4 I:\www\zfsmarty-startkit\application\libs\Db\DataObject.php(399): Zend_Db_Adapter_Abstract->fetchOne('SELECT NEXTVAL(...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\models\Dummy.php(90): Lib_Db_DataObject->nextSeqId('dummy_id_seq')
+#6 I:\www\zfsmarty-startkit\application\modules\site\controllers\DummyController.php(51): Site_Model_Dummy->saveData(Array)
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): DummyController->editAction()
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('editAction')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#10 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#11 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#12 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#13 {main}
+2011-05-31T06:10:28+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{contents_img src=samples/sample01.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:11:44+00:00 ERR (3): Exception Message:
+Image file not found: I:\www\zfsmarty-startkit/data/contents/samples/sample01.jpg
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(172): ThumbBase->triggerError('Image file not ...')
+#1 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(110): ThumbBase->fileExistsAndReadable()
+#2 I:\www\zfsmarty-startkit\library\PhpThumb\GdThumb.inc.php(96): ThumbBase->__construct('I:\www\zfsmarty...', false)
+#3 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbLib.inc.php(127): GdThumb->__construct('I:\www\zfsmarty...', Array, false)
+#4 I:\www\zfsmarty-startkit\application\libs\Util\Image.php(39): PhpThumbFactory::create('I:\www\zfsmarty...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\controllers\ImageController.php(23): Lib_Util_Image::displayImage('I:\www\zfsmarty...', '100', '100')
+#6 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): ImageController->contentsAction()
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('contentsAction')
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#9 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#10 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#11 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#12 {main}
+2011-05-31T06:11:44+00:00 ERR (3): Exception Message:
+Image file not found: I:\www\zfsmarty-startkit/data/contents/samples/sample01.jpg
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(172): ThumbBase->triggerError('Image file not ...')
+#1 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(110): ThumbBase->fileExistsAndReadable()
+#2 I:\www\zfsmarty-startkit\library\PhpThumb\GdThumb.inc.php(96): ThumbBase->__construct('I:\www\zfsmarty...', false)
+#3 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbLib.inc.php(127): GdThumb->__construct('I:\www\zfsmarty...', Array, false)
+#4 I:\www\zfsmarty-startkit\application\libs\Util\Image.php(39): PhpThumbFactory::create('I:\www\zfsmarty...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\controllers\ImageController.php(23): Lib_Util_Image::displayImage('I:\www\zfsmarty...', '200', '200')
+#6 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): ImageController->contentsAction()
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('contentsAction')
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#9 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#10 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#11 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#12 {main}
+2011-05-31T06:14:17+00:00 ERR (3): Exception Message:
+Image file not found: I:\www\zfsmarty-startkit/data/contents/samples/sample01.jpg
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(172): ThumbBase->triggerError('Image file not ...')
+#1 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(110): ThumbBase->fileExistsAndReadable()
+#2 I:\www\zfsmarty-startkit\library\PhpThumb\GdThumb.inc.php(96): ThumbBase->__construct('I:\www\zfsmarty...', false)
+#3 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbLib.inc.php(127): GdThumb->__construct('I:\www\zfsmarty...', Array, false)
+#4 I:\www\zfsmarty-startkit\application\libs\Util\Image.php(39): PhpThumbFactory::create('I:\www\zfsmarty...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\controllers\ImageController.php(23): Lib_Util_Image::displayImage('I:\www\zfsmarty...', '100', '100')
+#6 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): ImageController->contentsAction()
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('contentsAction')
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#9 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#10 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#11 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#12 {main}
+2011-05-31T06:16:22+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{contents_img src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:20:01+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{contents_img src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:21:43+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{contents_img src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:22:47+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{$this-&gt;contents_img src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:22:48+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{$this-&gt;contents_img src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:29:42+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{dummy src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:29:44+00:00 ERR (3): Exception Message:
+Syntax Error in template "I:\www\zfsmarty-startkit/application/modules/site/views/scripts/dummy/smartytest.html"  on line 6 "{dummy src=sample/dog.jpg w=100 h=100}"  - Unexpected ".", expected one of: "}" , " "
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2855): Smarty_Internal_TemplateCompilerBase->trigger_template_error()
+#1 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templateparser.php(2920): Smarty_Internal_Templateparser->yy_syntax_error(56, '.')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_smartytemplatecompiler.php(51): Smarty_Internal_Templateparser->doParse(56, '.')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_templatecompilerbase.php(82): Smarty_Internal_SmartyTemplateCompiler->doCompile('{include file='...')
+#4 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(260): Smarty_Internal_TemplateCompilerBase->compileTemplate(Object(Smarty_Internal_Template))
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(422): Smarty_Internal_Template->compileTemplateSource()
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(217): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('smartytestActio...')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T06:30:36+00:00 ERR (3): Exception Message:
+Image file not found: I:\www\zfsmarty-startkit/data/contents/$imgSrc
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(172): ThumbBase->triggerError('Image file not ...')
+#1 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbBase.inc.php(110): ThumbBase->fileExistsAndReadable()
+#2 I:\www\zfsmarty-startkit\library\PhpThumb\GdThumb.inc.php(96): ThumbBase->__construct('I:\www\zfsmarty...', false)
+#3 I:\www\zfsmarty-startkit\library\PhpThumb\ThumbLib.inc.php(127): GdThumb->__construct('I:\www\zfsmarty...', Array, false)
+#4 I:\www\zfsmarty-startkit\application\libs\Util\Image.php(39): PhpThumbFactory::create('I:\www\zfsmarty...')
+#5 I:\www\zfsmarty-startkit\application\modules\site\controllers\ImageController.php(23): Lib_Util_Image::displayImage('I:\www\zfsmarty...', '200', '200')
+#6 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): ImageController->contentsAction()
+#7 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('contentsAction')
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#9 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#10 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#11 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#12 {main}
+2011-05-31T06:50:35+00:00 ERR (3): Exception Message:
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zfsmarty.admin_user_mst' doesn't exist
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(479): Zend_Db_Statement->execute(Array)
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('DESCRIBE `admin...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(169): Zend_Db_Adapter_Pdo_Abstract->query('DESCRIBE `admin...')
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(834): Zend_Db_Adapter_Pdo_Mysql->describeTable('admin_user_mst', NULL)
+#5 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata()
+#6 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(896): Zend_Db_Table_Abstract->_getCols()
+#7 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(980): Zend_Db_Table_Abstract->_setupPrimaryKey()
+#8 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(100): Zend_Db_Table_Abstract->info()
+#9 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(78): Zend_Db_Table_Select->setTable(Object(Lib_Db_Table_AdminUserMst))
+#10 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1016): Zend_Db_Table_Select->__construct(Object(Lib_Db_Table_AdminUserMst))
+#11 I:\www\zfsmarty-startkit\application\libs\Auth\Adapter.php(60): Zend_Db_Table_Abstract->select()
+#12 I:\lib\php\ZendFramework\library\Zend\Auth.php(117): Lib_Auth_Adapter->authenticate()
+#13 I:\www\zfsmarty-startkit\application\modules\admin\controllers\AuthController.php(28): Zend_Auth->authenticate(Object(Lib_Auth_Adapter))
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): Admin_AuthController->loginAction()
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('loginAction')
+#16 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#17 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#18 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#19 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#20 {main}
+2011-05-31T07:00:34+00:00 ERR (3): Exception Message:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'admin_user_pass' in 'where clause'
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(479): Zend_Db_Statement->execute(Array)
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query(Object(Zend_Db_Table_Select), Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1527): Zend_Db_Adapter_Pdo_Abstract->query(Object(Zend_Db_Table_Select))
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1389): Zend_Db_Table_Abstract->_fetch(Object(Zend_Db_Table_Select))
+#5 I:\www\zfsmarty-startkit\application\libs\Auth\Adapter.php(63): Zend_Db_Table_Abstract->fetchRow(Object(Zend_Db_Table_Select))
+#6 I:\lib\php\ZendFramework\library\Zend\Auth.php(117): Lib_Auth_Adapter->authenticate()
+#7 I:\www\zfsmarty-startkit\application\modules\admin\controllers\AuthController.php(28): Zend_Auth->authenticate(Object(Lib_Auth_Adapter))
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): Admin_AuthController->loginAction()
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('loginAction')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#11 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#12 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#13 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#14 {main}
+2011-05-31T07:04:23+00:00 ERR (3): Exception Message:
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zfsmarty.user_tbl' doesn't exist
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\Db\Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#1 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Abstract.php(479): Zend_Db_Statement->execute(Array)
+#2 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('DESCRIBE `user_...', Array)
+#3 I:\lib\php\ZendFramework\library\Zend\Db\Adapter\Pdo\Mysql.php(169): Zend_Db_Adapter_Pdo_Abstract->query('DESCRIBE `user_...')
+#4 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(834): Zend_Db_Adapter_Pdo_Mysql->describeTable('user_tbl', NULL)
+#5 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata()
+#6 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(896): Zend_Db_Table_Abstract->_getCols()
+#7 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(980): Zend_Db_Table_Abstract->_setupPrimaryKey()
+#8 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(100): Zend_Db_Table_Abstract->info()
+#9 I:\lib\php\ZendFramework\library\Zend\Db\Table\Select.php(78): Zend_Db_Table_Select->setTable(Object(Lib_Db_Table_UserTbl))
+#10 I:\lib\php\ZendFramework\library\Zend\Db\Table\Abstract.php(1016): Zend_Db_Table_Select->__construct(Object(Lib_Db_Table_UserTbl))
+#11 I:\www\zfsmarty-startkit\application\libs\Auth\Adapter.php(85): Zend_Db_Table_Abstract->select()
+#12 I:\www\zfsmarty-startkit\application\modules\site\controllers\AuthController.php(28): Lib_Auth_Adapter->authenticate(Object(Lib_Auth_Adapter))
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(513): AuthController->loginAction()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('loginAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T07:31:17+00:00 ERR (3): Exception Message:
+Unable to load template file '../partials/free_word_search.html'
+Stack Trace:
+#0 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(550): Smarty_Internal_Template->isExisting(true)
+#1 I:\www\zfsmarty-startkit\smarty\compiled\site\ca87502e9ffd5d4a6cd4dce38249ed40da995acd.file.default.html.php(46): Smarty_Internal_Template->getRenderedTemplate()
+#2 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#3 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#4 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(219): Smarty->fetch('default.html')
+#6 I:\lib\php\ZendFramework\library\Zend\Layout.php(796): SmartyView->render('default.html')
+#7 I:\lib\php\ZendFramework\library\Zend\Layout\Controller\Plugin\Layout.php(143): Zend_Layout->render()
+#8 I:\lib\php\ZendFramework\library\Zend\Controller\Plugin\Broker.php(331): Zend_Layout_Controller_Plugin_Layout->postDispatch(Object(Zend_Controller_Request_Http))
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(965): Zend_Controller_Plugin_Broker->postDispatch(Object(Zend_Controller_Request_Http))
+#10 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#11 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#12 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#13 {main}
+2011-05-31T08:48:08+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T08:54:00+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/;I:\www\zfsmarty-startkit/application/modules/:module/views/helpers/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T08:56:33+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/;I:\www\zfsmarty-startkit/application/libs/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T08:57:14+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/;I:\www\zfsmarty-startkit/application/libs/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T08:57:15+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/;I:\www\zfsmarty-startkit/application/libs/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T09:02:41+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T09:02:51+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}
+2011-05-31T09:03:02+00:00 ERR (3): Exception Message:
+Plugin by name 'Friends' was not found in the registry; used paths:
+Zend_View_Helper_: Zend/View/Helper/
+Stack Trace:
+#0 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(1182): Zend_Loader_PluginLoader->load('Friends')
+#1 I:\lib\php\ZendFramework\library\Zend\View\Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'friends')
+#2 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(302): Zend_View_Abstract->getHelper('friends')
+#3 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->__call('friends', Array)
+#4 I:\www\zfsmarty-startkit\smarty\compiled\site\13b9892cb57f212df2c48459d77c391216fc9445.file.index.html.php(33): SmartyView->friends()
+#5 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(432): include('I:\www\zfsmarty...')
+#6 I:\www\zfsmarty-startkit\library\Smarty3\sysplugins\smarty_internal_template.php(567): Smarty_Internal_Template->renderTemplate()
+#7 I:\www\zfsmarty-startkit\library\Smarty3\Smarty.class.php(338): Smarty_Internal_Template->getRenderedTemplate()
+#8 I:\www\zfsmarty-startkit\library\Smarty3\SmartyView.php(234): Smarty->fetch('I:\www\zfsmarty...')
+#9 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(897): SmartyView->render('I:\www\zfsmarty...')
+#10 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(918): Zend_Controller_Action_Helper_ViewRenderer->renderScript('I:\www\zfsmarty...', NULL)
+#11 I:\lib\php\ZendFramework\library\Zend\Controller\Action\Helper\ViewRenderer.php(957): Zend_Controller_Action_Helper_ViewRenderer->render()
+#12 I:\lib\php\ZendFramework\library\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#13 I:\lib\php\ZendFramework\library\Zend\Controller\Action.php(523): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#14 I:\lib\php\ZendFramework\library\Zend\Controller\Dispatcher\Standard.php(295): Zend_Controller_Action->dispatch('indexAction')
+#15 I:\lib\php\ZendFramework\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#16 I:\lib\php\ZendFramework\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#17 I:\lib\php\ZendFramework\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#18 I:\www\zfsmarty-startkit\docroot\index.php(41): Zend_Application->run()
+#19 {main}

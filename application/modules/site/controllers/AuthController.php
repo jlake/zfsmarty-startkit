@@ -21,15 +21,18 @@ class AuthController extends Lib_App_SiteController
         if($this->getRequest()->isPost()){
             $auth = Zend_Auth::getInstance();
             $authAdapter = new Lib_Auth_Adapter(
+                $this->_params['module'],
                 $this->_params['user_nm'],
                 $this->_params['user_pwd']
             );
             $result = $authAdapter->authenticate($authAdapter);
             if($result->isValid()){
-                $data = $result->getIdentity();
-                $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
-                $auth->setStorage(new Lib_Auth_StorageSession($namespace, 'storage', 3600)); // 有効期限： 1時間
-                $storage->write($data);
+                $identity = $result->getIdentity();
+                $namespace = ucwords($this->_params['module']) . '_Auth';
+                $authSession = new Zend_Session_Namespace($namespace);
+                //$authSession->setExpirationSeconds(3600);
+                $userInfo = $identity->toArray();
+                $authSession->userInfo = $userInfo;
                 if(isset($authSession->requestUri)) {
                     $url = $authSession->requestUri;
                     unset($authSession->requestUri);
@@ -49,7 +52,9 @@ class AuthController extends Lib_App_SiteController
     {
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
-        $storage->clear();
+        $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
+        $authSession = new Zend_Session_Namespace($namespace);
+        unset($authSession->userInfo);
         $this->_redirect('/');
     }
 

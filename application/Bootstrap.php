@@ -64,6 +64,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = new SmartyView($smarty);
         $options = $this->getOptions();
         $view->options = $options['resources']['view'];
+        $view->addHelperPath(APPLICATION_PATH . '/libs/View/Helper', 'Lib_View_Helper');
 
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($view);
         $viewRenderer->setView($view)

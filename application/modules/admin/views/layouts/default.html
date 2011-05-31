@@ -16,8 +16,8 @@
 
 <body>
     <div id="content" class="clear">
-    {if $this->flashMsg}
-        <div id="flash_msg" class="info">{$this->flashMsg}</div>
+    {if isset($flashMsg)}
+        <div id="flash_msg" class="info">{$flashMsg}</div>
     {/if}
         {assign var=layout value=$this->layout()}
         {$layout->content}

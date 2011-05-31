@@ -55,11 +55,12 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
             return true;
         }
         $namespace = ucwords($request->getModuleName()) . '_Auth';
-        $storage = new Lib_Auth_StorageSession($namespace, 'storage');
-        $data = $storage->read();
-        if(!$data || !isset($data->admin_user_id)) {
-            $session = new Zend_Session_Namespace($namespace);
-            $session->requestUri = $request->getRequestUri();
+        $authSession = new Zend_Session_Namespace($namespace);
+        $userInfo = $authSession->userInfo;
+        if(!isset($userInfo) || isset($userInfo['admin_user_id'])) {
+            $auth = Zend_Auth::getInstance(); 
+            $auth->clearIdentity();
+            $authSession->requestUri = $request->getRequestUri();
             $request->setModuleName('admin');
             $request->setControllerName('auth');
             $request->setActionName('login');
@@ -79,9 +80,9 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
             return true;
         }
         $namespace = ucwords($request->getModuleName()) . '_Auth';
-        $storage = new Lib_Auth_StorageSession($namespace, 'storage');
-        $data = $storage->read();
-        if(!$data || !isset($data->user_id)) {
+        $authSession = new Zend_Session_Namespace($namespace);
+        $userInfo = $authSession->userInfo;
+        if(!isset($userInfo) || isset($userInfo['user_id'])) {
             $session = new Zend_Session_Namespace($namespace);
             $session->requestUri = $request->getRequestUri();
             $request->setModuleName('site');

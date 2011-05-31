@@ -209,7 +209,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $url = $this->_request->getRequestUri();
         $url = preg_replace('/(\/page\/\d+)|([&\?]page=\d+)/i', '', $url);
         $url .= (strpos($url, '?') === FALSE) ? '?' : '&';
-        $this->view->base_url = $url;
+        $this->view->baseUrl = $url;
 
         if(!isset($pageSize)) {
             $pageSize = $this->view->options['pageSize'];

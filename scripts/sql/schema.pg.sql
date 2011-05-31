@@ -5,33 +5,34 @@
 /*
 * 一般ユーザマスタ
 */
--- DROP TABLE USER_MST;
-CREATE TABLE USER_MST (
-	USER_ID					SMALLINT,							--ユーザID
-	USER_NM					VARCHAR(32),						--ユーザ名
-	USER_NM_JP				VARCHAR(32),						--氏名
-	USER_PWD				VARCHAR(32),						--パスワード
-	USER_MAIL				VARCHAR(64),						--メールアドレス
-	LAST_LOGIN_DATE			TIMESTAMP,						--最近ログイン日時
-	SET_DATE				TIMESTAMP,							--更新日
-	SET_NM					VARCHAR(64) DEFAULT 'system',			--更新者
-	CREATE_DATE				TIMESTAMP DEFAULT CURRENT_TIMESTAMP,	--作成日
-	PRIMARY KEY(USER_ID)
+-- DROP TABLE user_mst;
+CREATE TABLE user_mst (
+	user_id					SMALLINT,
+	user_nm					VARCHAR(32),
+	user_nm_jp				VARCHAR(32),
+	user_pwd				VARCHAR(32),
+	user_mail				VARCHAR(64),
+	last_login_date			TIMESTAMP,
+	set_date				TIMESTAMP,
+	set_nm					VARCHAR(64) DEFAULT 'system',
+	create_date				TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(user_id)
 );
 
 /*
 * 管理者ユーザマスタ
 */
--- DROP TABLE ADMIN_USER_MST;
-CREATE TABLE ADMIN_USER_MST (
-	ADMIN_USER_ID			SMALLINT,							--ユーザID
-	ADMIN_USER_NM			VARCHAR(32),						--ユーザ名
-	ADMIN_USER_NM_JP		VARCHAR(32),						--氏名
-	ADMIN_USER_PWD			VARCHAR(32),						--パスワード
-	ADMIN_USER_MAIL			VARCHAR(64),						--メールアドレス
-	LAST_LOGIN_DATE			TIMESTAMP,						--最近ログイン日時
-	SET_DATE				TIMESTAMP,						--更新日
-	SET_NM					VARCHAR(64) DEFAULT 'system',	--更新者
-	CREATE_DATE				TIMESTAMP DEFAULT CURRENT_TIMESTAMP,	--作成日
-	PRIMARY KEY(ADMIN_USER_ID)
+-- DROP TABLE admin_user_mst;
+CREATE TABLE admin_user_mst (
+	admin_user_id			SMALLINT,
+	admin_user_nm			VARCHAR(32),
+	admin_user_nm_jp		VARCHAR(32),
+	admin_user_pwd			VARCHAR(32),
+	admin_user_mail			VARCHAR(64),
+	last_login_date			TIMESTAMP,
+	set_date				TIMESTAMP,
+	set_nm					VARCHAR(64) DEFAULT 'system',
+	create_date				TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(admin_user_id)
 );
+

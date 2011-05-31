@@ -4,7 +4,7 @@
 {if $pageCount > 1}
 <div class="pagenation">
     {if isset($previous)}
-      <a href="{$base_url}page={$previous}">前ページ</a>
+      <a href="{$this->baseUrl}page={$previous}">前ページ</a>
     {else}
       <span class="disabled">前ページ</span>
     {/if}
@@ -13,12 +13,12 @@
         {if $page == $current}
             <span class="disabled">{$page}</span>
         {else}
-            <a href="{$base_url}page={$page}">{$page}</a>
+            <a href="{$this->baseUrl}page={$page}">{$page}</a>
         {/if}
     {/foreach}
 
     {if isset($next)}
-      <a href="{$base_url}page={$next}">次ページ</a>
+      <a href="{$this->baseUrl}page={$next}">次ページ</a>
     {else}
       <span class="disabled">次ページ</span>
     {/if}
