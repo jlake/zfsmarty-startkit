@@ -29,7 +29,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once 'Zend/Application.php';
 
 /** Smarty 組み込み */
-require_once 'Smarty/SmartyView.php';
+require_once 'Smarty2/SmartyView.php';
 
 // アプリケーションの作成と起動
 $application = new Zend_Application(

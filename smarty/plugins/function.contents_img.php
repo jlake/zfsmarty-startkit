@@ -9,7 +9,7 @@
  * Example:  {contents_img file=samples/sample01.jpg [w=100] [h=100]}
  * -------------------------------------------------------------
  */
-function smarty_function_contents_img($params, &$smarty)
+function smarty_function_contents_img($params, $template)
 {
     if (empty($params['src'])) return '<!-- 画像ファイルを指定してください -->';
     $src = '/image/contents?src='.$params['src'];

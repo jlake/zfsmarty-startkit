@@ -5,5 +5,14 @@ With:
 2. site module 
 
 Zend Framework version : 1.9x 1.1x
-Smarty version : 2.6x
+Smarty version : 2.6x 3.0x
+
+Modify docroot/index.php
+
+// If you use Smarty 2
+require_once 'Smarty2/SmartyView.php';
+
+// If you use Smarty 3
+require_once 'Smarty3/SmartyView.php';
+
 

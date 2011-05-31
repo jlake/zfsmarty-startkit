@@ -192,7 +192,7 @@ class DummyController extends Lib_App_SiteController
     {
         //$this->view->msg = '日本語の短縮処理Smartyプラグインのテストです。';
         $this->view->msg = Lib_App_Const::TEST_STR;
-        $this->view->imgSrc = 'samples/sample01.jpg';
+        $this->view->imgSrc = 'sample/dog.jpg';
     }
 
     /**

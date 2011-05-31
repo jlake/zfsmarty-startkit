@@ -4,11 +4,11 @@
 DROP TABLE IF EXISTS dummy;
 CREATE TABLE dummy (
 	id 					MEDIUMINT NOT NULL AUTO_INCREMENT,
-	inf1				VARCHAR(64),					--文字情報１
-	inf2				VARCHAR(64),					--文字情報２
-	set_date			TIMESTAMP,						--更新日
-	set_nm				VARCHAR(64) DEFAULT 'system',	--更新者
-	create_date			TIMESTAMP,	--作成日
+	inf1				VARCHAR(64),
+	inf2				VARCHAR(64),
+	set_date			TIMESTAMP,
+	set_nm				VARCHAR(64) DEFAULT 'system',
+	create_date			TIMESTAMP,
 	PRIMARY KEY(id)
 );
 

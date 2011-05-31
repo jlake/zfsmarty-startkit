@@ -87,7 +87,9 @@ class Site_Model_Dummy
     {
         if(empty($params['id'])) {
             // シーケンスから新しいIDの取得
-            $params['id'] = $this->_dataObj->nextSeqId('dummy_id_seq');
+            //pgsql
+            //$params['id'] = $this->_dataObj->nextSeqId('dummy_id_seq');
+            $params['id'] = NULL;
         }
         return $this->_dataObj->save(array(
             'id' => $params['id'],
@@ -106,7 +108,10 @@ class Site_Model_Dummy
     {
         $db = Zend_Registry::get('db');
         if(empty($params['id'])) {
-            $newId = $db->fetchOne("SELECT NEXTVAL('dummy_id_seq')");
+            //pgsql
+            //$newId = $db->fetchOne("SELECT NEXTVAL('dummy_id_seq')");
+            //mysql
+            $newId = NULL;
             $data = array(
                 'id' => $newId,
                 'inf1' => $params['inf1'],
