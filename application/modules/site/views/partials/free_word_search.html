@@ -1,6 +1,6 @@
-<div id="search-block">
+<div id="search-block" class="box">
     <form action="/search/list" method="post" accept-charset="utf-8">
-        <div><input type="text" id="keyword" name="keyword" value="{$this->params.keyword|escape}" size="16"></div>
-        <div><input type="submit" id="submit_search" name="submit_search" value="検索"></div>
+        <input type="text" id="keyword" name="keyword" value="{$this->params.keyword|escape}" size="26">
+        <input type="submit" id="submit_search" name="submit_search" value="検索">
     </form>
 </div>
