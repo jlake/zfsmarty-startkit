@@ -176,19 +176,23 @@ class SmartyView extends Zend_View_Abstract
 	 * キー => 値 形式の配列で一括設定します
 	 *
 	 * @see __set()
-	 * @param string|array $spec 使用する代入方式 (キー、あるいは キー => 値 の配列)
+	 * @param string|array $var 使用する代入方式 (キー、あるいは キー => 値 の配列)
 	 * @param mixed $value (オプション) 名前を指定して代入する場合は、ここで値を指定します
 	 * @return void
 	 */
-	public function assign($spec, $value = null)
-	{
-		if (is_array($spec)) {
-			$this->_smarty->assign($spec);
-			return;
-		}
-
-		$this->_smarty->assign($spec, $value);
-	}
+	public function assign($var, $value = null) 
+	{ 
+		if (is_string($var)) { 
+			$this->_smarty->assign($var, $value); 
+		} elseif (is_array($var)) { 
+			foreach ($var as $key => $value) { 
+				$this->assign($key, $value); 
+			} 
+		} else { 
+			throw new Zend_View_Exception('assign() expects a string or array, got '.gettype($var)); 
+		} 
+		return $this; 
+	} 
 
 	/**
 	 * 変数をテンプレートに代入します(参照)
@@ -206,6 +210,18 @@ class SmartyView extends Zend_View_Abstract
 		$this->_smarty->assignByRef($spec, $value);
 	}
 
+  
+	/** 
+	 * Zend_View compatibility. Retrieves all template vars 
+	 *  
+	 * @see Zend_View_Abstract::getVars() 
+	 * @return array 
+	 */
+	public function getVars() 
+	{ 
+		return $this->_smarty->getTemplateVars(); 
+	} 
+
 	/**
 	 * 代入済みのすべての変数を削除します
 	 *
@@ -216,7 +232,9 @@ class SmartyView extends Zend_View_Abstract
 	 */
 	public function clearVars()
 	{
-		$this->_smarty->clearAllAssign();
+		$this->_smarty->clearAllAssign(); 
+		$this->assign('this', $this); 
+		return $this; 
 	}
 
 	/**
