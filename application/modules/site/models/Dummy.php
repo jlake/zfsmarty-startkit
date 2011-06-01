@@ -88,7 +88,7 @@ class Site_Model_Dummy
         if(empty($params['id'])) {
             // シーケンスから新しいIDの取得
             //pgsql
-            //$params['id'] = $this->_dataObj->nextSeqId('dummy_id_seq');
+            //$params['id'] = $this->_dataObj->nextSeqNo('dummy_id_seq');
             $params['id'] = NULL;
         }
         return $this->_dataObj->save(array(
@@ -240,7 +240,7 @@ class Site_Model_Dummy
                     $id = $i;
                 } else {
                 	//pgsql
-                    //$id = $this->_dataObj->nextSeqId('dummy_id_seq');
+                    //$id = $this->_dataObj->nextSeqNo('dummy_id_seq');
                     //mysql
                     $id = NULL;
                 }

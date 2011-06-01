@@ -394,7 +394,7 @@ class Lib_Db_DataObject
      * @param   string $seqName  テーブル名
      * @return  number
      */
-    public function nextSeqId($seqName)
+    public function nextSeqNo($seqName)
     {
         return $this->_db->fetchOne("SELECT NEXTVAL(".$this->_db->quote($seqName).")");
     }
