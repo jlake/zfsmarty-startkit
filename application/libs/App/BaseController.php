@@ -30,6 +30,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $this->view->headTitle()->setPrefix('My Site');
             $this->view->headTitle()->setSeparator(' - ');
         }
+        $this->_appendJs('/js/jquery-1.6.1.min.js');
     }
 
 
@@ -48,52 +49,36 @@ class Lib_App_BaseController extends Zend_Controller_Action
     }
 
     /**
-     * 
-     * ini ファイルかストアー設定の取得
-     * @param     string  $storeId     ストアーID
-     * @return    string
-    */
-    protected function _getStoreConfig($storeId)
-    {
-        try {
-            $storeConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/store.ini', $storeId);
-        } catch(Exception $e) {
-            try {
-                $storeConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/store.ini', 'storeinfo');
-            } catch(Exception $e) {
-                $storeConfig = new stdClass;
-            }
-        }
-        return $storeConfig;
-    }
-
-    /**
-     * 
-     * DB からストアー情報の取得
-     * @param     string  $storeId    ストアーID
-     * @return    string
-    */
-    protected function _getStoreInfo($storeId)
-    {
-        $db = Zend_Registry::get('db');
-        $select = $db->select()->from(
-                'store_mst'
-            )->where(
-                "store_id = ?", $storeId
-            );
-        return $db->fetchRow($select);
-    }
-
-    /**
      * Viewにスクリプトの追加
-     * @param string $scriptPaths スクリプトのパスの配列
+     * @param mixed $scriptPath スクリプトのパス(配列可)
      * @return void
     */
-    protected function _appendScripts($scriptPaths = array())
+    protected function _appendJs($scriptPath = array())
     {
-        if(empty($scriptPaths)) return;
-        foreach($scriptPaths as $path) {
-            $this->view->headScript()->appendFile($path);
+        if(empty($scriptPath)) return;
+        if(is_array($scriptPath)) {
+            foreach($scriptPath as $path) {
+                $this->view->headScript()->appendFile($path);
+            }
+        } else {
+            $this->view->headScript()->appendFile($scriptPath);
+        }
+    }
+
+    /**
+     * Viewに独自cssの追加
+     * @param mixed $cssPath スクリプトのパス(配列可)
+     * @return void
+    */
+    protected function _appendCss($cssPath = array())
+    {
+        if(empty($cssPath)) return;
+        if(is_array($cssPath)) {
+            foreach($cssPath as $path) {
+                $this->view->headLink()->appendStylesheets($path);
+            }
+        } else {
+            $this->view->headLink()->appendStylesheets($cssPath);
         }
     }
 
@@ -103,24 +88,11 @@ class Lib_App_BaseController extends Zend_Controller_Action
      */
     protected function _appendValidationJs()
     {
-        $this->_appendScripts(array(
+        $this->_appendJs(array(
             '/js/plugins/jquery.validate.js',
             '/js/plugins/jquery.alphanumeric.js',
             '/js/custom_validators.js'
         ));
-    }
-
-    /**
-     * Viewに独自cssの追加
-     * @param string $cssPaths スクリプトのパスの配列
-     * @return void
-    */
-    protected function _appendStylesheets($cssPaths = array())
-    {
-        if(empty($cssPaths)) return;
-        foreach($cssPaths as $path) {
-            $this->view->headLink()->appendStylesheets($path);
-        }
     }
 
     /**
