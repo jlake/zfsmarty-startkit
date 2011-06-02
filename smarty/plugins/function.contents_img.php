@@ -20,10 +20,10 @@ function smarty_function_contents_img($params, $template)
         $src .= '&h=' . $params['h'];
     }
     $attrs = '';
-    if($params['class']) {
+    if(isset($params['class'])) {
         $attrs = ' class="' . $params['class'] . '"';
     }
-    if($params['style']) {
+    if(isset($params['style'])) {
         $attrs = ' style="' . $params['style'] . '"';
     }
     return '<img src="'.$src.'"'.$attrs.' />';
