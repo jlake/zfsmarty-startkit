@@ -11,13 +11,17 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
-// コンテンツルートパス
-defined('CONTENTS_ROOT')
-    || define('CONTENTS_ROOT', ROOT_PATH . '/data/contents');
-
 // ドメイン名
 defined('FQDN')
     || define('FQDN', $_SERVER['SERVER_NAME']);
+
+// サムネイル画像パス
+defined('THUMB_ROOT')
+    || define('THUMB_ROOT', ROOT_PATH . '/docroot/images/thumb');
+
+// サムネイル画像ベースURL
+defined('THUMB_BASE_URI')
+    || define('THUMB_BASE_URI', '/images/thumb');
 
 // library/ が include_path に設定されるのを確保
 set_include_path(implode(PATH_SEPARATOR, array(

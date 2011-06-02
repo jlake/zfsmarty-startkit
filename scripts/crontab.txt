@@ -1,2 +1,2 @@
 # every day
-15 4 * * * /home/appnames/scripts/db_backup.sh >> /tmp/db_backup_log 2>&1
+15 4 * * * /home/appname/scripts/db_backup.sh >> /tmp/db_backup_log 2>&1

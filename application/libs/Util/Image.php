@@ -18,13 +18,12 @@ class Lib_Util_Image {
      * @param   string  $destPath  サムネイル画像パス
      * @param   number  $w  サムネイル画像横サイズ
      * @param   number  $h  サムネイル画像縦サイズ
-     * @param   number  $q  (optional) サムネイル画像の品質
      */
-    public static function createThumbnail($srcPath, $destPath, $w, $h, $q = 100)
+    public static function createThumbnail($srcPath, $destPath, $w, $h)
     {
         $thumb = PhpThumbFactory::create($srcPath);
         $thumb->resize($w, $h);
-        $thumb->save($destPath, $q);
+        $thumb->save($destPath);
     }
 
     /**

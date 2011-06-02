@@ -1,20 +1,20 @@
 # /etc/logrotate.d ‚Ì‰º‚É”z’u
-/home/bookasp/data/logs/site/*.log {
+/home/appname/data/logs/site/*.log {
     daily
     compress
     nocreate
 }
-/home/bookasp/data/logs/admin/*.log {
+/home/appname/data/logs/admin/*.log {
     daily
     compress
     nocreate
 }
-/home/bookasp/data/logs/trace/*.log {
+/home/appname/data/logs/trace/*.log {
     daily
     compress
     nocreate
 }
-/home/bookasp/data/logs/batch/*.log {
+/home/appname/data/logs/batch/*.log {
     daily
     compress
     nocreate

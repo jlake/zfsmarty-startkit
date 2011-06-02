@@ -196,6 +196,13 @@ class DummyController extends Lib_App_SiteController
     }
 
     /**
+     * Viewヘルパーテスト
+     */
+    public function helpertestAction()
+    {
+    }
+
+    /**
      * メル送信テスト
      */
     public function mailtestAction()

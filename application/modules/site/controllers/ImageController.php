@@ -20,7 +20,7 @@ class ImageController extends Lib_App_SiteController
 
     public function contentsAction()
     {
-        Lib_Util_Image::displayImage(CONTENTS_ROOT . '/' . $this->_params['src'], $this->_params['w'], $this->_params['h']);
+        Lib_Util_Image::displayImage(ROOT_PATH . '/data/contents/' . $this->_params['src'], $this->_params['w'], $this->_params['h']);
     }
 
     public function uploadsAction()
