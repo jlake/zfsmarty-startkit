@@ -23,6 +23,10 @@ defined('THUMB_ROOT')
 defined('THUMB_BASE_URI')
     || define('THUMB_BASE_URI', '/images/thumb');
 
+// 言語コード指定
+defined('LANG')
+    || define('LANG', 'jp');
+
 // library/ が include_path に設定されるのを確保
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(ROOT_PATH . '/library'),

@@ -6,7 +6,7 @@
         });
         $('#ajaxtext').click(function(e) {
             jQuery.post('/dummy/jsontest', function(json) {
-                alert(json.data[0]);
+                alert(json.data.a);
             }, 'json');
         });
     });

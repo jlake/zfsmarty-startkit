@@ -59,6 +59,12 @@
     ②リサイズする
     {uploads_img src=dummy/sample01.jpg w=100 h=100}
 
+  (4) ビューヘルパーでサムネイル自動作成と表示
+    ①ディフォルトサイズ
+    {$this->thumb('contents/sample/dog.jpg')}
+    ②サイズ指定
+    {$this->thumb('contents/sample/dog.jpg', 120, 120)}
+
 ◆エラーコードからエラーメッセージを取得する方法
   ①「/home/bookasp/application/configs/lang/jp/message.ini」へエラーコードとエラーメッセージを記述。
     例）E0000 = "エラーが発生しました。"

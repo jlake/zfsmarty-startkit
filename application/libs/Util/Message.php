@@ -19,7 +19,8 @@ class Lib_Util_Message {
             return '';
         }
         $msgText = '';
-        $msgConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/lang/jp/message.ini', $msgType);
+        $lang = defined(LANG) ? LANG : 'jp';
+        $msgConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/lang/'.$lang.'/message.ini', $msgType);
         if($msgConfig) {
             $msgText = isset($msgConfig->$msgCode) ? $msgConfig->$msgCode : '';
         }
