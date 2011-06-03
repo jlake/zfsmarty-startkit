@@ -12,6 +12,9 @@ These folders need write permission：
 ./smarty/cache
 ./smarty/compiled
 
+(Optional)
+./docroot/images/thumb
+
 For example:
 -------------------------------------------------
 Set write permission

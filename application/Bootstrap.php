@@ -99,9 +99,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initCache()
     {
         $config = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "cache");
+        $frontend = isset($config->frontend) ? $config->frontend : 'Core';
+        $backend = isset($config->backend) ? $config->backend : 'File';
         $frontendOptions = array(
-            'lifetime' => $config->lifetime,
-            'automatic_serialization' => $config->automatic_serialization
+            'lifetime' => isset($config->lifetime) ? $config->lifetime : 7200,
+            'automatic_serialization' => isset($config->automatic_serialization) ? $config->automatic_serialization : true
         );
         $subFolders = array('admin', 'site');
         foreach($subFolders as $folder) {
@@ -110,11 +112,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 mkdir($cacheDir, 0775, true);
             }
             $backendOptions = array('cache_dir' => $cacheDir);
-            $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+            $cache = Zend_Cache::factory($frontend, $backend, $frontendOptions, $backendOptions);
             Zend_Registry::set($folder.'_cache', $cache);
         }
     }
-
 
     protected function _initZFDebug()
     {
