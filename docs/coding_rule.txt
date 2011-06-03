@@ -60,7 +60,7 @@
     {uploads_img src=dummy/sample01.jpg w=100 h=100}
 
 ◆エラーコードからエラーメッセージを取得する方法
-  ①「/home/bookasp/application/configs/message.ini」へエラーコードとエラーメッセージを記述。
+  ①「/home/bookasp/application/configs/lang/jp/message.ini」へエラーコードとエラーメッセージを記述。
     例）E0000 = "エラーが発生しました。"
   ②ＰＧ内で、「Lib_Util_Message::get」のメソッドに対して、引数で区分(error,waning,info)、エラーコード(「E0000」等)をセット。
   ③戻り値でエラーメッセージが取得できます。
@@ -82,10 +82,6 @@
   $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力した文字列', 'invalid' => '文字列'));
   -------------------------------------------------------
 
-◆サイトページ上でフリーテキスト枠やPickUp枠を組み込む方法
-  表示させたいテンプレート上に{$free_text1}や{$pick_up1}と記述する。
-  ページID・ジャンルIDを取得し、表示される。
-
 ◆コントローラ内共通情報取得する方法
   ① パラメータ
   $module = $this->_params['module'];
@@ -94,7 +90,7 @@
   ② ユーザ情報
   $userId = $this->_userInfo['user_id'];
 
-  ※上記の共通情報、ビューに渡してあります、ビュー内変数名前は$params, $storeInfo, $userInfo。
+  ※上記の共通情報、ビューに渡してあります、ビュー内変数名前は$params, $userInfo。
 
 -------------------------------------------------------
 ◆メール送信例

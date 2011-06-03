@@ -40,8 +40,8 @@
 │└ uploads  ・・・・・・アップロードファイル
 ├ docs  ・・・・・・ドキュメント類
 ├ library  ・・・・・・共通ライブラリ
-│├ Smarty
-│├ Zend
+│├ Smarty  ・・・・・・Smarty2、Smarty3どちらもOK
+│├ Zend  ・・・・・・シンボルリンクをおすすめ
 │└ ZFDebug  ・・・・・・Zend Framework デバッグ専用
 ├ docroot ・・・・・・公開層(ドキュメントルート)
 │├ css ・・・・・・スタイルシート
