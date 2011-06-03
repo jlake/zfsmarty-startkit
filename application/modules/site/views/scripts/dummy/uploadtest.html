@@ -1,7 +1,7 @@
 {include file='scripts/dummy/topmsg_dummy.html'}
-{if $errMsg}
+{if isset($errMsg)}
 <div class="error">
-    {errMsg}
+    {$errMsg}
 </div>
 {/if}
 <form id="upload_test" action="/{$params.controller}/{$params.action}" method="post" enctype="multipart/form-data" >
@@ -16,7 +16,7 @@
         </p>
     </fieldset>
 </form>
-{if $imgSrc}
+{if isset($imgSrc)}
 <br />
 ファイルをアップロードしました。<br />
 {uploads_img src=$imgSrc w=200 h=200}

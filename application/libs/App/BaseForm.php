@@ -3,9 +3,8 @@
  * 共通 Zend_Form の拡張
  * @author ou
  */
-class Lib_App_Form extends Zend_Form
+class Lib_App_BaseForm extends Zend_Form
 {
-
     protected $_standardElementDecorator = array(
         'ViewHelper',
         array('LabelError', array('escape'=>false)),
@@ -45,7 +44,8 @@ class Lib_App_Form extends Zend_Form
         if (self::getDefaultTranslator()) {
             return;
         }
-        $translate = new Zend_Translate('array', APPLICATION_PATH . '/configs/lang/jp/Zend_Validate.php', 'jp');
+        $lang = defined(LANG) ? LANG : 'jp';
+        $translate = new Zend_Translate('array', APPLICATION_PATH . '/configs/lang/'.$lang.'/Zend_Validate.php', 'jp');
         Zend_Form::setDefaultTranslator($translate);
     }
 

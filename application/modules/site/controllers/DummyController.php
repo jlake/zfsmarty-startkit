@@ -98,13 +98,13 @@ class DummyController extends Lib_App_SiteController
     }
 
     /**
-     * テスト
+     * JavaScriptテスト
      */
-    public function testAction()
+    public function jstestAction()
     {
         $this->_appendValidationJs();
-        //$this->view->msg = Lib_Util_Message::get('error', 'E0000');
-        $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力した文字列', 'invalid' => '文字列'));
+        $this->view->msg = Lib_Util_Message::get('error', 'E0000');
+        //$this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力した文字列', 'invalid' => '文字列'));
     }
 
     /**

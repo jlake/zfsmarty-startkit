@@ -3,7 +3,7 @@
  * Dummy フォーム
  * @author ou
  */
-class Site_Form_Dummy extends Lib_App_Form
+class Site_Form_Dummy extends Lib_App_BaseForm
 {
     public function init()
     {
