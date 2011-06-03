@@ -2,9 +2,16 @@
 * データベース定義（table, index, sequence, view など）
 */
 
-/*
-* 一般ユーザマスタ
-*/
+-- セッション管理用テーブル
+CREATE TABLE session (
+	id char(32),
+	modified int,
+	lifetime int,
+	data text,
+	PRIMARY KEY (id)
+);
+
+-- 一般ユーザマスタ
 -- DROP TABLE user_mst;
 CREATE TABLE user_mst (
 	user_id					SMALLINT,
@@ -19,9 +26,7 @@ CREATE TABLE user_mst (
 	PRIMARY KEY(user_id)
 );
 
-/*
-* 管理者ユーザマスタ
-*/
+-- 管理者ユーザマスタ
 -- DROP TABLE admin_user_mst;
 CREATE TABLE admin_user_mst (
 	admin_user_id			SMALLINT,

@@ -24,7 +24,6 @@ class Lib_Db_Util
         ));
     }
 
-    
     /**
      * テーブル名から dbTable モデルクラスの取得
      *
