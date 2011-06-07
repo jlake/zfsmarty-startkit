@@ -13,12 +13,12 @@ $(document).ready(function() {
         <legend>管理者 Login</legend>
         <p>
             <label for="admin_user_nm" class="required">管理者ID:</label>
-            <input type="text" name="admin_user_nm" id="admin_user_nm" class="required" style="width:150px;" maxlength="20" value="{$params.admin_user_nm}" />
+            <input type="text" name="admin_user_nm" id="admin_user_nm" class="required" style="width:150px;" maxlength="20" value="{if isset($params.admin_user_nm)}{$params.admin_user_nm}{/if}" />
         </p>
 
         <p>
             <label for="admin_user_pwd" class="required">パスワード:</label>
-            <input type="password" name="admin_user_pwd" id="admin_user_pwd" class="required" style="width:150px;" maxlength="20" value="{$params.admin_user_pwd}" />
+            <input type="password" name="admin_user_pwd" id="admin_user_pwd" class="required" style="width:150px;" maxlength="20" value="{if isset($params.admin_user_pwd)}{$params.admin_user_pwd}{/if}" />
         </p>
         <div class="prepend-3">
             <input type="submit" value="ログイン">

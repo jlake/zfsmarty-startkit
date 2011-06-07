@@ -43,10 +43,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initDbAdapter()
     {
-        $resources = $this->getPluginResource('db');
-        $db = $resources->getDbAdapter();
-        $db->getProfiler()->setEnabled(true);
-        Zend_Registry::set('db', $db);
+        if ($this->hasPluginResource('db')) {
+            $this->bootstrap('db');
+            $resource = $this->getPluginResource('db');
+            $db = $resource->getDbAdapter();
+            $db->getProfiler()->setEnabled(true);
+            Zend_Registry::set('db', $db);
+        }
+
+        if ($this->hasPluginResource('multidb')) {
+            $this->bootstrap('multidb');
+            $resource = $this->getPluginResource('multidb');
+            $db1 = $resource->getDb('db1');
+            $db1->getProfiler()->setEnabled(true);
+            Zend_Registry::set('db1', $db1);
+        }
     }
 
     protected function _initView()
@@ -140,8 +151,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         # Alternatively just add the plugin like above and rely on the autodiscovery feature.
         if ($this->hasPluginResource('db')) {
             $this->bootstrap('db');
-            $db = $this->getPluginResource('db')->getDbAdapter();
-            $options['plugins']['Database']['adapter'] = $db;
+            $resource = $this->getPluginResource('db');
+            $options['plugins']['Database']['adapter'][] = $resource->getDbAdapter();
+        }
+
+        if ($this->hasPluginResource('multidb')) {
+            $this->bootstrap('multidb');
+            $resource = $this->getPluginResource('multidb');
+            $options['plugins']['Database']['adapter'][] = $resource->getDb('db1');
         }
 
         # Setup the cache plugin

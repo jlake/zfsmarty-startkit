@@ -78,7 +78,9 @@ class Lib_Db_DataObject
     public function setTable($table)
     {
         if(is_string($table)) {
-            $table = new Zend_Db_Table($table);
+            //$table = new Zend_Db_Table($table);
+            $dbTableClass = self::getTableModelClass($table);
+            $table => new $dbTableClass($this->_db);
         }
         if(!($table instanceof Zend_Db_Table_Abstract)) {
             throw new Exception('Table オブジェクトは Zend_Db_Table ではありません');
@@ -555,11 +557,7 @@ class Lib_Db_DataObject
         if($module == 'admin') {
             return $authSession->userInfo['admin_user_id'];
         } elseif($module == 'site') {
-            if(isset($authSession->jv_id)) {
-                return $authSession->jv_id;
-            } elseif(isset($authSession->profileInfo)) {
-                return $authSession->profileInfo['user_id'];
-            }
+            return $authSession->userInfo['user_id'];
         }
         return 'system';
     }
