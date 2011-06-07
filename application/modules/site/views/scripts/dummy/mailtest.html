@@ -1,0 +1,28 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#login_form').validate({
+        errorClass: 'input-error'
+    });
+});
+</script>
+{/literal}
+
+{include file='scripts/dummy/topmsg_dummy.html'}
+{if isset($errMsg)}
+<div class="error">
+    {$errMsg}
+</div>
+{/if}
+<form id="mail_test" action="/{$params.controller}/{$params.action}" method="post" >
+    <fieldset>
+        <legend>メール送信テスト</legend>
+        <p>
+            <label for="user_nm" class="required">宛先のメールアドレス：</label><br>
+            <input type="text" name="to" id="to" style="width:220px;" class="required email" value="" />
+        </p>
+        <p>
+          <input type="submit" name="submit" id="submit"  value="送信">
+        </p>
+    </fieldset>
+</form>

@@ -207,14 +207,20 @@ class DummyController extends Lib_App_SiteController
      */
     public function mailtestAction()
     {
-        Lib_Util_SimpleMail::send(array(
-            'from' => 'no-reply@'.FQDN,
-            'to' => 'ozw@tenda.co.jp',
-            'subject' => 'BookAspメル送信テスト',
-            'body' => "BookAspメル送信テストです。 \n --  %name% \n -- %date%",
-            'replace' => array('name' => '欧', 'date' => Lib_Util_Date::getNow())
-        ));
-        $this->_flashMsg('メールを送信しました。');
+        if ($this->_request->isPost()) {
+            if(empty($this->_params['to'])) {
+                $this->view->errMsg = 'メールアドレスを入力してください。';
+                return;
+            }
+            Lib_Util_SimpleMail::send(array(
+                'from' => 'no-reply@'.FQDN,
+                'to' => $this->_params['to'],
+                'subject' => 'メール送信テスト',
+                'body' => "メール送信テストです。 \n --  %name% \n -- %date%",
+                'replace' => array('name' => '欧', 'date' => Lib_Util_Date::getNow())
+            ));
+            $this->_flashMsg('メールを送信しました。');
+        }
     }
 
     /**
