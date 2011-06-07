@@ -13,5 +13,8 @@ class Lib_App_SiteController extends Lib_App_BaseController
     public function init($infoFlg = true)
     {
         parent::init($infoFlg);
+        // ページタイトル先頭文字列指定
+        $this->view->headTitle()->setPrefix('My Site');
+        $this->view->headTitle()->setSeparator(' - ');
     }
 }

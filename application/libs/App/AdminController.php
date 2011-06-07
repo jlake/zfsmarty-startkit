@@ -13,6 +13,8 @@ class Lib_App_AdminController extends Lib_App_BaseController
     public function init($infoFlg = true)
     {
         parent::init($infoFlg);
-        $this->view->headTitle('管理');
+        // ページタイトル先頭文字列指定
+        $this->view->headTitle()->setPrefix('My Site Admin');
+        $this->view->headTitle()->setSeparator(' - ');
     }
 }
