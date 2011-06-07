@@ -3,28 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <html>
 <head>
-    {$this->headTitle()}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     {$this->headMeta()}
-    <meta name="author" content="Tenda">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/css/admin.css" type="text/css">
+    {$this->headTitle()}
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+    <!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="/css/blueprint/plugins/link-icons/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection">
     {$this->headLink()}
     {$this->headScript()}
 </head>
 
-<body>
-    <div id="content" class="clear">
-    {if isset($flashMsg)}
-        <div id="flash_msg" class="info">{$flashMsg}</div>
-    {/if}
+<body class="reset">
+<div id="wrap" class="container">
+    <div id="header" class="span-24 last">
+        <div class="span-8" >
+            <a href="/"><img src="/images/header.gif" alt="サイトLogo画像" /></a>
+        </div>
+        <div class="span-15">
+            <br />
+            <h2>管理画面</h2>
+        </div>
+    </div>
+    <div id="left_sidebar" class="span-5 sidebar">
+        <div id="top-block" class="box">
+            ・<a href="/admin/" title="TOPページ">TOPページ</a><br />
+            ・<a href="/" title="TOPページ">サイトへ</a>
+        </div>
+        {* ユーザー情報 *}
+        {include file='../partials/sidebar_user_info.html'}
+    </div>
+    <div id="content" class="span-18 last">
+        {if $this->flashMsg}
+            <div id="flash_msg" class="info">{$this->flashMsg}</div>
+        {/if}
         {assign var=layout value=$this->layout()}
         {$layout->content}
     </div>
-
-    <div id="footer" class="clear">
+    <div id="footer" class="clear span-24 last">
         <div id="copyright">Copyright(c) Company Name.</div>
     </div>
-
+</div>
 </body>
 </html>
+

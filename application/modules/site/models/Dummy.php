@@ -15,10 +15,13 @@ class Site_Model_Dummy
      */
     public function __construct()
     {
+        /*
         $this->_dataObj = new Lib_Db_DataObject(array(
             //'db' => Zend_Registry::get('db'), //省略可
             'table' => new Lib_Db_Table_Dummy
         ));
+        */
+        $this->_dataObj = Lib_Db_Util::getDataObject('dummy');
     }
 
     /**

@@ -32,7 +32,7 @@ class Admin_AuthController extends Lib_App_AdminController
                 $authSession = new Zend_Session_Namespace($namespace);
                 $authSession->setExpirationSeconds(3600);
                 $userInfo = $identity->toArray();
-                $authSession->userInfo = $userInfo;
+               $authSession->userInfo = $userInfo;
                 if(isset($authSession->requestUri)) {
                     $url = $authSession->requestUri;
                     unset($authSession->requestUri);

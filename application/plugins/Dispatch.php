@@ -57,7 +57,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         $namespace = ucwords($request->getModuleName()) . '_Auth';
         $authSession = new Zend_Session_Namespace($namespace);
         $userInfo = $authSession->userInfo;
-        if(!isset($userInfo) || isset($userInfo['admin_user_id'])) {
+        if(!isset($userInfo) || !isset($userInfo['admin_user_id'])) {
             $auth = Zend_Auth::getInstance(); 
             $auth->clearIdentity();
             $authSession->requestUri = $request->getRequestUri();
@@ -82,7 +82,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         $namespace = ucwords($request->getModuleName()) . '_Auth';
         $authSession = new Zend_Session_Namespace($namespace);
         $userInfo = $authSession->userInfo;
-        if(!isset($userInfo) || isset($userInfo['user_id'])) {
+        if(!isset($userInfo) || !isset($userInfo['user_id'])) {
             $session = new Zend_Session_Namespace($namespace);
             $session->requestUri = $request->getRequestUri();
             $request->setModuleName('site');

@@ -56,6 +56,7 @@ class Lib_Util_Log
     {
         // iniファイルの設定でログフィルタ
         $appConfig = Zend_Registry::get('config');
+        /*
         $logConfig = $appConfig->log->$logFolder;
         if(isset($logConfig) && isset($logConfig->filter)) {
             $levelMap = array(
@@ -73,6 +74,7 @@ class Lib_Util_Log
                 return;
             }
         }
+        */
         $logger = self::getLogger($logFolder);
         if($logger) {
             return $logger->log($logMsg, $level);

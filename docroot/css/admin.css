@@ -1,48 +1,7 @@
 @charset "UTF-8";
 
-
 body {
 	font-family:"MS PGothic","Osaka",Arial,sans-serif;
-}
-
-#menu ul{
-    padding:5;
-    list-style-type:none;
-    width:70%;
-	text-align: left;
-}
-
-#menu li{
-	list-style-type: none;
-}
-
-table.list {
-	width: 100%; 
-}
-
-th {
-	white-space: nowrap;
-	background: #FFB6C1;
-}
-
-td {
-	text-align:left;
-	vertical-align:top;
-}
-
-textarea {
-	width: 100%; 
-}
-
-
-td.item{
-	background: #FFB6C1;
-	font-weight: bold;
-}
-
-div.title{
-	font-size: large;
-	font-weight: bold;
 }
 
 .errmsg{
