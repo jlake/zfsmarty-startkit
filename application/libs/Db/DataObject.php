@@ -14,14 +14,22 @@ class Lib_Db_DataObject
     protected $_logQueue = array();
     protected $_logModel = null;
 
+    protected $_defaults = array(
+        'table' => null,
+        'db' => 'db',
+        'auto_log' => false,
+        'log_model' => null
+    );
+
     /**
      * コンストラクタ
      *
      * @param   array $params  パラメータの配列
      * @return  void
      */
-    public function __construct($params = array('db'=>'db', 'table' => null, 'auto_log'=>false, 'log_model'=>null)) 
+    public function __construct($params = array()) 
     {
+        $params = array_merge($this->_defaults, $params);
         if(isset($params['db'])) {
             // データベース指定（Object または string）
             $this->setDb($params['db']);
@@ -80,7 +88,7 @@ class Lib_Db_DataObject
         if(is_string($table)) {
             //$table = new Zend_Db_Table($table);
             $dbTableClass = self::getTableModelClass($table);
-            $table => new $dbTableClass($this->_db);
+            $table = new $dbTableClass($this->_db);
         }
         if(!($table instanceof Zend_Db_Table_Abstract)) {
             throw new Exception('Table オブジェクトは Zend_Db_Table ではありません');

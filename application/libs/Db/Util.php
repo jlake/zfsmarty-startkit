@@ -33,7 +33,7 @@ class Lib_Db_Util
      */
     public static function getTableModelClass($tableName)
     {
-        $words = split('_', $tableName);
+        $words = explode('_', $tableName);
         foreach($words as &$word) {
             $word = ucfirst($word);
         }
