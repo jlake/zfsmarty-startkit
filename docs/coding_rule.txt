@@ -14,11 +14,6 @@
   LF もしくは CR+LF
 
 
-◆iniファイル置換文字列（Zend）
-  [] ではなく %% を使用すること。例） %VALUE%
-  ※mkreiでは [] を使っているが、[] はiniファイルのセクションの表す為、使用禁止。
-
-
 ◆サンプルソース
   （コントローラ）
     application\modules\site\controllers\DummyController.php
@@ -27,6 +22,36 @@
   （ビュー）
     application\modules\site\views\scripts\dummy\*.html
 
+◆データベース接続先指定方法
+  (1) Zend_Db と Zend_Db_Tableを利用
+    $db = Zend_Registry::get('db');
+    $dummyTable = new Lib_Db_Table_Dummy($db)
+
+
+  (3) 共通関数を利用
+    $dataObj = new Lib_Db_DataObject(array(
+            'table' => new Lib_Db_Table_Dummy
+        ));
+
+    //上記と同じですが、少し便利な書き方
+    $dataObj = Lib_Db_Util::getDataObject('dummy');
+
+    //読込用メソッド
+    $dataObj->getRows(...)
+    $dataObj->getRow(...)
+    $dataObj->getOne(...)
+    $dataObj->getPairs(...)
+    $dataObj->getCol(...)
+    $dataObj->select(...)
+    $dataObj->nextSeqNo(...)
+    $dataObj->maxPlus1(...)
+    
+    //書込用メソッド
+    $dataObj->save(...)
+    $dataObj->insert(...)
+    $dataObj->update(...)
+    $dataObj->delete(...)
+    $dataObj->beginTransaction(...)
 
 ◆画像指定方法
   (1) docroot フォルダ下の画像
@@ -65,38 +90,52 @@
     ②サイズ指定
     {$this->thumb('contents/sample/dog.jpg', 120, 120)}
 
-◆エラーコードからエラーメッセージを取得する方法
-  ①「/home/bookasp/application/configs/lang/jp/message.ini」へエラーコードとエラーメッセージを記述。
-    例）E0000 = "エラーが発生しました。"
-  ②ＰＧ内で、「Lib_Util_Message::get」のメソッドに対して、引数で区分(error,waning,info)、エラーコード(「E0000」等)をセット。
-  ③戻り値でエラーメッセージが取得できます。
+◆ message.ini からメッセージを取得する方法
+  (1) message.ini ファイルのは application/configs/lang/jp/ に配置します。
+　(2) メッセージの種類(セクション)： 
+    [error] ;エラー
+    [waning] ;ワーニング
+    [info] ;通常
+
+    記述例）
+    [error]
+    E0000 = "エラーが発生しました。"
+
+  (3) メッセージの取得方法
+　　$msg = Lib_Util_Message::get($section, $code)
+
   -------------------------------------------------------
   使用例：
 
-  (1) 置換文字列なし
-  設定:
-  E0000 = "エラーが発生しました。"
+  ① 置換文字列なし
+    設定:
+    E0000 = "エラーが発生しました。"
 
-  取得:
-  $this->view->msg = Lib_Util_Message::get('error', 'E0000');
+    取得:
+    $this->view->msg = Lib_Util_Message::get('error', 'E0000');
 
-  (2) 置換文字列あり
-  設定: 
-  E1002 = "'%value%' は不正な文字 '%invalid%' を含んでいます。"
+  ② 置換文字列あり
+    設定: 
+    E1002 = "'%value%' は不正な文字 '%invalid%' を含んでいます。"
 
-  取得: 
-  $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力した文字列', 'invalid' => '文字列'));
+    取得: 
+    $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力したもの', 'invalid' => 'もの'));
   -------------------------------------------------------
 
+
+◆iniファイルに置換文字列設定について
+  [] ではなく %% を使用すること。例） %VALUE%
+  ※mkreiでは [] を使っているが、[] はiniファイルのセクションの表す為、使用禁止。
+
 ◆コントローラ内共通情報取得する方法
-  ① パラメータ
-  $module = $this->_params['module'];
-  $pp1 = $this->_params['pp1'];
+　(1) パラメータ
+   $module = $this->_params['module'];
+   $pp1 = $this->_params['pp1'];
 
-  ② ユーザ情報
-  $userId = $this->_userInfo['user_id'];
+　(2)ユーザ情報
+   $userId = $this->_userInfo['user_id'];
 
-  ※上記の共通情報、ビューに渡してあります、ビュー内変数名前は$params, $userInfo。
+   ※上記の共通情報、ビューに渡してあります、ビュー内変数名前は$params, $userInfo。
 
 -------------------------------------------------------
 ◆メール送信例
@@ -111,8 +150,9 @@ Lib_Util_SimpleMail::send(array(
 
 -------------------------------------------------------
 ◆共通エラーページ表示
-① エラーコードと置換文字列の配列指定
-  $this->_displaySysError('E1002', array('value' => '入力した文字列あああああ', 'invalid' => '文字列'));
-② 直接エラーメッセージ指定
-  $this->_displaySysErrorMsg('エラーが発生しています');
+　(1) エラーコードと置換文字列の配列指定
+   $this->_displaySysError('E1002', array('value' => '入力した文字列ABC', 'invalid' => 'ABC'));
+
+　(2) 直接エラーメッセージ指定
+   $this->_displaySysErrorMsg('エラーが発生しています');
 
