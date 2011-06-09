@@ -67,8 +67,8 @@
 └ tests ライブラリテスト用(PEAR::PHPUnit2が必要、Zend Framework提供)
 
 【URL形式】
-module（例：admin）指定の場合）：
+module（例：admin）指定の場合：
 http://domain/module/controler/action/パラメータ
 
-module指定しない場合：
+module 指定しない場合（デフォールトmodule）：
 http://domain/controler/action/パラメータ
