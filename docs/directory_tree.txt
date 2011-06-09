@@ -25,6 +25,13 @@
 │││  ├ layouts ・・・・・・サイト側ビューレイアウト
 │││  ├ partials ・・・・・・サイト側ビュー共通ソース
 │││  └ scripts ・・・・・・サイト側ビュースクリプト
+││└ api ・・・・・・API側モジュール
+│││├ controllers ・・・・・・API側コントローラ
+│││├ forms ・・・・・・API側Zend_Formスクリプト
+│││├ models ・・・・・・API側モデル
+│││└ views ・・・・・・API側ビュー
+│││  ├ layouts ・・・・・・API側ビューレイアウト
+│││  └ scripts ・・・・・・API側ビュースクリプト
 │├ plugins  ・・・・・・Zend Framework プラグイン
 ││└ Dispatch.php ・・・・・・ログインチェック、Smartyコンパイルパス指定とか（重要）
 │└ Bootstrap.php ・・・・・・アプリケーションの起動スクリプト

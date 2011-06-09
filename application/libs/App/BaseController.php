@@ -24,7 +24,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
             $authSession = new Zend_Session_Namespace($namespace);
             if(isset($authSession->userInfo)) {
-            	$this->_userInfo = $authSession->userInfo;
+                $this->_userInfo = $authSession->userInfo;
             }
         }
         $this->_appendJs('/js/jquery-1.6.1.min.js');
@@ -38,8 +38,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
     public function postDispatch()
     {
         if($this->_infoFlg) {
-	        // リクエストパラメータをビューに渡す
-	        $this->view->params = $this->_params;
+            // リクエストパラメータをビューに渡す
+            $this->view->params = $this->_params;
             // ユーザ情報をビューに渡す
             $this->view->userInfo = $this->_userInfo;
         }          

@@ -36,6 +36,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'admin' => new Zend_Application_Module_Autoloader(array(
                 'basePath'  => APPLICATION_PATH.'/modules/admin/',
                 'namespace' => 'Admin',
+            )),
+            'api' => new Zend_Application_Module_Autoloader(array(
+                'basePath'  => APPLICATION_PATH.'/modules/api/',
+                'namespace' => 'Api',
             ))
         );
         return $autoLoaders;
