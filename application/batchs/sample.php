@@ -10,7 +10,8 @@ class Batch_Sample
     {
     }
 
-    protected function _init() {
+    protected function _init()
+    {
         try {
             $opts = new Zend_Console_Getopt(
                 array(
@@ -22,7 +23,7 @@ class Batch_Sample
             exit($e->getMessage() ."\n\n". $e->getUsageMessage());
         }
 
-        if(isset($opts->h)) {
+        if(isset($opts->help)) {
             echo $opts->getUsageMessage();
             exit;
         }
@@ -31,7 +32,8 @@ class Batch_Sample
         $this->_logger = Zend_Registry::get('batch_logger');
     }
     
-    public function run() {
+    public function run()
+    {
         $this->_init();
         $this->_logger->log('START run ' . __FILE__, Zend_Log::INFO);
 
