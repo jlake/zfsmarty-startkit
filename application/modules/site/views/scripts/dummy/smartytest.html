@@ -5,5 +5,7 @@ mb_truncate Test:<br />
 contents_img Test:<br />
 {contents_img src='sample/dog.jpg' w='100' h='100'}
 <br />
-{contents_img src=$imgSrc w='200' h='200'}
-<br />
+{foreach from=$images item=image}
+    {contents_img src=$image.src w=$image.w h=$image.h}
+    <br />
+{/foreach}
