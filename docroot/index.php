@@ -27,7 +27,7 @@ defined('THUMB_BASE_URI')
 defined('LANG')
     || define('LANG', 'jp');
 
-// library/ が include_path に設定されるのを確保
+// library/ が include_path に設定されることを確保
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(ROOT_PATH . '/library'),
     get_include_path(),

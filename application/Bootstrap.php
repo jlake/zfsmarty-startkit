@@ -26,7 +26,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $resource;
     }
 
-    protected function _initAutoLoader()
+    protected function _initModules()
     {
         $autoLoaders = array(
             'site' => new Zend_Application_Module_Autoloader(array(

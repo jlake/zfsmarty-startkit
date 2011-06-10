@@ -6,22 +6,35 @@
   http://www.yoshino-tech.com/w/index.php?Zend%2F%A5%B3%A1%BC%A5%C7%A5%A3%A5%F3%A5%B0%B5%AC%CC%F3
 
 
+-------------------------------------------------------
 ◆文字コード
   UTF-8
 
 
+-------------------------------------------------------
 ◆改行コード
   LF もしくは CR+LF
 
 
+-------------------------------------------------------
 ◆サンプルソース
   （コントローラ）
-    application\modules\site\controllers\DummyController.php
+    application/modules/site/controllers/DummyController.php
   （モデル）
-    application\modules\site\models\Dummy.php
+    application/modules/site/models/Dummy.php
   （ビュー）
-    application\modules\site\views\scripts\dummy\*.html
+    application/modules/site/views/scripts/dummy/*.html
 
+-------------------------------------------------------
+◆Db_Tableクラスの作成について
+  (1) 場所
+    application/libs/Db/Table/
+
+  (2) テーブル名 / クラス名（例）
+　　dummy → Lib_Db_Table_Dummy
+　　user_mst → Lib_Db_Table_UserMst
+
+-------------------------------------------------------
 ◆データベース接続先指定方法
   (1) Zend_Db と Zend_Db_Tableを利用
     $db = Zend_Registry::get('db');
@@ -53,6 +66,7 @@
     $dataObj->delete(...)
     $dataObj->beginTransaction(...)
 
+-------------------------------------------------------
 ◆画像指定方法
   (1) docroot フォルダ下の画像
     例：
@@ -90,6 +104,7 @@
     ②サイズ指定
     {$this->thumb('contents/sample/dog.jpg', 120, 120)}
 
+-------------------------------------------------------
 ◆ message.ini からメッセージを取得する方法
   (1) message.ini ファイルのは application/configs/lang/jp/ に配置します。
 　(2) メッセージの種類(セクション)： 
@@ -104,7 +119,6 @@
   (3) メッセージの取得方法
 　　$msg = Lib_Util_Message::get($section, $code)
 
-  -------------------------------------------------------
   使用例：
 
   ① 置換文字列なし
@@ -120,9 +134,8 @@
 
     取得: 
     $this->view->msg = Lib_Util_Message::get('error', 'E1002', array('value' => '入力したもの', 'invalid' => 'もの'));
-  -------------------------------------------------------
 
-
+-------------------------------------------------------
 ◆iniファイルに置換文字列設定について
   [] ではなく %% を使用すること。例） %VALUE%
   ※mkreiでは [] を使っているが、[] はiniファイルのセクションの表す為、使用禁止。
@@ -156,3 +169,10 @@ Lib_Util_SimpleMail::send(array(
 　(2) 直接エラーメッセージ指定
    $this->_displaySysErrorMsg('エラーが発生しています');
 
+-------------------------------------------------------
+◆バッチ作成について
+  (1) 場所
+    application/batchs/
+
+  (2) サンプル
+	application/batchs/sample.php
