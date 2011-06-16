@@ -16,7 +16,7 @@ class Lib_Util_UserAgent {
         $ua = $_SERVER['HTTP_USER_AGENT'];
         $pattern1 = '/Profile\/MIDP-\d/i';
         $pattern2 = '/Mozilla\/.*(SymbianOS|iPhone|iPod|iPad|Android|Windows\sCE)/i';
-        $isMobile = preg_match($pattern1, $ua) || preg_match($pattern2, $ua);
+        return preg_match($pattern1, $ua) || preg_match($pattern2, $ua);
     }
 
     /**
