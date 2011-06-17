@@ -25,10 +25,6 @@ class DummyController extends Lib_App_SiteController
      */
     public function topAction()
     {
-        /*
-        $scriptPath = $this->view->getScriptPaths();
-        var_dump($scriptPath);
-        */
         $dummy = new Lib_Db_Table_Dummy();
         $select = $dummy->select()->order('id');
         // ページングのパラメータは Zend_Db_Select オブジェクト （limit, start 不要）
@@ -162,7 +158,7 @@ class DummyController extends Lib_App_SiteController
      */
     public function forwardtestAction()
     {
-        $this->_forward('test');
+        $this->_forward('jstest');
     }
 
 
@@ -247,6 +243,35 @@ class DummyController extends Lib_App_SiteController
                 $this->view->imgSrc = $subPath . '/' . $_FILES['img_file']['name'];
             }
         }
+    }
+
+    /**
+     * 「もっと見る」サンプル
+     */
+    public function loadmoreAction()
+    {
+        $this->_setLayout('smartphone');
+    }
+
+    /**
+     * 「もっと見る」サンプル
+     */
+    public function booklistAction()
+    {
+        $listCount = 10;
+        $items = array();
+        $image = '/images/world-book.gif';
+        $text = '世界一の経営者、アップルのスティーブ・ジョブズCEO--。スティーブ・ジョブズのプレゼンテーションは、聴衆を魅了し、熱狂させ、製品を輝かせる。そのプレゼンを徹底的に分析し、18の法則に体系づけ、過去のプレゼンとともに解説。';
+        $itemSize = filesize(dirname(__FILE__) . '/../' . $image) + strlen($text);
+
+        for($i = 0; $i < $listCount; $i++) {
+            $items[] = array(
+                'image' => $image,
+                'text' => $text,
+                'size' => $itemSize
+            );
+        }
+        $this->_sendJson($items);
     }
 
     /**

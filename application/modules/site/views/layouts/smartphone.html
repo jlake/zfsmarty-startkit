@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {$this->headMeta()}
+    {$this->headTitle()}
+    <link rel="stylesheet" href="/css/smartphone.css" type="text/css" media="screen, projection">
+    {$this->headLink()}
+    {$this->headScript()}
+</head>
+<body>
+<div id="container">
+    <header class="center">
+        <hgroup>
+            <a href="/"><img src="/images/header.gif" alt="サイトLogo画像" /></a>
+        </hgroup>
+    </header>
+    <div id="content">
+        {if $this->flashMsg}
+            <div id="flash_msg" class="info">{$this->flashMsg}</div>
+        {/if}
+        {assign var=layout value=$this->layout()}
+        {$layout->content}
+    </div>
+    <footer class="center">
+        <p class="copyright"><small>Copyright &copy; TENDA Co.,Ltd. All Rights Reserved.</small></p>
+    </footer>
+</div>
+<noscript>
+    <p class="topalert">JavaScriptを有効に設定してください。</p>
+</noscript>
+</body>
+</html>

@@ -134,7 +134,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initZFDebug()
     {
-        var_dump(Lib_Util_UserAgent::isMobile());
         if(APPLICATION_ENV != 'development' || Lib_Util_UserAgent::isMobile()) return;
 
         $autoloader = Zend_Loader_Autoloader::getInstance();
