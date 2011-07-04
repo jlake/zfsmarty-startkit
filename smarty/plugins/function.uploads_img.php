@@ -6,7 +6,7 @@
  * Type:     function
  * Name:     uploads_img
  * Purpose:  ファイル名指定でアップロードした画像を表示する
- * Example:  {contents_img file=samples/sample01.jpg [w=100] [h=100]}
+ * Example:  {contents_img file='samples/sample01.jpg' [w='100'] [h='100']}
  * -------------------------------------------------------------
  */
 function smarty_function_uploads_img($params, $template)

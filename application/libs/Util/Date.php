@@ -23,6 +23,15 @@ class Lib_Util_Date {
      * @param   string $format 日付の形式文字列
      * @return  string
      */
+    public static function getNowFromDb($format = '%Y-%m-%d %H:%i:%s')
+    {
+        $db = Zend_Registry::get('db');
+        $format = $db->quote($format);
+        $stmt = $db->query("SELECT date_format(CURRENT_TIMESTAMP, $format) as result");
+        $rows = $stmt->fetchAll();
+        return isset($rows[0]) ? $rows[0]['result'] : '';
+    }
+    /* PostgreSQL
     public static function getNowFromDb($format = 'yyyy-mm-dd hh24:mi:ss')
     {
         $db = Zend_Registry::get('db');
@@ -31,6 +40,7 @@ class Lib_Util_Date {
         $rows = $stmt->fetchAll();
         return isset($rows[0]) ? $rows[0]['result'] : '';
     }
+    */
 
     /**
      * ローカル時間からUTC時間に変換

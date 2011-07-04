@@ -6,7 +6,7 @@
  * Type:     function
  * Name:     contents_img
  * Purpose:  ファイル名指定でコンテンツ画像を表示する
- * Example:  {contents_img file=samples/sample01.jpg [w=100] [h=100]}
+ * Example:  {contents_img file='samples/sample01.jpg' [w='100'] [h='100']}
  * -------------------------------------------------------------
  */
 function smarty_function_contents_img($params, $template)
