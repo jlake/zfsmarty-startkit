@@ -72,7 +72,7 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
 
         $pkeys = $this->_db->fetchCol("SELECT `COLUMN_NAME`
             FROM `information_schema`.`COLUMNS`
-            WHERE (`TABLE_NAME` = 'campaign_tbl')
+            WHERE (`TABLE_NAME` = '$tableName')
                 AND (`COLUMN_KEY` = 'PRI')
         ");
 
