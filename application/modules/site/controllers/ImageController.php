@@ -20,12 +20,22 @@ class ImageController extends Lib_App_SiteController
 
     public function contentsAction()
     {
-        Lib_Util_Image::displayImage(ROOT_PATH . '/data/contents/' . $this->_params['src'], $this->_params['w'], $this->_params['h']);
+        $src = $this->_params['src'];
+        if(empty($src) || strpos($src, '..') !== false) {
+            $this->_displaySysErrorMsg('画像パス無効です。');
+            return;
+        }
+        Lib_Util_Image::displayImage(ROOT_PATH . '/data/contents/' . $src, $this->_params['w'], $this->_params['h']);
     }
 
     public function uploadsAction()
     {
-        Lib_Util_Image::displayImage(ROOT_PATH . '/data/uploads/' . $this->_params['src'], $this->_params['w'], $this->_params['h']);
+        $src = $this->_params['src'];
+        if(empty($src) || strpos($src, '..') !== false) {
+            $this->_displaySysErrorMsg('画像パス無効です。');
+            return;
+        }
+        Lib_Util_Image::displayImage(ROOT_PATH . '/data/uploads/' . $src, $this->_params['w'], $this->_params['h']);
     }
 
 }
