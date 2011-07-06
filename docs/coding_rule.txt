@@ -36,20 +36,25 @@
 
 -------------------------------------------------------
 ◆データベース接続先指定方法
-  (1) Zend_Db と Zend_Db_Tableを利用
+  (1) 読込
     $db = Zend_Registry::get('db');
     $dummyTable = new Lib_Db_Table_Dummy($db)
 
+  (2) 書込
+    $dbw = Zend_Registry::get('dbw');
+    $dummyTable = new Lib_Db_Table_Dummy($dbw)
 
-  (3) 共通関数を利用
+  (3) 自動（共通関数を利用）
     $dataObj = new Lib_Db_DataObject(array(
+            'readdb' => 'db',
+            'writedb' => 'dbw',
             'table' => new Lib_Db_Table_Dummy
         ));
 
     //上記と同じですが、少し便利な書き方
     $dataObj = Lib_Db_Util::getDataObject('dummy');
 
-    //読込用メソッド
+    //以下のメソッド、読込用DBに接続します
     $dataObj->getRows(...)
     $dataObj->getRow(...)
     $dataObj->getOne(...)
@@ -59,7 +64,7 @@
     $dataObj->nextSeqNo(...)
     $dataObj->maxPlus1(...)
     
-    //書込用メソッド
+    //以下のメソッド、書込用DBに接続します
     $dataObj->save(...)
     $dataObj->insert(...)
     $dataObj->update(...)
@@ -176,3 +181,13 @@ Lib_Util_SimpleMail::send(array(
 
   (2) サンプル
 	application/batchs/sample.php
+
+-------------------------------------------------------
+◆application.iniから設定情報取得について
+  セクション [production]、[develpment] ... の設定情報取得例：
+    $appConfig = Zend_Registry::get('config');
+    echo $appConfig->bootstrap->path;
+
+  [production]、[develpment] ... 以外のセクションの設定情報取得例：
+    $cacheConfig = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "cache");
+    echo $cacheConfig->lifetime;
