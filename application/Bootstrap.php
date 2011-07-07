@@ -87,12 +87,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->setViewSuffix('html');
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
 
-        //ページング
-        Zend_Paginator::setDefaultScrollingStyle('Sliding');
-        Zend_View_Helper_PaginationControl::setDefaultViewPartial(
-            'partials/default_paginator.html'
-        );
-
         return $view;
     }
 

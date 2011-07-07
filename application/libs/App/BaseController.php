@@ -172,6 +172,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
     /**
      * ページング設定
      * @param array/object $dataAdapter ページング対象データアダプタ
+     * @param integer $pageSize ページサイズ（表示アイテム最大件数）
+     * @param integer $pageRange ページリンク最大件数
      * @return void
      */
     protected function _setPaginator($dataAdapter, $pageSize = NULL, $pageRange = NULL) {
@@ -192,6 +194,21 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $this->_paginator->setCurrentPageNumber($this->_getParam('page'), 1);
 
         $this->view->paginator = $this->_paginator;
+
+        //ページングスタイル指定
+        $this->_setPaginatorTemplate('partials/default_paginator.html');
+    }
+
+    /**
+     *　ページングスタイル指定
+     * @param string $template テンプレート
+     * @param string $scrollingStyle スクロールスタイル
+     * @return void
+     */
+    protected function _setPaginatorTemplate($template, $scrollingStyle = 'Sliding') {
+        //ページングスタイル指定
+        Zend_Paginator::setDefaultScrollingStyle($scrollingStyle);
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial($template);
     }
 
     /**
