@@ -83,8 +83,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         $authSession = new Zend_Session_Namespace($namespace);
         $userInfo = $authSession->userInfo;
         if(!isset($userInfo) || !isset($userInfo['user_id'])) {
-            $session = new Zend_Session_Namespace($namespace);
-            $session->requestUri = $request->getRequestUri();
+            $authSession->requestUri = $request->getRequestUri();
             $request->setModuleName('site');
             $request->setControllerName('auth');
             $request->setActionName('login');
