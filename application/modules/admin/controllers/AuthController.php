@@ -28,17 +28,15 @@ class Admin_AuthController extends Lib_App_AdminController
             $result = $auth->authenticate($authAdapter);
             if($result->isValid()){
                 $identity = $result->getIdentity();
-                $namespace = ucwords($this->_params['module']) . '_Auth';
-                $authSession = new Zend_Session_Namespace($namespace);
-                $authSession->setExpirationSeconds(3600);
                 $userInfo = $identity->toArray();
-               $authSession->userInfo = $userInfo;
+                $authSession = new Lib_App_Session($this->_params['module']);
+                $authSession->setUserInfo($userInfo);
                 if(isset($authSession->requestUri)) {
                     $url = $authSession->requestUri;
                     unset($authSession->requestUri);
                     $this->_redirect($url);
                 } else {
-                    $this->_redirect('/');
+                    $this->_redirect('/admin/');
                 }
             } else {
                 $auth->clearIdentity();
@@ -52,9 +50,8 @@ class Admin_AuthController extends Lib_App_AdminController
     {
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
-        $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
-        $authSession = new Zend_Session_Namespace($namespace);
-        unset($authSession->userInfo);
+        $authSession = new Lib_App_Session($this->_params['module']);
+        $authSession->setUserInfo(null);
         $this->_redirect('/admin/');
     }
 

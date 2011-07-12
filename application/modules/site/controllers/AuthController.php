@@ -28,11 +28,9 @@ class AuthController extends Lib_App_SiteController
             $result = $authAdapter->authenticate($authAdapter);
             if($result->isValid()){
                 $identity = $result->getIdentity();
-                $namespace = ucwords($this->_params['module']) . '_Auth';
-                $authSession = new Zend_Session_Namespace($namespace);
-                //$authSession->setExpirationSeconds(3600);
                 $userInfo = $identity->toArray();
-                $authSession->userInfo = $userInfo;
+                $authSession = new Lib_App_Session($this->_params['module']);
+                $authSession->setUserInfo($userInfo);
                 if(isset($authSession->requestUri)) {
                     $url = $authSession->requestUri;
                     unset($authSession->requestUri);
@@ -50,11 +48,11 @@ class AuthController extends Lib_App_SiteController
 
     public function logoutAction()
     {
+        $this->_disableLayout(true);
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
-        $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
-        $authSession = new Zend_Session_Namespace($namespace);
-        unset($authSession->userInfo);
+        $authSession = new Lib_App_Session($this->_params['module']);
+        $authSession->setUserInfo(null);
         $this->_redirect('/');
     }
 
