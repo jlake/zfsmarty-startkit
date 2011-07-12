@@ -8,6 +8,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
     {
         $module = $request->getModuleName();
+        Zend_Registry::set('module', $module);
         $controller = $request->getControllerName();
         // レイアウト指定
         $layout = Zend_Layout::getMvcInstance();
@@ -36,7 +37,6 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
         $module = $request->getModuleName();
-        Zend_Registry::set('module', $module);
         if($module == 'admin') {
             $this->_checkAdminLogin($request);
         } else if($module == 'site') {
@@ -49,16 +49,16 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
      */
     private function _checkAdminLogin($request)
     {
+        $module = $request->getModuleName();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
         if($controller == 'error' || $controller == 'auth') {
             return true;
         }
-        $namespace = ucwords($request->getModuleName()) . '_Auth';
-        $authSession = new Zend_Session_Namespace($namespace);
-        $userInfo = $authSession->userInfo;
+        $session = new Lib_App_Session($module);
+        $userInfo = $session->getUserInfo();
         if(!isset($userInfo) || !isset($userInfo['admin_user_id'])) {
-            $auth = Zend_Auth::getInstance(); 
+            $auth = Zend_Auth::getInstance();
             $auth->clearIdentity();
             $authSession->requestUri = $request->getRequestUri();
             $request->setModuleName('admin');
@@ -74,16 +74,16 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
      */
     private function _checkSiteLogin($request)
     {
+        $module = $request->getModuleName();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
         if($controller == 'error' || $controller == 'auth') {
             return true;
         }
-        $namespace = ucwords($request->getModuleName()) . '_Auth';
-        $authSession = new Zend_Session_Namespace($namespace);
-        $userInfo = $authSession->userInfo;
+        $session = new Lib_App_Session($module);
+        $userInfo = $session->getUserInfo();
         if(!isset($userInfo) || !isset($userInfo['user_id'])) {
-            $authSession->requestUri = $request->getRequestUri();
+            $session->requestUri = $request->getRequestUri();
             $request->setModuleName('site');
             $request->setControllerName('auth');
             $request->setActionName('login');

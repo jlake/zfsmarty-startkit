@@ -29,11 +29,11 @@ class AuthController extends Lib_App_SiteController
             if($result->isValid()){
                 $identity = $result->getIdentity();
                 $userInfo = $identity->toArray();
-                $authSession = new Lib_App_Session($this->_params['module']);
-                $authSession->setUserInfo($userInfo);
-                if(isset($authSession->requestUri)) {
-                    $url = $authSession->requestUri;
-                    unset($authSession->requestUri);
+                $session = new Lib_App_Session($this->_params['module']);
+                $session->setUserInfo($userInfo);
+                if(isset($session->requestUri)) {
+                    $url = $session->requestUri;
+                    unset($session->requestUri);
                     $this->_redirect($url);
                 } else {
                     $this->_redirect('/');
@@ -51,8 +51,8 @@ class AuthController extends Lib_App_SiteController
         $this->_disableLayout(true);
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
-        $authSession = new Lib_App_Session($this->_params['module']);
-        $authSession->setUserInfo(null);
+        $session = new Lib_App_Session($this->_params['module']);
+        $session->setUserInfo(null);
         $this->_redirect('/');
     }
 

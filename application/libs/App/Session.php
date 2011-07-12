@@ -6,59 +6,69 @@
 class Lib_App_Session
 {
     /**
-     * モジュール名
+     * セッションオブジェクト（ネームスペース）
      *
-     * @var string
+     * @var Zend_Session_Namespace
      */
-    protected $_module;
-
-    /**
-     * 有効期限(秒)
-     *
-     * @var integer
-     */
-    protected $_expirationSeconds;
+    protected $_session;
 
     /**
      * コンストラクタ
      *
      * @param string $module  モジュール
-     * @param integer $expirationSeconds  有効期限(秒)
+     * @param integer $expirationSeconds  有効期限(秒, 省略可)
      */
-    public function __construct($module, $expirationSeconds = 86400) {
-        $this->_module = $module;
-        $this->_expirationSeconds = $expirationSeconds;
+    public function __construct($module, $expirationSeconds = null)
+    {
+        $rootName = ucwords($module) . '_Root';
+        $this->_session = new Zend_Session_Namespace($rootName);
+        if(isset($expirationSeconds)) {
+            $this->_session->setExpirationSeconds($expirationSeconds);
+        }
     }
 
     /**
-     * ユーザ認証用セッションを取得
+     * キー指定でセッション内容を取得
      *
-     * @return Zend_Session_Namespace
+     * @param string $key  キー
+     * @param mixed $default  デフォールトバリュー
+     * @return mixed
      */
-    public function getAuthSession() {
-        $namespace = ucwords($this->_module) . '_Auth';
-        $authSession = new Zend_Session_Namespace($namespace);
-        $authSession->setExpirationSeconds($this->_expirationSeconds);
-        return $authSession;
+    public function get($key, $default = null)
+    {
+        return isset($this->_session->$key) ? $this->_session->$key : $default;
     }
 
     /**
-     * ユーザ情報の取得
+     * キー指定でセッション内容を取得
+     *
+     * @param string $key  キー
+     * @param mixed $value  バリュー
+     * @return mixed
+     */
+    public function set($key, $value)
+    {
+        $this->_session->$key = $value;
+    }
+
+    /**
+     * ユーザ情報を取得
      *
      * @return mixed
      */
-    public function getUserInfo() {
-        $authSession = $this->getAuthSession();
-        return isset($authSession->userInfo) ? $authSession->userInfo : null;
+    public function getUserInfo()
+    {
+        return $this->get('userInfo');
     }
 
     /**
-     * ユーザ情報のセット
+     * ユーザ情報をセットする
      *
+     * @param mixed $userInfo  ユーザ情報
      * @return void
      */
-    public function setUserInfo($userInfo) {
-        $authSession = $this->getAuthSession();
-        $authSession->userInfo = $userInfo;
+    public function setUserInfo($userInfo)
+    {
+        $this->set('userInfo', $userInfo);
     }
 }

@@ -21,11 +21,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $this->_infoFlg = $infoFlg;
         if($this->_infoFlg) {
             // ログインユーザ情報
-            $namespace = ucwords(Zend_Registry::get('module')) . '_Auth';
-            $authSession = new Zend_Session_Namespace($namespace);
-            if(isset($authSession->userInfo)) {
-                $this->_userInfo = $authSession->userInfo;
-            }
+            $appSession = new Lib_App_Session($this->_params['module']);
+            $this->_userInfo = $appSession->getUserInfo();
         }
         $this->_appendJs('/js/jquery-1.6.1.min.js');
     }
