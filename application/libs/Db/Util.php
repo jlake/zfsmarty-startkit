@@ -15,9 +15,6 @@ class Lib_Db_Util
      */
     public static function getDataObject($tableName, $db = null)
     {
-        if(!isset($dbAdapter)) {
-            $db = Zend_Registry::get('db');
-        }
         $dbTableClass = self::getTableModelClass($tableName);
         return new Lib_Db_DataObject(array(
             'table' => new $dbTableClass($db)

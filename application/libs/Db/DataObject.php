@@ -6,6 +6,8 @@
 class Lib_Db_DataObject
 {
     protected $_db;
+    protected $_readDb;
+    protected $_writeDb;
     protected $_table;
     protected $_tableName;
     protected $_tablePrimary;
@@ -16,7 +18,8 @@ class Lib_Db_DataObject
 
     protected $_defaults = array(
         'table' => null,
-        'db' => 'db',
+        'readdb' => 'db',
+        'writedb' => 'dbw',
         'auto_log' => false,
         'log_model' => null
     );
@@ -30,9 +33,13 @@ class Lib_Db_DataObject
     public function __construct($params = array()) 
     {
         $params = array_merge($this->_defaults, $params);
-        if(isset($params['db'])) {
-            // データベース指定（Object または string）
-            $this->setDb($params['db']);
+        if(isset($params['readdb'])) {
+            // 読み込み用接続先(DBアダプター)指定（Object または string）
+            $this->setReadDb($params['readdb']);
+        }
+        if(isset($params['writedb'])) {
+            // 書き込み用接続先(DBアダプター)指定（Object または string）
+            $this->setWriteDb($params['writedb']);
         }
         if(isset($params['table'])) {
             // テーブル指定
@@ -52,7 +59,7 @@ class Lib_Db_DataObject
     }
 
     /**
-     * DBオブジェクトのセット
+     * DBオブジェクトのセット（接続先の切り替え）
      *
      * @param   object $db  DBオブジェクト
      * @return  object
@@ -64,6 +71,9 @@ class Lib_Db_DataObject
         }
         $this->_db = $db;
         Zend_Db_Table::setDefaultAdapter($db);
+        if($this->_table) {
+            $this->_table->setAdapter($db);
+        }
         return $this;
     }
 
@@ -75,6 +85,57 @@ class Lib_Db_DataObject
     public function getDb()
     {
         return $this->_db;
+    }
+
+    /**
+     * 読み込み用DBオブジェクトのセット
+     *
+     * @param   object $db  DBオブジェクト
+     * @return  object
+     */
+    public function setReadDb($db)
+    {
+        if(is_string($db)) {
+            $db = Zend_Registry::get($db);
+        }
+        $this->_readDb = $db;
+        return $this;
+    }
+
+    /**
+     * 読み込み用DBオブジェクトの取得
+     *
+     * @return  Zend_Db_Adapter_Abstract
+     */
+    public function getReadDb()
+    {
+        return $this->_readDb;
+    }
+
+
+    /**
+     * 書き込み用DBオブジェクトのセット
+     *
+     * @param   object $db  DBオブジェクト
+     * @return  object
+     */
+    public function setWriteDb($db)
+    {
+        if(is_string($db)) {
+            $db = Zend_Registry::get($db);
+        }
+        $this->_writeDb = $db;
+        return $this;
+    }
+
+    /**
+     * 書き込み用DBオブジェクトの取得
+     *
+     * @return  Zend_Db_Adapter_Abstract
+     */
+    public function getWriteDb()
+    {
+        return $this->_writeDb;
     }
 
     /**
@@ -142,6 +203,7 @@ class Lib_Db_DataObject
      */
     public function getRows($cond = array(), $fields="*", $order=NULL, $limit=NULL, $start=0)
     {
+        $this->setDb($this->_readDb);
         return $this->select($cond, $fields, $order, $limit, $start);
     }
 
@@ -154,6 +216,7 @@ class Lib_Db_DataObject
      */
     public function getRow($cond = array(), $fields="*")
     {
+        $this->setDb($this->_readDb);
         if(is_string($fields) && $fields != '*') {
             $fields = preg_split('/\s*,\s*/', $fields);
         }
@@ -178,6 +241,7 @@ class Lib_Db_DataObject
      */
     public function getOne($cond = array(), $field, $order = NULL)
     {
+        $this->setDb($this->_readDb);
         $recs = $this->select($cond, $field, $order, 1, 0);
         return isset($recs) && isset($recs[0][$field]) ? $recs[0][$field] : '';
     }
@@ -191,6 +255,7 @@ class Lib_Db_DataObject
      */
     public function getCount($cond = array(), $tableName = NULL)
     {
+        $this->setDb($this->_readDb);
         if(!isset($tableName)) $tableName = $this->getTableName();
         $select = $this->_db->select()->from($tableName, 'count(*)');
         if(!empty($cond)) {
@@ -209,6 +274,7 @@ class Lib_Db_DataObject
      */
     public function getPairs($field1, $field2, $cond = array())
     {
+        $this->setDb($this->_readDb);
         $select = $this->_db->select()->from(
             $this->getTableName(),
             array($field1, $field2)
@@ -228,6 +294,7 @@ class Lib_Db_DataObject
      */
     public function getCol($field, $cond = array())
     {
+        $this->setDb($this->_readDb);
         $select = $this->_db->select()->from(
             $this->getTableName(),
             $field
@@ -250,6 +317,7 @@ class Lib_Db_DataObject
      */
     public function select(array $cond, $fields="*", $order=NULL, $limit=NULL, $start=0)
     {
+        $this->setDb($this->_readDb);
         if(is_string($fields) && $fields != '*') {
             $fields = preg_split('/\s*,\s*/', $fields);
         }
@@ -272,8 +340,9 @@ class Lib_Db_DataObject
      */
     public function insert($data)
     {
-        $data = $this->_addExtraInfo($data);
-        $data['create_date'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
+        $this->setDb($this->_writeDb);
+        //$data = $this->_addExtraInfo($data);
+        $data['ins_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         if($this->_autoLog) {
             $log = $this->_getLogText('INSERT', $data);
             $this->appendLog($log);
@@ -291,7 +360,8 @@ class Lib_Db_DataObject
      */
     public function update(array $data, $cond = array())
     {
-        $data = $this->_addExtraInfo($data);
+        $this->setDb($this->_writeDb);
+        //$data = $this->_addExtraInfo($data);
         if($this->_autoLog) {
             $log = $this->_getLogText('UPDATE', $data, $cond);
             $this->appendLog($log);
@@ -307,6 +377,7 @@ class Lib_Db_DataObject
      */
     public function delete($cond = array())
     {
+        $this->setDb($this->_writeDb);
         if($this->_autoLog) {
             $log = $this->_getLogText('DELETE', NULL, $cond);
             $this->appendLog($log);
@@ -345,6 +416,7 @@ class Lib_Db_DataObject
      */
     public function query($sql)
     {
+        $this->setDb($this->_readDb);
         return $this->_db->query($sql);
     }
 
@@ -401,12 +473,24 @@ class Lib_Db_DataObject
     /**
      * 次のシーケンスIDを取得
      *
-     * @param   string $seqName  テーブル名
+     * @param   string $seqName  シーケンス名
      * @return  number
      */
     public function nextSeqNo($seqName)
     {
+        $this->setDb($this->_readDb);
         return $this->_db->fetchOne("SELECT NEXTVAL(".$this->_db->quote($seqName).")");
+    }
+
+    /**
+     * AUTO_INCREMENTで生成された値を取得（MySQL）
+     *
+     * @return  number
+     */
+    public function lastInsertId()
+    {
+        $this->setDb($this->_writeDb);
+        return $this->_db->fetchOne("SELECT LAST_INSERT_ID()");
     }
 
     /**
@@ -418,6 +502,7 @@ class Lib_Db_DataObject
      */
     public function maxPlus1($fieldName, $cond=array())
     {
+        $this->setDb($this->_readDb);
         $select = $this->_db->select()->from(
             $this->getTableName(),
             "MAX(".$fieldName.")"
@@ -478,6 +563,7 @@ class Lib_Db_DataObject
      */
     public function beginTransaction()
     {
+        $this->setDb($this->_writeDb);
         $this->_db->beginTransaction();
         $this->_logQueue = array();
     }
@@ -535,11 +621,8 @@ class Lib_Db_DataObject
      */
     public function _addExtraInfo($data)
     {
-        if(!isset($data['set_nm'])) {
-            $data['set_nm'] = self::getUserId();
-        }
-        if(!isset($data['set_date'])) {
-            $data['set_date'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
+        if(!isset($data['upd_dt'])) {
+            $data['upd_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         }
         return $data;
     }
