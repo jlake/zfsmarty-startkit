@@ -64,9 +64,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
             $request->setModuleName('admin');
             $request->setControllerName('auth');
             $request->setActionName('login');
-            return false;
         }
-        return true;
     }
 
     /**
@@ -87,8 +85,6 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
             $request->setModuleName('site');
             $request->setControllerName('auth');
             $request->setActionName('login');
-            return false;
         }
-        return true;
     }
 }
