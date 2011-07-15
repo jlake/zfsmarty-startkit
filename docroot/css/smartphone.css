@@ -161,6 +161,12 @@ body > header a {
 	color: #FFF;
 }
 
+.titlebar {
+	background:#6D84A2;
+	text-align:center;
+	color: #FFF;
+}
+
 /*
  2. Content
 */
