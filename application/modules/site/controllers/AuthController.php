@@ -31,10 +31,10 @@ class AuthController extends Lib_App_SiteController
                 $userInfo = $identity->toArray();
                 $session = new Lib_App_Session($this->_params['module']);
                 $session->setUserInfo($userInfo);
-                if(isset($session->requestUri)) {
-                    $url = $session->requestUri;
-                    unset($session->requestUri);
-                    $this->_redirect($url);
+                $requestUri = $session->get('requestUri');
+                if(isset($requestUri)) {
+                    $session->set('requestUri', null);
+                    $this->_redirect($requestUri);
                 } else {
                     $this->_redirect('/');
                 }
