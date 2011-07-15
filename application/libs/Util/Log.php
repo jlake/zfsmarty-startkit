@@ -23,8 +23,9 @@ class Lib_Util_Log
         try {
             $logger = Zend_Registry::get($logFolder . '_logger');
         } catch(Exception $e) {
-            $config = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "log");
-            $logPath = $config->path.'/'.$logFolder;
+            $config =  $this->_getConfig('config');
+            $logConfig = $config->log;
+            $logPath = $logConfig->path.'/'.$logFolder;
             $logFile = date('Ymd').'.log';
             if(!file_exists($logPath)) {
                 mkdir($logPath, 0775, true);
@@ -56,25 +57,6 @@ class Lib_Util_Log
     {
         // iniファイルの設定でログフィルタ
         $appConfig = Zend_Registry::get('config');
-        /*
-        $logConfig = $appConfig->log->$logFolder;
-        if(isset($logConfig) && isset($logConfig->filter)) {
-            $levelMap = array(
-                'EMERG'  => 0,
-                'ALERT'  => 1,
-                'CRIT'   => 2,
-                'ERR'    => 3,
-                'WARN'   => 4,
-                'NOTICE' => 5,
-                'INFO'   => 6,
-                'DEBUG'  => 7,
-            );
-            $filterLevel = $levelMap[$logConfig->filter];
-            if(isset($filterLevel) && $filterLevel < $level) {
-                return;
-            }
-        }
-        */
         $logger = self::getLogger($logFolder);
         if($logger) {
             return $logger->log($logMsg, $level);

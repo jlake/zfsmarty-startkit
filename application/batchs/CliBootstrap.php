@@ -51,10 +51,11 @@ $application = new Zend_Application(
 $application->bootstrap(array('config', 'dbadapter', 'resource', 'modules'));
 
 /** init logger */
-$config = new Zend_Config_Ini(APPLICATION_INI, "log");
+$config =  Zend_Registry::get('config');
+$logConfig = $config->log;
 $logFolder = 'batch';
 $logFile = date('Ymd').'.log';
-$logDir = $config->path.'/'.$logFolder;
+$logDir = $logConfig->path.'/'.$logFolder;
 if(!file_exists($logDir)) {
     mkdir($logDir, 0775, true);
 }

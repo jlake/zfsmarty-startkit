@@ -9,8 +9,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     private function _getConfig()
     {
-        $config = Zend_Registry::get('config');
-        if(empty($config)) $config = new Zend_Config($this->getOptions());
+        try {
+            $config = Zend_Registry::get('config');
+        } catch(Exception $e) {
+            $config = new Zend_Config($this->getOptions());
+        }
         return $config;
     }
 
