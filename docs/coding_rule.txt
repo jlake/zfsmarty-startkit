@@ -184,10 +184,22 @@ Lib_Util_SimpleMail::send(array(
 
 -------------------------------------------------------
 ◆application.iniから設定情報取得について
-  セクション [production]、[develpment] ... の設定情報取得例：
+  設定情報取得例：
     $appConfig = Zend_Registry::get('config');
-    echo $appConfig->bootstrap->path;
+    echo $appConfig->log->path;
 
-  [production]、[develpment] ... 以外のセクションの設定情報取得例：
-    $cacheConfig = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "cache");
-    echo $cacheConfig->lifetime;
+-------------------------------------------------------
+◆キャッシュの Get/Set について
+  ファイルキャッシュ：
+    $cache = Zend_Registry::get('site_cache');
+    $cache = Zend_Registry::get('admin_cache');
+
+  Memocache:
+    $cache = Zend_Registry::get('memcache');
+
+  Get/Set:
+    $key = 'cache_test1';
+    $data = $cache->load($key);
+    if(empty($data)) {
+        $cache->save('キャシュ内容', $key);
+    }
