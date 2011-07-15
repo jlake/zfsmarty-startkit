@@ -6,6 +6,23 @@
  */
 
 class Lib_Util_File {
+
+    /**
+     * ファイルサイズを KB, MB, GB ... で取得
+     * @param   integer $size   ファイルサイズ, Byte単位
+     * @param   integer $factor  1024 または 1000
+     * @return   string
+    **/
+    public static function formatSize($size, $factor = 1024) {
+        if(!$size) {
+            return '0 Bytes';
+        }
+        $units = array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        $i = floor(log10($size)/log10($factor));
+        $p = ($i > 1) 2 : 0;
+        return round($size/pow($factor, floor($i)), $p) . ' ' . $units[$i];
+    }
+
     /**
      * ファイルアップロード
      *
@@ -21,7 +38,7 @@ class Lib_Util_File {
     public static function upload($inputName, $destPath, $maxSize=2048, $newFileName='', $allowTypes='', $refuseTypes='.php|.jsp|.asp|.exe|.pl|.sh|.csh')
     {
         $uploadInfo =& $_FILES["$inputName"];
-    
+
         if(!empty($uploadInfo['error'])) {
             switch($uploadInfo['error']) {
                 case '1':
@@ -50,29 +67,29 @@ class Lib_Util_File {
                     break;
             }
         }
-    
+
         $uploadName = $uploadInfo['name'];
-    
+
         //--ディレクトリ一気に作成*
         if(!file_exists($destPath)) {
             //system("mkdir -p $destPath");
             mkdir($destPath, 0775, true);
         }
-    
+
         if (!is_writeable($destPath)) {
             return "ディレクトリ \"$destPath\" に書き込みできません。\nシステム管理者にお問い合わせ下さい。";
         }
-    
+
         if (!is_uploaded_file($uploadInfo['tmp_name'])) {
             return "指定したファイル（\"".$uploadName."\"）が不正です。\nシステム管理者にお問い合わせ下さい。";
         }
-    
+
         if ($maxSize > 0 && $uploadInfo['size']/1024 > $maxSize) {
             return 'ファイルサイズが制限値を超えています。(制限値: ' . $maxSize . 'kb)';
         }
-    
+
         $fileExt = strtolower(strrchr($uploadName, "."));
-    
+
         //拡張子許可チェック*
         if($fileExt == '' && !empty($allowTypes)) {
             $allowTypes = ereg_replace("\|","または",$allowTypes);
@@ -82,13 +99,13 @@ class Lib_Util_File {
             $allowTypes = ereg_replace("\|","または",$allowTypes);
             return "ファイルタイプ($fileExt)が正しくありません。".$allowTypes."ファイルをアップロードして下さい。";
         }
-    
+
         //拡張子禁止チェック*
         if (strpos("|" . $refuseTypes, $fileExt)) {
             $refuseTypes = ereg_replace("\|","または",$refuseTypes);
             return "ファイルタイプ($fileExt)が正しくありません。".$refuseTypes."以外のファイルをアップロードして下さい。";
         }
-    
+
         if(!empty($newFileName)) {
             $fileName = $newFileName;
         } else {
