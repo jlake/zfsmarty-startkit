@@ -233,7 +233,8 @@ class DummyController extends Lib_App_SiteController
     public function uploadtestAction()
     {
         if ($this->_request->isPost()) {
-            $uploadConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'upload');
+            $config =  Zend_Registry::get('config');
+            $uploadConfig = $config->upload;
             $subPath = 'dummy';
             $maxSize = 2048; // kb
             $errMsg = Lib_Util_File::upload('img_file', $uploadConfig->path."/$subPath/", $maxSize, '', '.gif|.jpg|.png');

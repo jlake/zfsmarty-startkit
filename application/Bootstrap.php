@@ -7,6 +7,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('config', new Zend_Config($this->getOptions()));
     }
 
+    private function _getConfig()
+    {
+        $config = Zend_Registry::get('config');
+        if(empty($config)) $config = new Zend_Config($this->getOptions());
+        return $config;
+    }
+
     protected function _initResource()
     {
         $resource = new Zend_Loader_Autoloader_Resource(array(
@@ -66,7 +73,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initView()
     {
-        $smartyConfig = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'smarty');
+        $config =  $this->_getConfig('config');
+        $smartyConfig = $config->smarty;
         $smarty = new Smarty();
         foreach ($smartyConfig as $option => $value) {
             if($option == 'plugin_dir') {
@@ -92,11 +100,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initLogger()
     {
-        $config = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "log");
+        $config =  $this->_getConfig('config');
+        $logConfig = $config->log;
         $subFolders = array('admin', 'site', 'trace');
         $logFile = date('Ymd').'.log';
         foreach($subFolders as $folder) {
-            $logDir = $config->path.'/'.$folder;
+            $logDir = $logConfig->path.'/'.$folder;
             if(!file_exists($logDir)) {
                 mkdir($logDir, 0775, true);
             }
@@ -107,24 +116,47 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initCache()
     {
-        $config = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini", "cache");
-        $frontend = isset($config->frontend) ? $config->frontend : 'Core';
-        $backend = isset($config->backend) ? $config->backend : 'File';
+        $config =  $this->_getConfig('config');
+        $cacheConfig = $config->filecache;
         $frontendOptions = array(
-            'lifetime' => isset($config->lifetime) ? $config->lifetime : 7200,
-            'automatic_serialization' => isset($config->automatic_serialization) ? $config->automatic_serialization : true
+            'lifetime' => isset($cacheConfig->lifetime) ? $cacheConfig->lifetime : 7200,
+            'automatic_serialization' => isset($cacheConfig->automatic_serialization) ? $cacheConfig->automatic_serialization : true
         );
         $subFolders = array('admin', 'site');
         foreach($subFolders as $folder) {
-            $cacheDir = $config->path.'/'.$folder;
+            $cacheDir = $cacheConfig->path.'/'.$folder;
             if(!file_exists($cacheDir)) {
                 mkdir($cacheDir, 0775, true);
             }
             $backendOptions = array('cache_dir' => $cacheDir);
-            $cache = Zend_Cache::factory($frontend, $backend, $frontendOptions, $backendOptions);
+            $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
             Zend_Registry::set($folder.'_cache', $cache);
         }
     }
+
+    /*
+    protected function _initMemcache()
+    {
+        $config =  $this->_getConfig('config');
+        $memcacheConfig = $config->memcache;
+        $frontendOptions = array(
+            'caching' => isset($memcacheConfig->caching) ? $memcacheConfig->caching : true,
+            'lifetime' => isset($memcacheConfig->lifetime) ? $memcacheConfig->lifetime : 7200,
+            'automatic_serialization' => isset($memcacheConfig->automatic_serialization) ? $memcacheConfig->automatic_serialization : true
+        );
+        $servers = array();
+        foreach($memcacheConfig->servers as $name => $serverConfig) {
+            $servers[] = $serverConfig->toArray();
+        }
+        var_dump($servers);
+        $backendOptions = array(
+            'servers' => $servers,
+            'compression' => isset($memcacheConfig->compression) ? $memcacheConfig->compression : false
+        );
+        $cache = Zend_Cache::factory('Core', 'Memcached', $frontendOptions, $backendOptions);
+        Zend_Registry::set('memcache', $cache);
+    }
+    */
 
     protected function _initZFDebug()
     {
