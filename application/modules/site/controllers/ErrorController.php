@@ -61,6 +61,24 @@ class ErrorController extends Zend_Controller_Action
     }
 
     /**
+     * 404ページ
+     */
+    public function page404Action()
+    {
+        $this->_show404Page();
+    }
+
+    /**
+     * 404ページの表示
+     */
+    private function _show404Page()
+    {
+        //$this->_helper->layout()->setLayout('default');
+        $this->getResponse()->setHttpResponseCode(404);
+        $this->render('404');
+    }
+
+    /**
      * スタックトレースログを書き出す
      *
      * @param $logMsg ログ内容
