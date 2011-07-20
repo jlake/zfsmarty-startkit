@@ -201,7 +201,7 @@ class Lib_Db_DataObject
      * @param   array/string $fields  フィールド名（配列可）
      * @return  array
      */
-    public function getRows($cond = array(), $fields="*", $order=NULL, $limit=NULL, $start=0)
+    public function getAll($cond = array(), $fields="*", $order=NULL, $limit=NULL, $start=0)
     {
         $this->setDb($this->_readDb);
         return $this->select($cond, $fields, $order, $limit, $start);
