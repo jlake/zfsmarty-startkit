@@ -10,17 +10,23 @@ class Lib_Util_File {
     /**
      * ファイルサイズを KB, MB, GB ... で取得
      * @param   integer $size   ファイルサイズ, Byte単位
+     * @param   boolean $asArray   trueの場合、結果は配列で返す
      * @param   integer $factor  1024 または 1000
      * @return   string
     **/
-    public static function formatSize($size, $factor = 1024) {
-        if(!$size) {
-            return '0 Bytes';
-        }
+    public static function formatSize($size, $asArray = true, $factor = 1024)
+    {
         $units = array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
         $i = floor(log10($size)/log10($factor));
-        $p = ($i > 1) 2 : 0;
-        return round($size/pow($factor, floor($i)), $p) . ' ' . $units[$i];
+        $p = ($i > 1) ? 2 : 0;
+        $result = array(
+            'size' => round($size/pow($factor, floor($i)), $p),
+            'unit' => $units[$i]
+        );
+        if($asArray) {
+            return $result;
+        }
+        return $result['size'] . ' ' . $result['unit'];
     }
 
     /**

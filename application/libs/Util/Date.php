@@ -27,18 +27,14 @@ class Lib_Util_Date {
     {
         $db = Zend_Registry::get('db');
         $format = $db->quote($format);
-        $stmt = $db->query("SELECT date_format(CURRENT_TIMESTAMP, $format) as result");
-        $rows = $stmt->fetchAll();
-        return isset($rows[0]) ? $rows[0]['result'] : '';
+        return $db->fetchOne("SELECT date_format(CURRENT_TIMESTAMP, $format) as result");
     }
     /* PostgreSQL
     public static function getNowFromDb($format = 'yyyy-mm-dd hh24:mi:ss')
     {
         $db = Zend_Registry::get('db');
         $format = $db->quote($format);
-        $stmt = $db->query("SELECT to_char(CURRENT_TIMESTAMP, $format) as result");
-        $rows = $stmt->fetchAll();
-        return isset($rows[0]) ? $rows[0]['result'] : '';
+        return $db->fetchOne("SELECT to_char(CURRENT_TIMESTAMP, $format) as result");
     }
     */
 
