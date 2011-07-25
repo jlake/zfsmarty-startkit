@@ -115,6 +115,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $logger = new Zend_Log(new Zend_Log_Writer_Stream("$logDir/$logFile"));
             Zend_Registry::set($folder.'_logger', $logger);
         }
+        if(APPLICATION_ENV == 'development') {
+            $firebug = new Zend_Log(new Zend_Log_Writer_Firebug());
+            Zend_Registry::set('firebug', $firebug);
+        }
     }
 
     protected function _initCache()
