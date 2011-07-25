@@ -14,15 +14,39 @@
 {/literal}
 {include file='scripts/dummy/topmsg_dummy.html'}
 <br />
-Validation テスト（数字ならOK）:
+Validation テスト:
 <form id="test_form" action="" method="post">
     <table class="extrainfo">
         <tr>
             <td align="right" width="100">
-                <label for="text1" class="required">文字列入力:</label>
+                <label for="text1">１文字以上入力:</label>
             </td>
             <td align="left">
-                <input type="text" name="text1" id="text1" size="20" regex="^\d+$" value="" />
+                <input type="text" name="text1" id="text1" class="required" size="20" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" width="100">
+                <label for="text2" class="required">英数字入力:</label>
+            </td>
+            <td align="left">
+                <input type="text" name="text2" id="text2" size="20" class="required" regex='^[0-9a-zA-Z\s]+$' value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" width="100">
+                <label for="text3" class="required">数字入力（１）:</label>
+            </td>
+            <td align="left">
+                <input type="text" name="text3" id="text3" size="20" class="required number" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" width="100">
+                <label for="text4" class="required">数字入力（２）:</label>
+            </td>
+            <td align="left">
+                <input type="text" name="text4" id="text4" size="20" class="required" regex="^\d+$" value="" />
             </td>
         </tr>
         <tr>
