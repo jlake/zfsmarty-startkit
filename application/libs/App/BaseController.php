@@ -140,6 +140,10 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         if($noRenderer) {
             $this->_helper->viewRenderer->setNoRender();
+            $front = Zend_Controller_Front::getInstance();
+            if($front->hasPlugin('ZFDebug_Controller_Plugin_Debug')) {
+                $front->unregisterPlugin('ZFDebug_Controller_Plugin_Debug');
+            }
         }
     }
 
