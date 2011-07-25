@@ -4,7 +4,8 @@
  * @author ou
  *
  */
-class Lib_Util_UserAgent {
+class Lib_Util_UserAgent
+{
     /**
      * モバイルかどうかの判別
      *
@@ -27,7 +28,6 @@ class Lib_Util_UserAgent {
      */
     public static function isDocomo()
     {
-        $ua = $_SERVER['HTTP_USER_AGENT'];
         if(preg_match('/^DoCoMo/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
@@ -42,7 +42,7 @@ class Lib_Util_UserAgent {
      */
     public static function isKddi()
     {
-        if(preg_match('/(^UP.Browser|^KDDI)/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/^(UP.Browser|KDDI)/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;
@@ -56,7 +56,7 @@ class Lib_Util_UserAgent {
      */
     public static function isSoftbank()
     {
-        if(preg_match('/(^J-PHONE|^Vodafone|^SoftBank)/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/^(J-PHONE|Vodafone|SoftBank)/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;
@@ -70,7 +70,7 @@ class Lib_Util_UserAgent {
      */
     public static function isIPhone()
     {
-        if(preg_match('/Mozilla\/.*(iPhone)/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/iPhone/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;
@@ -84,7 +84,21 @@ class Lib_Util_UserAgent {
      */
     public static function isAndroid()
     {
-        if(preg_match('/Mozilla\/.*(Android)/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/Android/i', $_SERVER['HTTP_USER_AGENT'])){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Docomoストアアプリの判別
+     *
+     * @param   なし
+     * @return  boolean
+     */
+    public static function fromDocomoStore()
+    {
+        if(preg_match('/DOCOMO\/2.0\s[a-z0-9]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;

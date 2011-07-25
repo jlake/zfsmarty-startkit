@@ -4,7 +4,8 @@
  * @author ou
  *
  */
-class Lib_Util_Message {
+class Lib_Util_Message
+{
     /**
      * 
      * ini ファイルからメッセージの取得

@@ -1,9 +1,9 @@
 <?php
 /**
- * 共通定数
+ * グローバル定数
  * @author ou
  */
-class Lib_App_Const
+final class Lib_App_Const
 {
-	const TEST_STR = "this is a test";
+    const TAX_RATE              = 0.05;     //税率
 }

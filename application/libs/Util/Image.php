@@ -8,9 +8,10 @@
  */
 require_once 'PhpThumb/ThumbLib.inc.php';
 defined('DEFAULT_THUMBLIB_IMPLEMENTATION')
-    || define('DEFAULT_THUMBLIB_IMPLEMENTATION', 'imagick');
+    || define('DEFAULT_THUMBLIB_IMPLEMENTATION', 'gd');
 
-class Lib_Util_Image {
+class Lib_Util_Image
+{
     /**
      * サムネイル画像作成
      * 

@@ -5,8 +5,8 @@
  *
  */
 
-class Lib_Util_File {
-
+class Lib_Util_File
+{
     /**
      * ファイルサイズを KB, MB, GB ... で取得
      * @param   integer $size   ファイルサイズ, Byte単位
@@ -30,6 +30,40 @@ class Lib_Util_File {
     }
 
     /**
+     * ファイルダウンロード
+     *
+     * @param   string  $filePath        ファイルパス
+     * @return  void
+    **/
+    public static function download($filePath)
+    {
+        /* ファイルの存在確認 */
+        if (!file_exists($filePath)) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 が存在しません。');
+            return;
+        }
+
+        /* 読込できるか確認 */
+        if (!is_readable($filePath)) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 の読込ができません。');
+            return;
+        }
+
+        /* ファイルサイズの確認 */
+        $contentLength = filesize($filePath);
+        if ($contentLength == 0) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 のサイズが0です。');
+            return;
+        }
+
+        header('Content-Disposition: attachment; filename="'.basename($filePath).'"');
+        header('Content-Type: application/octet-stream');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: '.$contentLength);
+        readfile($filePath);
+    }
+
+    /**
      * ファイルアップロード
      *
      * @param   string  $inputName        <input type="file" ...> タグの name 属性値
@@ -41,7 +75,7 @@ class Lib_Util_File {
      * @param   string  $mode             ファイル権限
      * @return  string                    アップロード結果。成功: '', 失敗: 'エラー内容文字列'
     **/
-    public static function upload($inputName, $destPath, $maxSize=2048, $newFileName='', $allowTypes='', $refuseTypes='.php|.jsp|.asp|.exe|.pl|.sh|.csh')
+    public static function upload($inputName, $destPath, $maxSize=2048, $newFileName='', $allowTypes='', $refuseTypes='.php|.jsp|.pl|.sh|.csh|.asp|.exe')
     {
         $uploadInfo =& $_FILES["$inputName"];
 

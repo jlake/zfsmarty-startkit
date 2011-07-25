@@ -4,7 +4,8 @@
  * @author ou
  *
  */
-class Lib_Util_Array {
+class Lib_Util_Array
+{
 
     /**
      * 空文字列をNULLに変換
