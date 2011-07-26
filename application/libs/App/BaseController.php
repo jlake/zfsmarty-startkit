@@ -24,7 +24,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $appSession = new Lib_App_Session($this->_params['module']);
             $this->_userInfo = $appSession->getUserInfo();
         }
-        $this->_appendJs('/js/jquery-1.6.1.min.js');
+        $this->_appendJs('/js/jquery-1.6.2.min.js');
     }
 
 

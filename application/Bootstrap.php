@@ -169,7 +169,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $autoloader->registerNamespace('ZFDebug');
 
         $options = array(
-            'jquery_path' => '/js/jquery-1.6.1.min.js',
+            'jquery_path' => '/js/jquery-1.6.2.min.js',
             'plugins' => array(
                 'Variables', 
                 'File' => array('base_path' => APPLICATION_PATH),
