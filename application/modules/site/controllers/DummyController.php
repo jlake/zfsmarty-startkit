@@ -25,6 +25,9 @@ class DummyController extends Lib_App_SiteController
      */
     public function topAction()
     {
+        $scriptPath = $this->view->getScriptPaths();
+        Lib_Util_Log::firebug($scriptPath);
+
         $dummy = new Lib_Db_Table_Dummy();
         $select = $dummy->select()->order('id');
         // ページングのパラメータは Zend_Db_Select オブジェクト （limit, start 不要）

@@ -64,36 +64,53 @@ class Lib_Util_Log
     }
 
     /**
-     * 汎用ログ出力（出力ログレベル指定可能）
+     * ログ追加（出力ログレベル指定可能）
      *
      * @param   string  $logMsg  ログ出力文字列
      * @param   string  $level   ログ出力レベル
      * @return  Boolean
      */
-    public function writeLog($logMsg, $level=Zend_Log::INFO)
+    public function append($logMsg, $level=Zend_Log::INFO)
     {
         return $this->_logger->log($logMsg, $level);
     }
 
     /**
-     * デバッグログ出力専用
+     * デバッグログ出力
      *
      * @param   string  $logMsg  ログ出力文字列
      * @return  Boolean
      */
-    public function debugLog($logMsg)
+    public function debug($logMsg)
     {
         return $this->_logger->debug($logMsg);
     }
 
     /**
-     * エラーログ出力専用
+     * エラーログ出力
      *
      * @param   string  $logMsg  ログ出力文字列
      * @return  Boolean
      */
-    public function errorLog($logMsg)
+    public function error($logMsg)
     {
         return $this->_logger->err($logMsg);
+    }
+
+    /**
+     * FireBug出力
+     *
+     * @param   string  $logMsg  ログ出力文字列
+     * @return  Boolean
+     */
+    public static function firebug($logMsg, $level=Zend_Log::INFO)
+    {
+        try {
+            $logger = Zend_Registry::get('firebug');
+        } catch(Exception $e) {
+            $logger = new Zend_Log(new Zend_Log_Writer_Firebug());
+            Zend_Registry::set('firebug', $logger);
+        }
+        $logger->log($logMsg, $level);
     }
 }
