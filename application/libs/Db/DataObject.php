@@ -19,7 +19,7 @@ class Lib_Db_DataObject
     protected $_defaults = array(
         'table' => null,
         'readdb' => 'db',
-        'writedb' => 'dbw',
+        'writedb' => 'db',
         'auto_log' => false,
         'log_model' => null
     );
