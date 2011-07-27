@@ -148,17 +148,32 @@ class Lib_App_BaseController extends Zend_Controller_Action
     }
 
     /**
-     * JSONデータの吐き出す
+     * JSONデータ吐き出す
      * @param  array $data  送信データ
      * @return  void
      **/
     public function _sendJson($data)
     {
         $this->_disableLayout(true);
-        $responseData = json_encode($data);
         $this->getResponse()
             ->setHeader('Content-Type', 'text/javascript; charset=UTF-8', true)
-            ->setBody($responseData);
+            ->setBody(json_encode($data));
+    }
+
+    /**
+     * XMLデータ吐き出す
+     * @param  mixed $data  送信データ
+     * @return  void
+     **/
+    public function _sendXml($data)
+    {
+        if(is_array($data)) {
+            $data = Lib_Util_Array::toXml($data);
+        }
+        $this->_disableLayout(true);
+        $this->getResponse()
+            ->setHeader('Content-Type', 'text/xml; charset=UTF-8', true)
+            ->setBody($data);
     }
 
     /**
@@ -261,5 +276,4 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $this->view->message = $message;
         $this->_forward('syserror', 'error', $this->_params['module']);
     }
-
 }
