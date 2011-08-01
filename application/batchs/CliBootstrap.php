@@ -28,7 +28,6 @@ if(file_exists($htaccess)) {
 defined('LANG')
     || define('LANG', 'jp');
 
-
 // library/ が include_path に設定されることを確保
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),

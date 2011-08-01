@@ -75,8 +75,11 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         $module = $request->getModuleName();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
-        if($controller == 'error' || $controller == 'auth') {
-            return true;
+        if(($controller == 'index' && $action == 'index')
+            || $controller == 'error'
+            || $controller == 'auth'
+            || Lib_Util_UserAgent::isCrawler()) {
+            return;
         }
         $session = new Lib_App_Session($module);
         $userInfo = $session->getUserInfo();

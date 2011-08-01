@@ -9,11 +9,17 @@ class Batch_MakeTableClasses
     protected $_logger;
     protected $_rootPath;
 
+    /**
+     * コンストラクタ
+     */
     public function __construct($rootPath)
     {
         $this->_rootPath = $rootPath;
     }
 
+    /**
+     * 初期化
+     */
     protected function _init()
     {
         try {
@@ -60,13 +66,13 @@ class Batch_MakeTableClasses
             return;
         }
 
-        echo "$tableName --> $className \n";
+        echo "$tableName --> $filePath \n";
 
         $template = "<?php
 class Lib_Db_Table_%className% extends Lib_Db_Table
 {
     protected \$_name = '%tableName%';
-    protected \$_primary = array(%primaryKeys%);
+    protected \$_primary = %primaryKeys%;
 }
 ";
 
@@ -75,11 +81,12 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
             WHERE (`TABLE_NAME` = '$tableName')
                 AND (`COLUMN_KEY` = 'PRI')
         ");
+        $primaryKeys = (count($pkeys) > 0) ? "array('".implode("', '", $pkeys)."')" : 'null';
 
         $contents = Lib_Util_Message::replace($template, array(
                 'className' => $className,
                 'tableName' => $tableName,
-                'primaryKeys' => "'".implode("', '", $pkeys)."'"
+                'primaryKeys' => $primaryKeys
             )
         );
         $contents = mb_convert_encoding($contents, 'UTF-8', 'auto');
@@ -93,7 +100,10 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
             echo "Failed to write file $filePath \n";
         }
     }
-    
+
+    /**
+     * 実行
+     */
     public function run()
     {
         $this->_init();

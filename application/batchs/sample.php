@@ -3,35 +3,47 @@ require_once 'CliBootstrap.php';
 
 class Batch_Sample
 {
+    protected $_opts;
     protected $_db;
+    protected $_dbw;
     protected $_logger;
 
+    /**
+     * コンストラクタ
+     */
     public function __construct()
     {
     }
 
+    /**
+     * 初期化
+     */
     protected function _init()
     {
         try {
-            $opts = new Zend_Console_Getopt(
+            $this->_opts = new Zend_Console_Getopt(
                 array(
                     'help|h' => 'Displays usage information.',
                 )
             );
-            $opts->parse();
+            $this->_opts->parse();
         } catch (Zend_Console_Getopt_Exception $e) {
             exit($e->getMessage() ."\n\n". $e->getUsageMessage());
         }
 
-        if(isset($opts->help)) {
-            echo $opts->getUsageMessage();
+        if(isset($this->_opts->help)) {
+            echo $this->_opts->getUsageMessage();
             exit;
         }
 
         $this->_db = Zend_Registry::get('db');
+        $this->_dbw = Zend_Registry::get('dbw');
         $this->_logger = Zend_Registry::get('batch_logger');
     }
-    
+
+    /**
+     * 実行
+     */
     public function run()
     {
         $this->_init();
@@ -42,18 +54,19 @@ class Batch_Sample
         print_r($row);
 
         //test 2
-        $dummy = new Lib_Db_Table_Dummy($this->_db);
-        $where = $dummy->getAdapter()->quoteInto('id = ?', 1);
+        $dummyWrite = new Lib_Db_Table_Dummy($this->_dbw);
+        $where = $dummyWrite->getAdapter()->quoteInto('id = ?', 1);
         $data = array(
             'inf1' => 'Test1',
             'inf2' => 'Test2'
         );
-        $dummy->update($data, $where);
+        $dummyWrite->update($data, $where);
 
         //test 3
-        $dummy = new Lib_Db_Table_Dummy($this->_db);
-        $row = $dummy->find(1)->toArray();
+        $dummyRead = new Lib_Db_Table_Dummy($this->_db);
+        $row = $dummyRead->find(1)->toArray();
         print_r($row);
+
 
         //test 4
         $dataObj = Lib_Db_Util::getDataObject('dummy');
@@ -64,5 +77,7 @@ class Batch_Sample
     }
 }
 
+
 $batch = new Batch_Sample();
 $batch->run();
+
