@@ -94,7 +94,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($view);
         $viewRenderer->setView($view)
-            ->setViewScriptPathSpec(APPLICATION_PATH . '/modules/:module/views/scripts/:controller/:action.:suffix')
+            ->setViewBasePathSpec(APPLICATION_PATH . '/modules/:module/views')
+            ->setViewScriptPathSpec('scripts/:controller/:action.:suffix')
             ->setViewSuffix('html');
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
 
