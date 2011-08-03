@@ -23,8 +23,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
             // ログインユーザ情報
             $appSession = new Lib_App_Session($this->_params['module']);
             $this->_userInfo = $appSession->getUserInfo();
+            $this->_appendJs('/js/jquery-1.6.2.min.js');
         }
-        $this->_appendJs('/js/jquery-1.6.2.min.js');
     }
 
 
@@ -124,11 +124,12 @@ class Lib_App_BaseController extends Zend_Controller_Action
     /**
      * レイアウト指定
      * @param  $layoutId  レイアウトID
+     * @param  $enabled  レイアウト有効フラグ
      * @return  void
      **/
-    public function _setLayout($layoutId = 'default')
+    public function _setLayout($layoutId = 'default', $enabled = true)
     {
-        $this->_helper->layout()->setLayout($layoutId);
+        $this->_helper->layout()->setLayout($layoutId, $enabled);
     }
 
     /**

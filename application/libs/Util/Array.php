@@ -69,15 +69,16 @@ class Lib_Util_Array
     /**
      * 配列から XML へ変換
      *
-     * @param array $data
+     * @param array $data             配列形式のデータ
+     * @param array $encoding         文字コード
      * @param string $rootNodeName    ルートノード名称 （デフォールトは data)
      * @param SimpleXMLElement $xml   XML オブジェクト（再帰用）
      * @return string XML
      */
-    public static function toXml($data, $rootNodeName = 'data', $xml = null)
+    public static function toXml($data, $encoding = 'UTF-8', $rootNodeName = 'data', $xml = null)
     {
         if ($xml == null) {
-            $xml = simplexml_load_string('<?xml version="1.0" encoding="utf-8"?><'.$rootNodeName.' />');
+            $xml = simplexml_load_string('<?xml version="1.0" encoding="'.$encoding.'"?><'.$rootNodeName.' />');
         }
         
         foreach($data as $key => $value) {
@@ -89,7 +90,7 @@ class Lib_Util_Array
             
             if (is_array($value)) {
                 $node = $xml->addChild($key);
-                self::toXml($value, $rootNodeName, $node);
+                self::toXml($value, $encoding, $rootNodeName, $node);
             } else {
                 //$value = htmlentities($value);
                 $xml->addChild($key, $value);
