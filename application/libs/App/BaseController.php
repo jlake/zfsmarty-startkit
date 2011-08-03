@@ -178,6 +178,29 @@ class Lib_App_BaseController extends Zend_Controller_Action
     }
 
     /**
+     * テキスト形式のデータ吐き出す
+     * @param  mixed $data  送信データ
+     * @param  string $charset 文字コード
+     * @param  string $newLine 改行コード
+     * @return  void
+     **/
+    public function _sendPlainText($data, $charset='UTF-8', $newLine = "\r\n")
+    {
+        $responseText = '';
+        if(is_array($data)) {
+            foreach($data as $key => $value) {
+                $responseText .= $key.'='.$value.$newLine;
+            }
+        } else {
+            $responseText = $data;
+        }
+        $this->_disableLayout(true);
+        $this->getResponse()
+            ->setHeader('Content-Type', "text/plain; charset=$charset", true)
+            ->setBody($responseText);
+    }
+
+    /**
      * 権限認証失敗時処理
      * @return void
      */

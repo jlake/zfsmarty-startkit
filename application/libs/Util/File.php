@@ -30,6 +30,31 @@ class Lib_Util_File
     }
 
     /**
+     * ファイル内容取得（バイナリ形式）
+     *
+     * @param   string  $filePath    ファイルパス
+     * @param   string  $mode        モード
+     * @return  void
+    **/
+    public static function read($filePath, $mode ='r')
+    {
+        /* ファイルの存在確認 */
+        if (!file_exists($filePath)) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 が存在しません。');
+            return;
+        }
+        /* 読込できるか確認 */
+        if (!is_readable($filePath)) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 の読込ができません。');
+            return;
+        }
+        $handle = fopen($filePath, $mode);
+        $contents = fread($handle, filesize($filePath));
+        fclose($handle);
+        return $contents;
+    }
+
+    /**
      * ファイルダウンロード
      *
      * @param   string  $filePath        ファイルパス
