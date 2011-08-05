@@ -6,6 +6,11 @@
  */
 class ErrorController extends Zend_Controller_Action
 {
+    public function init()
+    {
+        parent::init();
+        $this->_helper->layout()->setLayout('error');
+    }
 
     /**
      * エラーメッセージ画面

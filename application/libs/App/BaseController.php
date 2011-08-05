@@ -273,7 +273,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $message = Lib_Util_Message::replace($message, $replaceList);
         }
         $this->view->message = $message;
-        $this->_forward('syserror', 'error', $this->_params['module']);
+        $this->_forward('syserror', 'error', 'site');
     }
 
     /**
@@ -298,6 +298,6 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $message = Lib_Util_Message::replace($message, $replaceList);
         }
         $this->view->message = $message;
-        $this->_forward('syserror', 'error', $this->_params['module']);
+        $this->_forward('syserror', 'error', 'site');
     }
 }

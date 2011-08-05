@@ -32,13 +32,11 @@ class Api_IndexController extends Lib_App_ApiController
 
     public function xmltestAction()
     {
-        $this->_setLayout('xml');
-        $this->getResponse()
-            ->setHeader('Content-Type', 'text/xml; charset=UTF-8', true);
-        $this->view->item = array(
-            'name' => '花子',
+        $arr = array(
+            'name' => '花子<abc>',
             'age' => 18,
             'sex' => '女'
         );
+        $this->_sendXml($arr);
     }
 }
