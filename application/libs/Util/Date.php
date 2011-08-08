@@ -75,23 +75,21 @@ class Lib_Util_Date
     }
 
     /**
-     * ダウンロード期限日の取得
+     * 日付を比較する
      *
-     * @param   string $dlLimitDays 日付の文字列
-     * @param   boolean $asArray trueの場合、結果を配列で返す
-     * @return  string
+     * @param   string $dateStr1 日付1(文字列)
+     * @param   string $dateStr2 日付2(文字列)
+     * @return  int
      */
-    public static function getDlLimitDate($dlLimitDays = 0, $asArray = false)
+    public static function compare($dateStr1, $dateStr2)
     {
-        $date = new Zend_Date();
-        if($dlLimitDays > 0) {
-            $date->add($dlLimitDays, Zend_Date::DAY);
-        } else {
-            $date->add(1, Zend_Date::YEAR)->sub(1, Zend_Date::DAY);
+        $time1 = strtotime($dateStr1);
+        $time2 = strtotime($dateStr2);
+        if ($time1 > $time1) {
+             return 1;
+        } else if ($time1 < $time1) {
+             return -1;
         }
-        if($asArray) {
-            return $date->toArray();
-        }
-        return $date->toString();
+        return 0;
     }
 }

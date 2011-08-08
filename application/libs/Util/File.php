@@ -9,9 +9,9 @@ class Lib_Util_File
 {
     /**
      * ファイルサイズを KB, MB, GB ... で取得
-     * @param   integer $size   ファイルサイズ, Byte単位
+     * @param   int $size   ファイルサイズ, Byte単位
      * @param   boolean $asArray   trueの場合、結果は配列で返す
-     * @param   integer $factor  1024 または 1000
+     * @param   int $factor  1024 または 1000
      * @return   string
     **/
     public static function formatSize($size, $asArray = true, $factor = 1024)
@@ -41,12 +41,12 @@ class Lib_Util_File
         /* ファイルの存在確認 */
         if (!file_exists($filePath)) {
             throw new Exception('エラー: ファイル 「'. $filePath .'」 が存在しません。');
-            return;
+            return '';
         }
         /* 読込できるか確認 */
         if (!is_readable($filePath)) {
             throw new Exception('エラー: ファイル 「'. $filePath .'」 の読込ができません。');
-            return;
+            return '';
         }
         $handle = fopen($filePath, $mode);
         $contents = fread($handle, filesize($filePath));
@@ -93,7 +93,7 @@ class Lib_Util_File
      *
      * @param   string  $inputName        <input type="file" ...> タグの name 属性値
      * @param   string  $destPath         保存先パス
-     * @param   number  $maxSize          ファイル最大サイズ, 単位：kb [integer/float]
+     * @param   number  $maxSize          ファイル最大サイズ, 単位：kb [int/float]
      * @param   string  $newFileName      アップロード後のファイル名(空なら、元ファイル名のままで保存)
      * @param   string  $allowTypes       許可するファイル拡張子(小文字)，"|"で区切り
      * @param   string  $refuseTypes      拒否するファイル拡張子(小文字)，"|"で区切り
