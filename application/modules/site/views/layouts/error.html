@@ -4,24 +4,22 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {$this->headMeta()}
-    {$this->headTitle()}
-    {$this->headLink()}
-    {$this->headScript()}
+    <title>エラー</title>
+    <style type="text/css">
+        pre,code {
+            margin: 1.5em 0;
+            white-space: pre;
+            background: #EEE;
+            font: 0.8em 'andale mono', 'lucida console', monospace;
+            line-height: 1.5;
+        }
+    </style>
 </head>
-<body class="reset">
-<div id="wrap" class="container">
-    <div id="content" class="span-23 last">
-        {if $this->flashMsg}
-            <div id="flash_msg" class="info">{$this->flashMsg}</div>
-        {/if}
-        {assign var=layout value=$this->layout()}
-        {$layout->content}
-    </div>
-    <div id="footer" class="clear span-24 last">
-        <div id="copyright">Copyright(c) Company Name.</div>
-    </div>
-</div>
+<body>
+
+{assign var=layout value=$this->layout()}
+{$layout->content}
+
 </body>
 </html>
 
