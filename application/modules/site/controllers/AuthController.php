@@ -27,8 +27,7 @@ class AuthController extends Lib_App_SiteController
             );
             $result = $authAdapter->authenticate($authAdapter);
             if($result->isValid()){
-                $identity = $result->getIdentity();
-                $userInfo = $identity->toArray();
+                $userInfo = $result->getIdentity();
                 $session = new Lib_App_Session($this->_params['module']);
                 $session->setUserInfo($userInfo);
                 $requestUri = $session->get('requestUri');

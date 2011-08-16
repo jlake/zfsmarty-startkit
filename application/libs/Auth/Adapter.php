@@ -56,24 +56,25 @@ class Lib_Auth_Adapter implements Zend_Auth_Adapter_Interface
         $messages = array();
         if($this->_module == 'admin') {
             // 管理側 ユーザ認証
-            $userTable = new Lib_Db_Table_AdminUserMst();
-            $select = $userTable->select()
-                ->where('admin_user_nm = ?', $this->_username)
-                ->where('admin_user_pwd = ?', md5($this->_password));
-            $user = $userTable->fetchRow($select);
+            $dataObj = new Lib_Db_DataObject(array(
+                'table' => new Lib_Db_Table_AdminUserMst()
+            ));
+            $user = $dataObj->getRow(array(
+                'admin_user_nm' => $this->_username,
+                'admin_user_pwd' => md5($this->_password)
+            ));
             if ($user) {
                 // 認証成功
                 $result = Zend_Auth_Result::SUCCESS;
                 $identity = $user;
                 //ログイン日時を更新
-                $db = $userTable->getAdapter();
                 $set = array(
                     'last_login_date' => new Zend_Db_Expr('CURRENT_TIMESTAMP')
                 );
                 $where = array(
-                    $db->quoteInto('admin_user_id = ?', $user['admin_user_id']),
+                    'admin_user_id' => $user['admin_user_id'],
                 );
-                $userTable->update($set, $where);
+                $dataObj->update($set, $where);
             } else {
                 // 認証失敗
                 $messages[] = 'ユーザ認証に失敗しました。';
@@ -81,24 +82,25 @@ class Lib_Auth_Adapter implements Zend_Auth_Adapter_Interface
 
         } else if($this->_module == 'site') {
             // サイト側 ローカルテスト用ユーザ認証
-            $userTable = new Lib_Db_Table_UserMst();
-            $select = $userTable->select()
-                ->where('user_nm = ?', $this->_username)
-                ->where('user_pwd = ?', md5($this->_password));
-            $user = $userTable->fetchRow($select);
+            $dataObj = new Lib_Db_DataObject(array(
+                'table' => new Lib_Db_Table_UserMst()
+            ));
+            $user = $dataObj->getRow(array(
+                'user_nm' => $this->_username,
+                'user_pwd' => md5($this->_password)
+            ));
             if ($user) {
                 // 認証成功
                 $result = Zend_Auth_Result::SUCCESS;
                 $identity = $user;
                 //ログイン日時を更新
-                $db = $userTable->getAdapter();
                 $set = array(
                     'last_login_date' => new Zend_Db_Expr('CURRENT_TIMESTAMP')
                 );
                 $where = array(
-                    $db->quoteInto('user_id = ?', $user['user_id']),
+                    'user_id' => $user['user_id'],
                 );
-                $userTable->update($set, $where);
+                $dataObj->update($set, $where);
             } else {
                 // 認証失敗
                 $messages[] = 'ユーザ認証に失敗しました。';

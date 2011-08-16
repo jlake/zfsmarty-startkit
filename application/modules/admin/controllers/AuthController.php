@@ -27,17 +27,16 @@ class Admin_AuthController extends Lib_App_AdminController
             );
             $result = $auth->authenticate($authAdapter);
             if($result->isValid()){
-                $identity = $result->getIdentity();
-                $userInfo = $identity->toArray();
+                $userInfo = $result->getIdentity();
                 $session = new Lib_App_Session($this->_params['module']);
                 $session->setUserInfo($userInfo);
                 $requestUri = $session->get('requestUri');
-                if(isset($requestUri)) {
-                    $session->set('requestUri', null);
-                    $this->_redirect($requestUri);
+                if(empty($requestUri)) {
+                    $requestUri = '/admin/';
                 } else {
-                    $this->_redirect('/admin/');
+                    $session->set('requestUri', null);
                 }
+                $this->_redirect($requestUri);
             } else {
                 $auth->clearIdentity();
                 $this->view->error_msg = "ログインできませんでした、ユーザ名とパスワードを確認してください。";
@@ -48,6 +47,7 @@ class Admin_AuthController extends Lib_App_AdminController
 
     public function logoutAction()
     {
+        $this->_disableLayout(true);
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
         $session = new Lib_App_Session($this->_params['module']);
@@ -59,6 +59,4 @@ class Admin_AuthController extends Lib_App_AdminController
     {
         // 権限がないメッセージを表示
     }
-
 }
-
