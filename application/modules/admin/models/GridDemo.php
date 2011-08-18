@@ -24,55 +24,7 @@ class Admin_Model_GridDemo
      * @param   array $params  引数の配列
      * @return  array
      */
-    public function getDemo1Data($params)
-    {
-        $dataSelect = $this->_db->select()->from(
-                'dummy',
-                array('id', 'inf1', 'inf2')
-            );
-        $countSelect = $this->_db->select()->from(
-                'dummy',
-                'COUNT(1)'
-            );
-        $page = isset($params['page']) ? $params['page'] : 1;
-        $limit = isset($params['rows']) ? $params['rows'] : 20;
-        $dataSelect->limit(
-            $limit,
-            ($page - 1) * $limit
-        );
-        if (isset($params['sidx'])) {
-            $sortOrder = $params['sidx'];
-            if (isset($params['sord'])) {
-                $sortOrder .= ' '.$params['sord'];
-            }
-            $dataSelect->order($sortOrder);
-        }
-        //Lib_Util_Log::firebug($dataSelect->__toString());
-        $rows = array();
-        foreach($this->_db->fetchAll($dataSelect) as $row) {
-            $rows[] = array(
-                'id' => $row['id'],
-                'cell' => array_values($row)
-            );
-        }
-        $count = $this->_db->fetchOne($countSelect);
-        return array(
-            'page' => $page,
-            'total' => ceil($count/$limit),
-            'records' => $count,
-            'rows' => $rows
-        );
-    }
-
-
-
-    /**
-     * Dummyデータの取得(jqGridで表示用)
-     *
-     * @param   array $params  引数の配列
-     * @return  array
-     */
-    public function getDemo2Data($params)
+    public function getDummyData($params)
     {
         $aliasMap = array(
             'd' => array(

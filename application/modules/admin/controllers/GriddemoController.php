@@ -31,7 +31,7 @@ class Admin_GriddemoController extends Lib_App_AdminController
     public function demo1dataAction()
     {
         $demoObj = new Admin_Model_GridDemo();
-        $data = $demoObj->getDemo1Data($this->_params);
+        $data = $demoObj->getDummyData($this->_params);
         $this->_sendJson($data);
     }
 
@@ -42,7 +42,7 @@ class Admin_GriddemoController extends Lib_App_AdminController
     public function demo2dataAction()
     {
         $demoObj = new Admin_Model_GridDemo();
-        $data = $demoObj->getDemo2Data($this->_params);
+        $data = $demoObj->getDummyData($this->_params);
         $this->_sendJson($data);
     }
 
