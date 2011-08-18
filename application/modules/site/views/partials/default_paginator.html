@@ -2,7 +2,7 @@
 <p><strong>{$firstItemNumber}</strong>件から<strong>{$lastItemNumber}</strong>件 （検索結果<strong>{$totalItemCount}</strong>件中）</p>
 {/if}
 {if $pageCount > 1}
-<div class="pagenation">
+<div class="pagination">
     {if isset($previous)}
       <a href="{$this->baseUrl}page={$previous}">前ページ</a>
     {else}

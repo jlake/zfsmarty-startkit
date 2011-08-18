@@ -57,12 +57,12 @@ a.btn_round:hover span {
 }
 
 /*
-.pagenation {border-top:1px solid #ccc; border-bottom:1px solid #ccc; text-align: center}
-.pagenation a, .pagenation span {margin: 0 5px;}
-.pagenation .disabled {color: #666}
+.pagination {border-top:1px solid #ccc; border-bottom:1px solid #ccc; text-align: center}
+.pagination a, .pagination span {margin: 0 5px;}
+.pagination .disabled {color: #666}
 */
-/* pagenation */
-.pagenation {
+/* pagination */
+.pagination {
 	display:block;
 	text-align:left;
 	height:22px;
@@ -74,7 +74,7 @@ a.btn_round:hover span {
 	font-weight:normal;
 }
 
-.pagenation a:link, .pagenation a:visited{
+.pagination a:link, .pagination a:visited{
 	padding:7px;
 	padding-top:2px;
 	padding-bottom:2px;
@@ -87,13 +87,13 @@ a.btn_round:hover span {
 	font-weight:normal;
 }
 
-.pagenation a:hover {
+.pagination a:hover {
 	background-color:#DDEEFF;
 	border:1px solid #BBDDFF;
 	color:#0072BC;	
 }
 
-.pagenation .actived {
+.pagination .actived {
 	padding:7px;
 	padding-top:2px;
 	padding-bottom:2px;
@@ -105,7 +105,7 @@ a.btn_round:hover span {
 	cursor:default;
 }
 
-.pagenation .disabled {
+.pagination .disabled {
 	padding:7px;
 	padding-top:2px;
 	padding-bottom:2px;
