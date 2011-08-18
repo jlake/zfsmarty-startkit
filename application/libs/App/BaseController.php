@@ -23,7 +23,6 @@ class Lib_App_BaseController extends Zend_Controller_Action
             // ログインユーザ情報
             $appSession = new Lib_App_Session($this->_params['module']);
             $this->_userInfo = $appSession->getUserInfo();
-            $this->_appendJs('/js/jquery-1.6.2.min.js');
         }
     }
 
@@ -69,10 +68,10 @@ class Lib_App_BaseController extends Zend_Controller_Action
         if(empty($cssPath)) return;
         if(is_array($cssPath)) {
             foreach($cssPath as $path) {
-                $this->view->headLink()->appendStylesheets($path);
+                $this->view->headLink()->appendStylesheet($path);
             }
         } else {
-            $this->view->headLink()->appendStylesheets($cssPath);
+            $this->view->headLink()->appendStylesheet($cssPath);
         }
     }
 

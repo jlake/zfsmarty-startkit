@@ -139,26 +139,23 @@ input.input-error {border: 1px solid red;}
 
 #topmenu li.rightitem { float:right; margin-right:9px; }
 
-.sidebar {
-    padding: 15px 10px 0 10px;
-    border-radius: 5px;
-    background: #75C814;
-}
-.sidebar .box {
-    line-height: 20px !important;
+.sidebar {padding:15px 10px 0 10px; background:#ccc;}
+.sidebar .box {line-height: 20px !important;}
+
+.submenu {
+    border: 5px solid #75C814;
     border-radius: 5px;
     background: #E7FCC0;
-    padding: 9px 0;
+    padding: 10px;
+    /* position: absolute; */
 }
 
-.sidemenu ul {
+.submenu ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
-.sidemenu ul li {
-    display: block;
-}
-
-.sidemenu ul li a {
+.submenu ul li a {
     background: url(../images/arrow-green.png) no-repeat scroll left center transparent;
     color: #34AB36;
     display: block;
@@ -169,13 +166,12 @@ input.input-error {border: 1px solid red;}
     text-decoration: none;
 }
 
-.sidemenu ul li a:hover,
-.sidemenu ul li a.active {
+.submenu ul li a:hover,
+.submenu ul li a.active {
     background: url(../images/arrow-green2.png) no-repeat scroll left center transparent;
-    color:#7DDF30;
+    color: #7DDF30;
     font-weight: bold;
 }
-
 
 /**************************************/
 /*            MAIN CONTENT            */
@@ -191,7 +187,9 @@ input.input-error {border: 1px solid red;}
     font-weight: bold;
     font-size: 16px;
     padding: 5px 20px;
+    margin-bottom: 10px;
 }
+
 
 /**************************************/
 /*               FORM                 */

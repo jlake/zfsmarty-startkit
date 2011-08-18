@@ -15,20 +15,17 @@ class Site_Model_Dummy
      */
     public function __construct()
     {
-        /*
         $this->_dataObj = new Lib_Db_DataObject(array(
-            //'db' => Zend_Registry::get('db'), //省略可
             'table' => new Lib_Db_Table_Dummy
         ));
-        */
-        $this->_dataObj = Lib_Db_Util::getDataObject('dummy');
+        //$this->_dataObj = Lib_Db_Util::getDataObject('dummy');
     }
 
     /**
      * レコードデータの取得
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  array
      */
     public function getRowData($params)
     {
@@ -42,7 +39,7 @@ class Site_Model_Dummy
      * レコードデータの取得(Zend_Db_Selectのサンプル)
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  array
      */
     public function getRowDataByZendSelect($params)
     {
@@ -60,7 +57,7 @@ class Site_Model_Dummy
      * レコードデータ取得(SQLのサンプル)
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  array
      */
     public function getRowDataBySql($params)
     {
@@ -84,7 +81,7 @@ class Site_Model_Dummy
      * データの保存（UPDATE または INSERT）
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  array
      */
     public function saveData($params)
     {
@@ -105,7 +102,7 @@ class Site_Model_Dummy
      * データの保存（Zend_Db関数のサンプル）
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  mixed
      */
     public function saveDataByZendDb($params)
     {
@@ -137,7 +134,7 @@ class Site_Model_Dummy
      * データの保存（SQLのサンプル）
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  mixed
      */
     public function saveDataBySQL($params)
     {
@@ -177,7 +174,7 @@ class Site_Model_Dummy
      * データの削除
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  mixed
      */
     public function deleteData($params)
     {
@@ -191,7 +188,7 @@ class Site_Model_Dummy
      * データの削除（Zend_Db関数のサンプル）
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  mixed
      */
     public function deleteDataByZendDb($params)
     {
@@ -206,7 +203,7 @@ class Site_Model_Dummy
      * データの削除（SQLのサンプル）
      *
      * @param   $params  引数の配列
-     * @return  void
+     * @return  mixed
      */
     public function deleteDataBySql($params)
     {

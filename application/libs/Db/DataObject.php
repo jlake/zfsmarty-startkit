@@ -342,7 +342,6 @@ class Lib_Db_DataObject
     {
         $this->setDb($this->_writeDb);
         //$data = $this->_addExtraInfo($data);
-        $data['ins_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         if($this->_autoLog) {
             $log = $this->_getLogText('INSERT', $data);
             $this->appendLog($log);
@@ -621,8 +620,8 @@ class Lib_Db_DataObject
      */
     public function _addExtraInfo($data)
     {
-        if(!isset($data['upd_dt'])) {
-            $data['upd_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
+        if(!isset($data['set_date'])) {
+            $data['set_date'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         }
         return $data;
     }
