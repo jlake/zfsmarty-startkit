@@ -1,0 +1,67 @@
+{literal}
+<script type="text/javascript">
+    $(function() {
+        $('#grid1').jqGrid({
+            url:'/admin/griddemo/demo2data',
+            datatype: 'json',
+            caption: 'Dummy データ',
+            colNames: ['ID','カラム1', 'カラム2'],
+            colModel: [
+                {name:'id', index:'id', width:90, editable:false, editoptions:{readonly:true,size:10}},
+                {name:'inf1', index:'inf1', width:300, editable:true, editoptions:{size:50}},
+                {name:'inf2', index:'inf2', width:300, editable:true, editoptions:{size:50}},
+            ],
+            rowNum:20,
+            rowList:[10, 20, 30, 50, 100],
+            pager: '#pager1',
+            sortname: 'id',
+            viewrecords: true,
+            sortorder: 'desc',
+            editurl: "/admin/griddemo/editdata",
+            height: 350
+        });
+        $('#grid1').jqGrid(
+            'navGrid',
+            '#pager2',
+            {edit:true,add:true,del:true},
+            {},  // options
+            {height:280,reloadAfterSubmit:false}, // edit options
+            {height:280,reloadAfterSubmit:false}, // add options
+            {multipleSearch:true, multipleGroup:false} // search options
+        );
+        $("#search").click(function(){
+            $("#grid1").jqGrid('searchGrid',
+                {sopt:['cn','bw','eq','ne','lt','gt','ew']}
+            );
+        });
+        $("#add").click(function(){
+            jQuery("#grid1").jqGrid('editGridRow','new', {width:400, height:200,reloadAfterSubmit:true});
+        });
+        $('#edit').click(function(){
+            var gr = jQuery('#grid1').jqGrid('getGridParam', 'selrow');
+            if( gr != null ) {
+                jQuery('#grid1').jqGrid('editGridRow', gr, {width:400, height:200, reloadAfterSubmit:true});
+            } else {
+                alert('データを選択してください');
+            }
+        });
+        $("#delete").click(function(){
+            var gr = jQuery('#grid1').jqGrid('getGridParam', 'selrow');
+            if( gr != null ) {
+                jQuery('#grid1').jqGrid('delGridRow', gr, {width:400, height:200, reloadAfterSubmit:true});
+            } else {
+                alert('データを選択してください');
+            }
+        });
+    });
+</script>
+{/literal}
+
+<div class="title">Grid Demo</div>
+
+<table id="grid1"></table>
+<div id="pager1"></div>
+<input type="button" id="search" value="検索" />
+<input type="button" id="add" value="追加" />
+<input type="button" id="edit" value="編集" />
+<input type="button" id="delete" value="削除" />
