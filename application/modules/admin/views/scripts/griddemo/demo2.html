@@ -1,7 +1,9 @@
 {literal}
 <script type="text/javascript">
     $(function() {
-        $('#grid1').jqGrid({
+        var editOptions = {width:400, height:200, reloadAfterSubmit:true};
+        $grid1 = $('#grid1');
+        $grid1.jqGrid({
             url:'/admin/griddemo/demo2data',
             datatype: 'json',
             caption: 'Dummy データ',
@@ -18,37 +20,29 @@
             viewrecords: true,
             sortorder: 'desc',
             editurl: "/admin/griddemo/editdata",
-            height: 350
+            height: 350,
+            ondblClickRow: function(rowid) {
+                $grid1.jqGrid('editGridRow', rowid, editOptions);
+            }
         });
-        $('#grid1').jqGrid(
-            'navGrid',
-            '#pager2',
-            {edit:true,add:true,del:true},
-            {},  // options
-            {height:280,reloadAfterSubmit:false}, // edit options
-            {height:280,reloadAfterSubmit:false}, // add options
-            {multipleSearch:true, multipleGroup:false} // search options
-        );
         $("#search").click(function(){
-            $("#grid1").jqGrid('searchGrid',
-                {sopt:['cn','bw','eq','ne','lt','gt','ew']}
-            );
+            $grid1.searchGrid( {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']} );
         });
         $("#add").click(function(){
-            jQuery("#grid1").jqGrid('editGridRow','new', {width:400, height:200,reloadAfterSubmit:true});
+            $grid1.jqGrid('editGridRow','new', editOptions);
         });
         $('#edit').click(function(){
-            var gr = jQuery('#grid1').jqGrid('getGridParam', 'selrow');
-            if( gr != null ) {
-                jQuery('#grid1').jqGrid('editGridRow', gr, {width:400, height:200, reloadAfterSubmit:true});
+            var rowid = $grid1.jqGrid('getGridParam', 'selrow');
+            if( rowid != null ) {
+                $grid1.jqGrid('editGridRow', rowid, editOptions);
             } else {
                 alert('データを選択してください');
             }
         });
         $("#delete").click(function(){
-            var gr = jQuery('#grid1').jqGrid('getGridParam', 'selrow');
-            if( gr != null ) {
-                jQuery('#grid1').jqGrid('delGridRow', gr, {width:400, height:200, reloadAfterSubmit:true});
+            var rowid = $grid1.jqGrid('getGridParam', 'selrow');
+            if( rowid != null ) {
+                $grid1.jqGrid('delGridRow', rowid, editOptions);
             } else {
                 alert('データを選択してください');
             }
