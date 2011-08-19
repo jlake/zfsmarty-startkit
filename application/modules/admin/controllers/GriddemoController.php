@@ -9,14 +9,6 @@ class Admin_GriddemoController extends Lib_App_AdminController
     public function init()
     {
         parent::init();
-        $this->_appendJs(array(
-            '/js/jqGrid/js/i18n/grid.locale-ja.js',
-            '/js/jqGrid/js/jquery.jqGrid.min.js'
-        ));
-        $this->_appendCss(array(
-            '/css/themes/south-street/jquery-ui-1.8.15.custom.css',
-            '/js/jqGrid/css/ui.jqgrid.css'
-        ));
     }
 
     public function indexAction()
@@ -26,6 +18,7 @@ class Admin_GriddemoController extends Lib_App_AdminController
 
     public function demo1Action()
     {
+        $this->_useJqGrid();
     }
 
     public function demo1dataAction()
@@ -37,6 +30,8 @@ class Admin_GriddemoController extends Lib_App_AdminController
 
     public function demo2Action()
     {
+        $this->_useJqGrid();
+        $this->_useJqueryUI(null);
     }
 
     public function demo2dataAction()
@@ -70,7 +65,7 @@ class Admin_GriddemoController extends Lib_App_AdminController
                     break;
                 case 'del':
                     $dataObj->delete(array(
-                        'id' => $this->_params['id']
+                        'id' => explode(',', $this->_params['id'])
                     ));
                     break;
             }

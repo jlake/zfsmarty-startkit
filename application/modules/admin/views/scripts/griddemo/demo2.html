@@ -12,8 +12,8 @@ $(function() {
         colNames: ['ID','カラム1', 'カラム2'],
         colModel: [
             {name:'id', index:'id', width:90, editable:false, editoptions:{readonly:true,size:10}},
-            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:50}},
-            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:50}},
+            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:40}},
+            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:40}},
         ],
         rowNum:20,
         rowList:[10, 20, 30, 50, 100],
@@ -22,6 +22,8 @@ $(function() {
         viewrecords: true,
         sortorder: 'desc',
         height: 350,
+        multiselect: true,
+        /* inline edit
         onSelectRow: function(id) {
             if(id && id !== lastSelId){ 
                 $grid1.restoreRow(lastSelId); 
@@ -29,11 +31,10 @@ $(function() {
             }
             $grid1.editRow(id, true); 
         },
-        /*
+        */
         ondblClickRow: function(rowid) {
             $grid1.editGridRow(rowid, editOptions);
         }
-        */
     });
     $("#search").click(function(){
         $grid1.searchGrid( {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']} );
@@ -49,14 +50,16 @@ $(function() {
             alert('行を選択してください');
         }
     });
-    $("#delete").click(function(){
-        var rowid = $grid1.getGridParam('selrow');
-        if( rowid != null ) {
-            $grid1.delGridRow(rowid, editOptions);
+    $('#delete').click(function(){
+        var rowids = $grid1.getGridParam('selarrrow');
+        console.log(rowids);
+        if( rowids != null ) {
+            $grid1.delGridRow(rowids, editOptions);
         } else {
             alert('行を選択してください');
         }
     });
+    $( "#datepicker" ).datepicker();
 });
 </script>
 {/literal}
@@ -69,3 +72,4 @@ $(function() {
 <input type="button" id="add" value="追加" />
 <input type="button" id="edit" value="編集" />
 <input type="button" id="delete" value="削除" />
+<p>Date: <input type="text" id="datepicker"></p>
