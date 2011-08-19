@@ -14,7 +14,7 @@ class Admin_GriddemoController extends Lib_App_AdminController
             '/js/jqGrid/js/jquery.jqGrid.min.js'
         ));
         $this->_appendCss(array(
-            '/css/south-street/jquery-ui-1.8.15.custom.css',
+            '/css/themes/south-street/jquery-ui-1.8.15.custom.css',
             '/js/jqGrid/css/ui.jqgrid.css'
         ));
     }

@@ -12,8 +12,8 @@ $(function() {
         colNames:['ID','カラム1', 'カラム2'],
         colModel:[
             {name:'id', index:'id', width:90, align:'right', editable:false, editoptions:{readonly:true,size:10}},
-            {name:'inf1', index:'inf1', width:300, editable:true, editoptions:{size:50}},
-            {name:'inf2', index:'inf2', width:300, editable:true, editoptions:{size:50}},
+            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:50}},
+            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:50}},
         ],
         rowNum:20,
         rowList:[10, 20, 30, 50, 100],
@@ -23,7 +23,7 @@ $(function() {
         sortorder: 'desc',
         height: 350,
         ondblClickRow: function(rowid) {
-            $grid1.jqGrid('editGridRow', rowid, editOptions);
+            $grid1.editGridRow(rowid, editOptions);
         }
     });
     $grid1.navGrid(

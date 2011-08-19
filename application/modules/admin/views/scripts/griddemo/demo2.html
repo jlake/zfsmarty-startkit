@@ -12,8 +12,8 @@ $(function() {
         colNames: ['ID','カラム1', 'カラム2'],
         colModel: [
             {name:'id', index:'id', width:90, editable:false, editoptions:{readonly:true,size:10}},
-            {name:'inf1', index:'inf1', width:300, editable:true, editoptions:{size:50}},
-            {name:'inf2', index:'inf2', width:300, editable:true, editoptions:{size:50}},
+            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:50}},
+            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:50}},
         ],
         rowNum:20,
         rowList:[10, 20, 30, 50, 100],
@@ -31,7 +31,7 @@ $(function() {
         },
         /*
         ondblClickRow: function(rowid) {
-            $grid1.jqGrid('editGridRow', rowid, editOptions);
+            $grid1.editGridRow(rowid, editOptions);
         }
         */
     });
@@ -39,22 +39,22 @@ $(function() {
         $grid1.searchGrid( {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']} );
     });
     $("#add").click(function(){
-        $grid1.jqGrid('editGridRow','new', editOptions);
+        $grid1.editGridRow('new', editOptions);
     });
     $('#edit').click(function(){
-        var rowid = $grid1.jqGrid('getGridParam', 'selrow');
+        var rowid = $grid1.getGridParam('selrow');
         if( rowid != null ) {
-            $grid1.jqGrid('editGridRow', rowid, editOptions);
+            $grid1.editGridRow(rowid, editOptions);
         } else {
-            alert('データを選択してください');
+            alert('行を選択してください');
         }
     });
     $("#delete").click(function(){
-        var rowid = $grid1.jqGrid('getGridParam', 'selrow');
+        var rowid = $grid1.getGridParam('selrow');
         if( rowid != null ) {
-            $grid1.jqGrid('delGridRow', rowid, editOptions);
+            $grid1.delGridRow(rowid, editOptions);
         } else {
-            alert('データを選択してください');
+            alert('行を選択してください');
         }
     });
 });
