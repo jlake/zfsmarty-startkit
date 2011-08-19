@@ -1,29 +1,44 @@
 {literal}
 <script type="text/javascript">
-    $(function() {
-        $('#grid1').jqGrid({
-            url:'/admin/griddemo/demo1data',
-            datatype: 'json',
-            caption:'Dummy データ',
-            colNames:['ID','カラム1', 'カラム2'],
-            colModel:[
-                {name:'id', index:'id', width:90, align:'right', editable:false, editoptions:{readonly:true,size:10}},
-                {name:'inf1', index:'inf1', width:300, editable:true, editoptions:{size:50}},
-                {name:'inf2', index:'inf2', width:300, editable:true, editoptions:{size:50}},
-            ],
-            rowNum:20,
-            rowList:[10, 20, 30, 50, 100],
-            pager: '#pager1',
-            sortname: 'id',
-            viewrecords: true,
-            sortorder: 'desc',
-            height: 350
-        });
+$(function() {
+    $grid1 = $('#grid1');
+    var editOptions = {width:400, height:200, reloadAfterSubmit:true};
+    var searchOptions = {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']};
+    $grid1.jqGrid({
+        url:'/admin/griddemo/demo1data',
+        editurl: "/admin/griddemo/editdata",
+        datatype: 'json',
+        caption:'Dummy データ',
+        colNames:['ID','カラム1', 'カラム2'],
+        colModel:[
+            {name:'id', index:'id', width:90, align:'right', editable:false, editoptions:{readonly:true,size:10}},
+            {name:'inf1', index:'inf1', width:300, editable:true, editoptions:{size:50}},
+            {name:'inf2', index:'inf2', width:300, editable:true, editoptions:{size:50}},
+        ],
+        rowNum:20,
+        rowList:[10, 20, 30, 50, 100],
+        pager: '#pager1',
+        sortname: 'id',
+        viewrecords: true,
+        sortorder: 'desc',
+        height: 350,
+        ondblClickRow: function(rowid) {
+            $grid1.jqGrid('editGridRow', rowid, editOptions);
+        }
     });
+    $grid1.navGrid(
+        '#pager1',
+        {edit:true, add:true, del:true, search:true},
+        editOptions,
+        editOptions,
+        editOptions,
+        searchOptions
+    );
+});
 </script>
 {/literal}
 
-<div class="title">Grid Demo (リスト)</div>
+<div class="title">Grid Demo (リスト・検索・編集)</div>
 
 <table id="grid1"></table>
 <div id="pager1"></div>
