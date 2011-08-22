@@ -2,7 +2,11 @@
 <script type="text/javascript">
 $(function() {
     $grid1 = $('#grid1');
-    var editOptions = {width:400, height:200, reloadAfterSubmit:true};
+
+    var editOptions = {width:400, height:200, reloadAfterSubmit:true, afterShowForm:function(){
+        $('.FormElement[readonly]').attr('disabled', 'disabled');
+        $('.FormElement#inf1').focus();
+    }};
     var searchOptions = {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']};
     $grid1.jqGrid({
         url:'/admin/griddemo/demo1data',
@@ -11,7 +15,7 @@ $(function() {
         caption:'Dummy データ',
         colNames:['ID','カラム1', 'カラム2'],
         colModel:[
-            {name:'id', index:'id', width:90, align:'right', editable:false, editoptions:{readonly:true,size:10}},
+            {name:'id', index:'id', width:90, align:'right', editable:true, editoptions:{readonly:true,size:10}},
             {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:40}},
             {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:40}},
         ],

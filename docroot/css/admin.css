@@ -176,9 +176,6 @@ input.input-error {border: 1px solid red;}
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
-#content img {padding:5px; border:1px solid #ccc; background:#efefef;}
-.featured-image {margin:18px auto; display:block;}
-
 #flash_msg {font-weight: bold; text-align: center;}
 
 .title {
@@ -202,3 +199,12 @@ input.input-error {border: 1px solid red;}
 #footer-nav li {display:inline; margin:0 10px 0;}
 
 #copyright {width:100%; text-align:center;}
+
+/**************************************/
+/*               jqGrid               */
+/**************************************/
+.jqgrow  img {
+    background: transpant;
+    border: 0px;
+    margin: 4px;
+}
