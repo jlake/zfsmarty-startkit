@@ -108,7 +108,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             $this->view->headScript()->appendScript($script);
             $msg .= "<br/><br/>{$seconds}秒後自動リダイレクトします...";
         }
-        $msg .= '<br/><br/>';
+        $msg .= '<br/><center>';
         if($backLink) {
             $msg .= '<a id="go_back" href="'.$backLink.'">戻る</a>';
             $msg .= '&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -116,6 +116,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
         if($nextLink) {
             $msg .= '<a href="'.$nextLink.'">次へ</a>';
         }
+        $msg .= '</center>';
         $this->view->flashMsg = $msg;
         $this->_helper->viewRenderer->setNoRender();
     }
@@ -150,29 +151,31 @@ class Lib_App_BaseController extends Zend_Controller_Action
     /**
      * JSONデータ吐き出す
      * @param  array $data  送信データ
+     * @param  string $charset 文字コード
      * @return  void
      **/
-    public function _sendJson($data)
+    public function _sendJson($data, $charset='UTF-8')
     {
         $this->_disableLayout(true);
         $this->getResponse()
-            ->setHeader('Content-Type', 'text/javascript; charset=UTF-8', true)
+            ->setHeader('Content-Type', "text/javascript; charset=$charset", true)
             ->setBody(json_encode($data));
     }
 
     /**
      * XMLデータ吐き出す
      * @param  mixed $data  送信データ
+     * @param  string $charset 文字コード
      * @return  void
      **/
-    public function _sendXml($data)
+    public function _sendXml($data, $charset='UTF-8')
     {
         if(is_array($data)) {
             $data = Lib_Util_Array::toXml($data);
         }
         $this->_disableLayout(true);
         $this->getResponse()
-            ->setHeader('Content-Type', 'text/xml; charset=UTF-8', true)
+            ->setHeader('Content-Type', "text/xml; charset=$charset", true)
             ->setBody($data);
     }
 
@@ -211,11 +214,12 @@ class Lib_App_BaseController extends Zend_Controller_Action
     /**
      * ページング設定
      * @param array/object $dataAdapter ページング対象データアダプタ
-     * @param integer $pageSize ページサイズ（表示アイテム最大件数）
-     * @param integer $pageRange ページリンク最大件数
+     * @param int $pageSize ページサイズ（表示アイテム最大件数）
+     * @param int $pageRange ページリンク最大件数
      * @return void
      */
-    protected function _setPaginator($dataAdapter, $pageSize = NULL, $pageRange = NULL) {
+    protected function _setPaginator($dataAdapter, $pageSize = NULL, $pageRange = NULL)
+    {
         $url = $this->_request->getRequestUri();
         $url = preg_replace('/(\/page\/\d+)|([&\?]page=\d+)/i', '', $url);
         $url .= (strpos($url, '?') === FALSE) ? '?' : '&';
@@ -239,15 +243,42 @@ class Lib_App_BaseController extends Zend_Controller_Action
     }
 
     /**
-     *　ページングスタイル指定
+     * ページングテンプレート指定
      * @param string $template テンプレート
      * @param string $scrollingStyle スクロールスタイル
      * @return void
      */
-    protected function _setPaginatorTemplate($template, $scrollingStyle = 'Sliding') {
+    protected function _setPaginatorTemplate($template, $scrollingStyle = 'Sliding')
+    {
         //ページングスタイル指定
         Zend_Paginator::setDefaultScrollingStyle($scrollingStyle);
         Zend_View_Helper_PaginationControl::setDefaultViewPartial($template);
+    }
+
+    /**
+     * ページングキャッシュを有効にする
+     * @param string $lifeTime キャッシュ時間(秒)
+     * @return void
+     */
+    protected function _enablePaginatorCache($lifeTime = 300)
+    {
+        $config =  Zend_Registry::get('config');
+        $memcacheConfig = $config->memcache;
+        $frontendOptions = array(
+            'caching' => true,
+            'lifetime' => $lifeTime,
+            'automatic_serialization' => true
+        );
+        $servers = array();
+        foreach($memcacheConfig->servers as $name => $serverConfig) {
+            $servers[] = $serverConfig->toArray();
+        }
+        $backendOptions = array(
+            'servers' => $servers,
+            'compression' => isset($memcacheConfig->compression) ? $memcacheConfig->compression : false
+        );
+        $cache = Zend_Cache::factory('Core', 'Memcached', $frontendOptions, $backendOptions);
+        Zend_Paginator::setCache($cache);
     }
 
     /**
@@ -257,7 +288,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
      * @param string  $delimeter  区切り文字
      * @return void
      */
-    protected function _displaySysError($errCd, $replaceList = array(), $delimeter = '<br />') {
+    protected function _displaySysError($errCd, $replaceList = array(), $delimeter = '<br />')
+    {
         $message = '';
         if(is_array($errCd)) {
             $msgArr = array();
@@ -282,7 +314,8 @@ class Lib_App_BaseController extends Zend_Controller_Action
      * @param string $delimeter  区切り文字
      * @return void
      */
-    protected function _displaySysErrorMsg($errMsg, $replaceList = array(), $delimeter = '<br />') {
+    protected function _displaySysErrorMsg($errMsg, $replaceList = array(), $delimeter = '<br />')
+    {
         $message = '';
         if(is_array($errMsg)) {
             $msgArr = array();
@@ -299,4 +332,5 @@ class Lib_App_BaseController extends Zend_Controller_Action
         $this->view->message = $message;
         $this->_forward('syserror', 'error', 'site');
     }
+
 }

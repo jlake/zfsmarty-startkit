@@ -16,7 +16,7 @@ class Lib_App_Session
      * コンストラクタ
      *
      * @param string $module  モジュール
-     * @param integer $expirationSeconds  有効期限(秒, 省略可)
+     * @param int $expirationSeconds  有効期限(秒, 省略可)
      */
     public function __construct($module, $expirationSeconds = null)
     {

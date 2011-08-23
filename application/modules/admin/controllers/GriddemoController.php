@@ -31,7 +31,6 @@ class Admin_GriddemoController extends Lib_App_AdminController
     public function demo2Action()
     {
         $this->_useJqGrid();
-        $this->_useJqueryUI(null);
     }
 
     public function demo2dataAction()

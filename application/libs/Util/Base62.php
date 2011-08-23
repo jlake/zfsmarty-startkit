@@ -11,7 +11,7 @@ class Lib_Util_Base62
     /**
      * エンコード
      *
-     * @param   integer $val 数字 (最大は 2^31-1 = 2147483647)
+     * @param   int $val 数字 (最大は 2^31-1 = 2147483647)
      * @return  string
      */
     public static function encode($val) {
@@ -28,7 +28,7 @@ class Lib_Util_Base62
      * エンコード
      *
      * @param   string $str 文字列
-     * @return  integer
+     * @return  int
      */
     public static function decode($str) {
          $len = strlen($str);
