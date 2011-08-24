@@ -1,5 +1,10 @@
 <?php
-require_once 'CliBootstrap.php';
+/**
+ * 開発サポート
+ * テーブルクラス(Zend_Db_Tableの拡張)作成 バッチ
+ * @author ou
+ */
+require_once '../CliBootstrap.php';
 
 class Batch_MakeTableClasses
 {
@@ -112,7 +117,9 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
         if(is_writable($this->_rootPath)) {
             $tableNames = $this->_db->fetchCol("SHOW TABLES");
             foreach($tableNames as $tableName) {
-                $this->_makeClassFile($tableName);
+                if(preg_match('/_(tbl|mst)$/i', $tableName)) {
+                    $this->_makeClassFile($tableName);
+                }
             }
         } else {
             echo $this->_rootPath . " is not writable.\n";

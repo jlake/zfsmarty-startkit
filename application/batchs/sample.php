@@ -1,5 +1,10 @@
 <?php
-require_once 'CliBootstrap.php';
+/**
+ * 開発サポート
+ * サンプル バッチ
+ * @author ou
+ */
+require_once '../CliBootstrap.php';
 
 class Batch_Sample
 {

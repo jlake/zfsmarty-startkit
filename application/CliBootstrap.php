@@ -3,17 +3,12 @@ set_time_limit(0);
 
 // ルートパス
 defined('ROOT_PATH')
-    || define('ROOT_PATH', realpath(dirname(__FILE__) . '/../..'));
-
+    || define('ROOT_PATH', realpath(dirname(__FILE__) . '/..'));
 // アプリケーションパスを定義
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', ROOT_PATH . '/application');
 
 // アプリケーション環境を定義
-/*
-defined('APPLICATION_ENV')
-    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
-*/
 $htaccess = ROOT_PATH . '/docroot/.htaccess';
 if(file_exists($htaccess)) {
     foreach(file($htaccess) as $line) {
@@ -23,6 +18,8 @@ if(file_exists($htaccess)) {
         }
     }
 }
+defined('APPLICATION_ENV')
+    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
 
 // 言語コード指定
 defined('LANG')
