@@ -105,6 +105,20 @@ class Lib_Util_UserAgent
     }
 
     /**
+     * Android端末コードの取得
+     *
+     * @param   なし
+     * @return  string
+     */
+    public static function getAndriodDevCd()
+    {
+        if(preg_match('/;\s+([\w-]+)\s+Build\/\w+/i', $ua, $matches)){
+            return $matches[1];
+        }
+        return '';
+    }
+
+    /**
      * クローラーの判別
      *
      * @param   なし

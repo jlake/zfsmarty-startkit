@@ -57,7 +57,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         }
         $session = new Lib_App_Session($module);
         $userInfo = $session->getUserInfo();
-        if(!isset($userInfo) || !isset($userInfo['admin_user_id'])) {
+        if(empty($userInfo)) {
             $auth = Zend_Auth::getInstance();
             $auth->clearIdentity();
             $authSession->requestUri = $request->getRequestUri();
@@ -83,7 +83,7 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         }
         $session = new Lib_App_Session($module);
         $userInfo = $session->getUserInfo();
-        if(!isset($userInfo) || !isset($userInfo['user_id'])) {
+        if(empty($userInfo)) {
             $session->requestUri = $request->getRequestUri();
             $request->setModuleName('site');
             $request->setControllerName('auth');

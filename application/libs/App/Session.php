@@ -18,8 +18,11 @@ class Lib_App_Session
      * @param string $module  モジュール
      * @param int $expirationSeconds  有効期限(秒, 省略可)
      */
-    public function __construct($module, $expirationSeconds = null)
+    public function __construct($module = 'common', $expirationSeconds = null)
     {
+        if(empty($module)) {
+            $module = 'common';
+        }
         $rootName = ucwords($module) . '_Root';
         $this->_session = new Zend_Session_Namespace($rootName);
         if(isset($expirationSeconds)) {
@@ -28,7 +31,17 @@ class Lib_App_Session
     }
 
     /**
-     * キー指定でセッション内容を取得
+     * セッションIDを取得
+     *
+     * @return string
+     */
+    public static function getId()
+    {
+        return Zend_Session::getId();
+    }
+
+    /**
+     * 指定キーのセッション内容を取得
      *
      * @param string $key  キー
      * @param mixed $default  デフォールトバリュー
@@ -40,7 +53,7 @@ class Lib_App_Session
     }
 
     /**
-     * キー指定でセッション内容を取得
+     * 指定キーのセッション内容をセット
      *
      * @param string $key  キー
      * @param mixed $value  バリュー
@@ -64,11 +77,13 @@ class Lib_App_Session
     /**
      * ユーザ情報をセットする
      *
-     * @param mixed $userInfo  ユーザ情報
+     * @param array $infoList  ユーザ情報
      * @return void
      */
-    public function setUserInfo($userInfo)
+    public function setUserInfo($infoList)
     {
+        $userInfo = $this->get('userInfo', array());
+        $userInfo = array_merge($userInfo, $infoList);
         $this->set('userInfo', $userInfo);
     }
 }
