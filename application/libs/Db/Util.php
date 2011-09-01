@@ -105,15 +105,15 @@ class Lib_Db_Util
      */
     public static function getWhereByFilter($filter, $aliasMap = array())
     {
+        $whereArray = array();
         if(empty($filter)) {
             //フィルタ なし
             return $whereArray;
         }
+        //フィルタ あり
         if(!is_array($filter)) {
             $filter = json_decode($filter, true);
         }
-        $whereArray = array();
-        //フィルタ あり
         //	filters: {"groupOp":"AND","rules":[{"field":"id","op":"lt","data":"1"},{"field":"inf1","op":"cn","data":"7"}]}
         foreach($filter['rules'] as $rule) {
             $field = $rule['field'];
