@@ -82,8 +82,12 @@ class Lib_App_Session
      */
     public function setUserInfo($infoList)
     {
-        $userInfo = $this->get('userInfo', array());
-        $userInfo = array_merge($userInfo, $infoList);
-        $this->set('userInfo', $userInfo);
+        if(is_array($infoList)) {
+            $userInfo = $this->get('userInfo', array());
+            $userInfo = array_merge($userInfo, $infoList);
+            $this->set('userInfo', $userInfo);
+        } else {
+            $this->set('userInfo', $infoList);
+        }
     }
 }
