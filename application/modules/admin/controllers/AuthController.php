@@ -28,13 +28,12 @@ class Admin_AuthController extends Lib_App_AdminController
             $result = $auth->authenticate($authAdapter);
             if($result->isValid()){
                 $userInfo = $result->getIdentity();
-                $session = new Lib_App_Session($this->_params['module']);
-                $session->setUserInfo($userInfo);
-                $requestUri = $session->get('requestUri');
+                $this->_session->setUserInfo($userInfo);
+                $requestUri = $this->_session->get('requestUri');
                 if(empty($requestUri)) {
                     $requestUri = '/admin/';
                 } else {
-                    $session->set('requestUri', null);
+                    $this->_session->set('requestUri', null);
                 }
                 $this->_redirect($requestUri);
             } else {
@@ -50,8 +49,7 @@ class Admin_AuthController extends Lib_App_AdminController
         $this->_disableLayout(true);
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
-        $session = new Lib_App_Session($this->_params['module']);
-        $session->setUserInfo(null);
+        $this->_session->setUserInfo(null);
         $this->_redirect('/admin/');
     }
 

@@ -10,7 +10,8 @@ class Lib_Util_SimpleMail
      * @param $params パラメータの配列(キー： subject, body, from, to, replace)
      * @return void
      */
-    public static function send($params) {
+    public static function send($params)
+    {
         $mailObj = new Zend_Mail('ISO-2022-JP');
         $mailObj->setSubject(mb_convert_encoding($params['subject'], 'ISO-2022-JP', 'UTF-8'));
         $body = $params['body'];

@@ -7,6 +7,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
 {
     protected $_infoFlg;       //共通情報取得のフラグ
     protected $_params;        //リクエスト引数
+    protected $_session;       //セッションオブジェクト
     protected $_userInfo;      //ユーザー情報
     protected $_paginator;     //ページング用オブジェクト
     /**
@@ -16,16 +17,16 @@ class Lib_App_BaseController extends Zend_Controller_Action
      */
     public function init($infoFlg = true)
     {
+        Zend_Registry::set('request', $this->_request);
         // リクエストパラメータ
         $this->_params = $this->_getAllParams();
         $this->_infoFlg = $infoFlg;
         if($this->_infoFlg) {
             // ログインユーザ情報
-            $appSession = new Lib_App_Session($this->_params['module']);
-            $this->_userInfo = $appSession->getUserInfo();
+            $this->_session = new Lib_App_Session($this->_params['module']);
+            $this->_userInfo = $this->_session->getUserInfo();
         }
     }
-
 
     /**
      * 画面表示前処理

@@ -98,7 +98,7 @@ class Lib_Util_UserAgent
      */
     public static function fromDocomoStore()
     {
-        if(preg_match('/DOCOMO\/2.0\s[a-z0-9]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/DOCOMO\/2.0\s[a-z0-9\-]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;
@@ -112,8 +112,46 @@ class Lib_Util_UserAgent
      */
     public static function getAndriodDevCd()
     {
-        if(preg_match('/;\s+([\w-]+)\s+Build\/\w+/i', $ua, $matches)){
-            return $matches[1];
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        $ua = preg_replace('/SonyEricsson/', '', $ua);
+        if (self::fromDocomoStore()) {
+            if(preg_match('/\s+([\w-]+)\s*\(ST\;/i', $ua, $matches)){
+                return $matches[1];
+            }
+        } else {
+            if(preg_match('/;\s+([\w-]+)\s+Build\/\w+/i', $ua, $matches)){
+                return $matches[1];
+            }
+        }
+        return '';
+    }
+
+    /**
+     * Android OSの取得
+     *
+     * @param   なし
+     * @return  string
+     */
+    public static function getAndriodOsVer()
+    {
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        if (self::fromDocomoStore()) {
+            $checkKey = 0;
+            $arrTmp  = split(";", trim($ua));
+            foreach ($arrTmp as $key => $tmpUA) {
+                if ($tmpUA == 'Android') {
+                    $checkKey = $key + 1;
+                    return $arrTmp[$checkKey];
+                }
+            }
+        } else {
+            $arrTmp  = split(";", trim($ua));
+            foreach ($arrTmp as $tmpVal) {
+                if (preg_match("/\bAndroid\b/", $tmpVal)) {
+                    $arrOs = split(" ", trim($tmpVal));
+                    return $arrOs[count($arrOs)-1];
+                }
+            }
         }
         return '';
     }
