@@ -56,4 +56,9 @@ if(!file_exists($logDir)) {
     mkdir($logDir, 0775, true);
 }
 $logger = new Zend_Log(new Zend_Log_Writer_Stream("$logDir/$logFile"));
+if(isset($config->log->level) && isset(Lib_Util_Log::$logLevel[$config->log->level])) {
+    $filter = new Zend_Log_Filter_Priority(Lib_Util_Log::$logLevel[$config->log->level]);
+    $logger->addFilter($filter);
+}
+
 Zend_Registry::set($logFolder.'_logger', $logger);

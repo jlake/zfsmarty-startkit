@@ -112,7 +112,8 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
     public function run()
     {
         $this->_init();
-        $this->_logger->log('START run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log(' -- START run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log('  options: ' . print_r($this->_opts->getOptions(), true), Zend_Log::INFO);
 
         if(is_writable($this->_rootPath)) {
             $tableNames = $this->_db->fetchCol("SHOW TABLES");
@@ -125,7 +126,7 @@ class Lib_Db_Table_%className% extends Lib_Db_Table
             echo $this->_rootPath . " is not writable.\n";
         }
 
-        $this->_logger->log('END run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log(' -- END run ' . __FILE__, Zend_Log::INFO);
     }
 }
 

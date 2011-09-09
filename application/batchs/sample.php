@@ -29,6 +29,7 @@ class Batch_Sample
             $this->_opts = new Zend_Console_Getopt(
                 array(
                     'help|h' => 'Displays usage information.',
+                    'force|f' => 'Force execute.',
                 )
             );
             $this->_opts->parse();
@@ -51,8 +52,10 @@ class Batch_Sample
      */
     public function run()
     {
+        global $argv;
         $this->_init();
-        $this->_logger->log('START run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log(' -- START run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log('  options: ' . print_r($this->_opts->getOptions(), true), Zend_Log::INFO);
 
         //test 1
         $row = $this->_db->fetchRow('SELECT * FROM dummy');
@@ -78,10 +81,9 @@ class Batch_Sample
         $row = $dataObj->getRow(array('id' => 1));
         print_r($row);
 
-        $this->_logger->log('END run ' . __FILE__, Zend_Log::INFO);
+        $this->_logger->log(' -- END run ' . __FILE__, Zend_Log::INFO);
     }
 }
-
 
 $batch = new Batch_Sample();
 $batch->run();
