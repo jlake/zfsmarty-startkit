@@ -5,6 +5,17 @@
  */
 class Lib_Util_Log
 {
+    public static $logLevel = array(
+        'EMERG'   => 0,  // 緊急事態 (Emergency): システムが使用不可能です
+        'ALERT'   => 1,  // 警報 (Alert): 至急対応が必要です
+        'CRIT'    => 2,  // 危機 (Critical): 危機的な状況です
+        'ERR'     => 3,  // エラー (Error): エラーが発生しました
+        'WARN'    => 4,  // 警告 (Warning): 警告が発生しました
+        'NOTICE'  => 5,  // 注意 (Notice): 通常動作ですが、注意すべき状況です
+        'INFO'    => 6,  // 情報 (Informational): 情報メッセージ
+        'DEBUG'   => 7,  // デバッグ (Debug): デバッグメッセージ
+    );
+
     protected $_logger;
 
     public function __construct($logFolder = 'site')
@@ -20,18 +31,21 @@ class Lib_Util_Log
      */
     public static function getLogger($logFolder = 'site')
     {
+        $config = Zend_Registry::get('config');
         try {
             $logger = Zend_Registry::get($logFolder . '_logger');
         } catch(Exception $e) {
-            $config =  $this->_getConfig('config');
-            $logConfig = $config->log;
-            $logPath = $logConfig->path.'/'.$logFolder;
+            $logPath = $config->log->path.'/'.$logFolder;
             $logFile = date('Ymd').'.log';
             if(!file_exists($logPath)) {
                 mkdir($logPath, 0775, true);
             }
             $logger = new Zend_Log(new Zend_Log_Writer_Stream("$logPath/$logFile"));
             Zend_Registry::set($folder.'_logger', $logger);
+        }
+        if(isset($config->log->level) && isset(self::$logLevel[$config->log->level])) {
+            $filter = new Zend_Log_Filter_Priority(self::$logLevel[$config->log->level]);
+            $logger->addFilter($filter);
         }
         return $logger;
     }
@@ -43,20 +57,11 @@ class Lib_Util_Log
      * @param string  $logFolder ログフォルダ（admin, site, batch など）
      * @param string  $logMsg ログ内容
      * @param string  $level Zend_Logのレベル
-     *  EMERG   = 0;  // 緊急事態 (Emergency): システムが使用不可能です
-     *  ALERT   = 1;  // 警報 (Alert): 至急対応が必要です
-     *  CRIT    = 2;  // 危機 (Critical): 危機的な状況です
-     *  ERR     = 3;  // エラー (Error): エラーが発生しました
-     *  WARN    = 4;  // 警告 (Warning): 警告が発生しました
-     *  NOTICE  = 5;  // 注意 (Notice): 通常動作ですが、注意すべき状況です
-     *  INFO    = 6;  // 情報 (Informational): 情報メッセージ
-     *  DEBUG   = 7;  // デバッグ (Debug): デバッグメッセージ
      * @return  unknown
      */
     public static function log($logFolder, $logMsg, $level=Zend_Log::INFO)
     {
         // iniファイルの設定でログフィルタ
-        $appConfig = Zend_Registry::get('config');
         $logger = self::getLogger($logFolder);
         if($logger) {
             return $logger->log($logMsg, $level);
