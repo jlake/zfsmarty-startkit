@@ -91,7 +91,7 @@ class ErrorController extends Zend_Controller_Action
      */
     private function _writeTraceLog($logMsg)
     {
-        $logger = Zend_Registry::get('trace_logger');
+        $logger = Zend_Registry::get('site_logger');
         return $logger->log($logMsg, Zend_Log::ERR);
     }
 }

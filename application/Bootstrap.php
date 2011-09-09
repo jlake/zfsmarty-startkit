@@ -106,7 +106,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $config =  $this->_getConfig('config');
         $logConfig = $config->log;
-        $subFolders = array('admin', 'site', 'api', 'trace');
+        $subFolders = array('admin', 'site', 'api');
         $logFile = date('Ymd').'.log';
         foreach($subFolders as $folder) {
             $logDir = $logConfig->path.'/'.$folder;
