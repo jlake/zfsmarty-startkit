@@ -4,7 +4,7 @@
  * サンプル バッチ
  * @author ou
  */
-require_once '../CliBootstrap.php';
+require_once dirname(__FILE__) . '/../CliBootstrap.php';
 
 class Batch_Sample
 {

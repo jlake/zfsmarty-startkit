@@ -4,7 +4,7 @@
  * テーブルクラス(Zend_Db_Tableの拡張)作成 バッチ
  * @author ou
  */
-require_once '../CliBootstrap.php';
+require_once dirname(__FILE__) . '/../CliBootstrap.php';
 
 class Batch_MakeTableClasses
 {
