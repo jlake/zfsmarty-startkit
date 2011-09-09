@@ -150,9 +150,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         $servers = array();
         foreach($memcacheConfig->servers as $name => $serverConfig) {
-            $servers[] = $serverConfig->toArray();
+            if($serverConfig->available) {
+                $servers[] = $serverConfig->toArray();
+            }
         }
-        var_dump($servers);
         $backendOptions = array(
             'servers' => $servers,
             'compression' => isset($memcacheConfig->compression) ? $memcacheConfig->compression : false
