@@ -54,6 +54,25 @@ class Lib_Util_File
         return $contents;
     }
 
+    /** 
+     * テキストファイルの作成
+     *
+     * @param   string  $filePath    ファイルパス
+     * @param   string  $contents    コンテンツ
+     * @param   string  $encoding    文字コード
+     * @return  void
+    */
+    public static function writeTextFile($filePath, $contents, $encoding = null) {
+        if(!is_writeable($filePath)) {
+            throw new Exception('エラー: ファイル 「'. $filePath .'」 の書き込みができません。');
+            return false;
+        }
+        if(isset($encoding)) {
+            $contents = mb_convert_encoding($contents, $encoding, 'auto');
+        }
+        return file_put_contents($filePath, $contents);
+    }
+
     /**
      * ファイルダウンロード
      *
