@@ -9,7 +9,7 @@
     compress
     nocreate
 }
-/home/appname/data/logs/trace/*.log {
+/home/appname/data/logs/api/*.log {
     daily
     compress
     nocreate

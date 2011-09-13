@@ -98,7 +98,7 @@ class Lib_Util_UserAgent
      */
     public static function fromDocomoStore()
     {
-        if(preg_match('/DOCOMO\/2.0\s[a-z0-9\-]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match('/DOCOMO\/2.0\s[\w-]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         return false;
@@ -110,18 +110,10 @@ class Lib_Util_UserAgent
      * @param   なし
      * @return  string
      */
-    public static function getAndriodDevCd()
+    public static function getAndroidDevCd()
     {
-        $ua = $_SERVER['HTTP_USER_AGENT'];
-        $ua = preg_replace('/SonyEricsson/', '', $ua);
-        if (self::fromDocomoStore()) {
-            if(preg_match('/\s+([\w-]+)\s*\(ST\;/i', $ua, $matches)){
-                return $matches[1];
-            }
-        } else {
-            if(preg_match('/;\s+([\w-]+)\s+Build\/\w+/i', $ua, $matches)){
-                return $matches[1];
-            }
+        if(preg_match('/\s([\w-\s]+)\s*(\(ST;|Build\/)/i', $_SERVER['HTTP_USER_AGENT'], $matches)){
+            return str_replace('/SonyEricsson/i', '', trim($matches[1]));
         }
         return '';
     }
@@ -132,7 +124,7 @@ class Lib_Util_UserAgent
      * @param   なし
      * @return  string
      */
-    public static function getAndriodOsVer()
+    public static function getAndroidOsVer()
     {
         $ua = $_SERVER['HTTP_USER_AGENT'];
         if (self::fromDocomoStore()) {
