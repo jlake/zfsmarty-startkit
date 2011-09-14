@@ -23,38 +23,45 @@ class Lib_Util_Csv
         header( "Content-type: text/csv" ) ;
         header( "Content-Disposition: $disposition; filename=$fileName" ) ; 
 
-        $kanji_code = mb_internal_encoding(); // 現在の内部文字コードをキープ
-        mb_http_output("SJIS");             // HTTP文字コードをSJISに明示的に設定
-        mb_internal_encoding($kanji_code);  // 内部文字コードを元に戻す
+        $sysEncoding = mb_internal_encoding(); // 現在の内部文字コードをキープ
+        mb_http_output("SJIS");                // HTTP文字コードをSJISに明示的に設定
+        mb_internal_encoding($sysEncoding);    // 内部文字コードを元に戻す
 
         return true;
     }
-
+    /**
+     * 
+     * 配列からCSVテキストへ変換（一行）
+     * @param     string  $rowData    行データ
+     * @param     string  $delimeter  区切り文字
+     * @param     string  $quote      コーテーション (" または 空白)
+     * @return    string
+    */
+    public static function arrayToLine($rowData, $delimeter = ',', $quote = '')
+    {
+        return $quote . implode($quote.$delimeter.$quote, $rowData) . $quote;
+    }
+    
     /**
      * 
      * 配列からCSVテキストへ変換
      * @param     string  $arrData    配列データ
      * @param     string  $delimeter  区切り文字
+     * @param     string  $quote      コーテーション (" または 空白)
      * @param     string  $newLine    改行文字
-     * @param     string  $encode     文字コード
-     * @param     string  $fromEncode 元文字コード
+     * @param     string  $encode     文字コード (例: SJIS-win)
+     * @param     string  $fromEncode 元文字コード (例: UTF-8)
      * @return    string
     */
-    public static function convertArrayToCsv($arrData, $delimeter = ',', $newLine = "\r\n", $encode = 'SJIS-win', $fromEncode='UTF-8')
+    public static function arrayToText($arrData, $delimeter = ',', $quote = '', $newLine = "\r\n", $encode = '', $fromEncode='auto')
     {
         $text = '';
         foreach($arrData as $i=>$row) {
-            $prefix = '';
-            foreach($row as $k=>$col) {
-                $text .= $prefix.$col;
-                $prefix = $delimeter;
-            }
-            $text .= $newLine;
+            $text .= self::arrayToLine($row, $delimeter, $quote);
         }
         if($encode) {
             $text = mb_convert_encoding($text, $encode, $fromEncode);
         }
         return $text;
     }
-
 }
