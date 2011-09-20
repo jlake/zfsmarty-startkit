@@ -10,7 +10,6 @@ class Batch_MakeTableClasses
 {
     protected $_opts;
     protected $_db;
-    protected $_dbw;
     protected $_logger;
     protected $_rootPath;
 
@@ -45,7 +44,6 @@ class Batch_MakeTableClasses
         }
 
         $this->_db = Zend_Registry::get('db');
-        $this->_dbw = Zend_Registry::get('dbw');
         $this->_logger = Zend_Registry::get('batch_logger');
     }
 

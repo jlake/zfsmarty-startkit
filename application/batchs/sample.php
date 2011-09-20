@@ -10,7 +10,6 @@ class Batch_Sample
 {
     protected $_opts;
     protected $_db;
-    protected $_dbw;
     protected $_logger;
 
     /**
@@ -30,6 +29,7 @@ class Batch_Sample
                 array(
                     'help|h' => 'Displays usage information.',
                     'force|f' => 'Force execute.',
+                    'test|t|string=s' => 'test parameter (string).',
                 )
             );
             $this->_opts->parse();
@@ -41,9 +41,11 @@ class Batch_Sample
             echo $this->_opts->getUsageMessage();
             exit;
         }
+        if(isset($this->_opts->test)) {
+            echo 'test='.$this->_opts->test;
+        }
 
         $this->_db = Zend_Registry::get('db');
-        $this->_dbw = Zend_Registry::get('dbw');
         $this->_logger = Zend_Registry::get('batch_logger');
     }
 
@@ -62,7 +64,7 @@ class Batch_Sample
         print_r($row);
 
         //test 2
-        $dummyWrite = new Lib_Db_Table_Dummy($this->_dbw);
+        $dummyWrite = new Lib_Db_Table_Dummy();
         $where = $dummyWrite->getAdapter()->quoteInto('id = ?', 1);
         $data = array(
             'inf1' => 'Test1',
@@ -71,7 +73,7 @@ class Batch_Sample
         $dummyWrite->update($data, $where);
 
         //test 3
-        $dummyRead = new Lib_Db_Table_Dummy($this->_db);
+        $dummyRead = new Lib_Db_Table_Dummy();
         $row = $dummyRead->find(1)->toArray();
         print_r($row);
 
