@@ -19,7 +19,7 @@ class Lib_Db_DataObject
     protected $_defaults = array(
         'table' => null,
         'readdb' => 'db',
-        'writedb' => 'db',
+        'writedb' => 'dbw',
         'auto_log' => false,
         'log_model' => null
     );
@@ -48,9 +48,6 @@ class Lib_Db_DataObject
         if(isset($params['auto_log'])) {
             // 自動ログ記入/記入しない設定
             $this->_autoLog = $params['auto_log'];
-            if($this->_autoLog) {
-                $this->_logQueue = array();
-            }
         }
         if(isset($params['log_model'])) {
             // トランザクションの場合、ログ記入のデータオブジェクトを指定
@@ -342,6 +339,7 @@ class Lib_Db_DataObject
     {
         $this->setDb($this->_writeDb);
         //$data = $this->_addExtraInfo($data);
+        $data['ins_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         if($this->_autoLog) {
             $log = $this->_getLogText('INSERT', $data);
             $this->appendLog($log);
@@ -588,7 +586,9 @@ class Lib_Db_DataObject
     public function commit()
     {
         $this->_db->commit();
-        $this->_writeLog();
+        if($this->_autoLog) {
+            $this->_writeLog();
+        }
     }
 
     /**
@@ -620,8 +620,8 @@ class Lib_Db_DataObject
      */
     public function _addExtraInfo($data)
     {
-        if(!isset($data['set_date'])) {
-            $data['set_date'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
+        if(!isset($data['upd_dt'])) {
+            $data['upd_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         }
         return $data;
     }
