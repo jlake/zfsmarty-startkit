@@ -599,7 +599,7 @@ class Lib_Db_DataObject
      */
     protected function _writeLog()
     {
-        if(isset($this->_logModel)) {
+        if(isset($this->_logModel) || empty($this->_logQueue)) {
             return;
         }
         $module = Zend_Registry::get('module');
