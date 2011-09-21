@@ -44,7 +44,7 @@ $application = new Zend_Application(
     APPLICATION_INI
 );
 
-$application->bootstrap(array('config', 'dbadapter', 'resource', 'modules'));
+$application->bootstrap(array('config', 'dbadapter', 'resource', 'modules', 'filecache'));
 
 /** init logger */
 $config =  Zend_Registry::get('config');
@@ -62,3 +62,5 @@ if(isset($config->log->level) && isset(Lib_Util_Log::$logLevel[$config->log->lev
 }
 
 Zend_Registry::set($logFolder.'_logger', $logger);
+
+Zend_Registry::set('module', 'batch');
