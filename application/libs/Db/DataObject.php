@@ -428,24 +428,28 @@ class Lib_Db_DataObject
     {
         $db = Zend_Registry::get('db');
         $where = array();
-        foreach($cond as $name => $value) {
-            if(strToUpper($name) == '_NOT_' && is_array($value)) {
-                $where = array_merge($where, self::getWhereArray($value, true));
-                continue;
+        if(is_array($cond)) {
+            foreach($cond as $name => $value) {
+                if(strToUpper($name) == '_NOT_' && is_array($value)) {
+                    $where = array_merge($where, self::getWhereArray($value, true));
+                    continue;
+                }
+                if(is_array($value)){
+                    $where[] = $notFlg ?
+                            $db->quoteInto(" $name NOT IN (?) ", $value)
+                            : $db->quoteInto(" $name IN (?) ", $value);
+                } elseif($value === NULL){
+                    $where[] = $notFlg ?
+                            "$name IS NOT NULL"
+                            : "$name IS NULL";
+                } else {
+                    $where[] = $notFlg ?
+                            $db->quoteInto("$name!=?", $value)
+                            : $db->quoteInto("$name=?", $value);
+                }
             }
-            if(is_array($value)){
-                $where[] = $notFlg ?
-                        $db->quoteInto(" $name NOT IN (?) ", $value)
-                        : $db->quoteInto(" $name IN (?) ", $value);
-            } elseif($value === NULL){
-                $where[] = $notFlg ?
-                        "$name IS NOT NULL"
-                        : "$name IS NULL";
-            } else {
-                $where[] = $notFlg ?
-                        $db->quoteInto("$name!=?", $value)
-                        : $db->quoteInto("$name=?", $value);
-            }
+        } else {
+            $where[] = $cond;
         }
         return $where;
     }
