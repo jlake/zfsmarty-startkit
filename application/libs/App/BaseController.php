@@ -159,7 +159,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
     {
         $this->_disableLayout(true);
         $this->getResponse()
-            ->setHeader('Content-Type', "text/javascript; charset=$charset", true)
+            ->setHeader('Content-Type', "application/json; charset=$charset", true)
             ->setBody(json_encode($data));
     }
 

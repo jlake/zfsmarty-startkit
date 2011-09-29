@@ -267,9 +267,10 @@ class Lib_Db_DataObject
      * @param   string $field1  １番目のフィールド名（key）
      * @param   string $field2  ２番目のフィールド名（value）
      * @param   array $cond  条件配列
+     * @param   mixed $order  ソート順
      * @return  array
      */
-    public function getPairs($field1, $field2, $cond = array())
+    public function getPairs($field1, $field2, $cond = array(), $order = '')
     {
         $this->setDb($this->_readDb);
         $select = $this->_db->select()->from(
@@ -278,6 +279,9 @@ class Lib_Db_DataObject
         );
         if(!empty($cond)) {
             $select = self::appendCondToSelect($select, $cond);
+        }
+        if(!empty($order)) {
+            $select->order($order);
         }
         return $this->_db->fetchPairs($select);
     }

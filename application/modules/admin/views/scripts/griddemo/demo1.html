@@ -2,8 +2,7 @@
 <script type="text/javascript">
 $(function() {
     $grid1 = $('#grid1');
-
-    var editOptions = {width:400, height:250, reloadAfterSubmit:true, afterShowForm:function(){
+    var editOptions = {width:400, height:200, reloadAfterSubmit:true, afterShowForm:function(){
         $('.FormElement[readonly]').attr('disabled', 'disabled');
         $('.FormElement#inf1').focus();
     }};
@@ -13,11 +12,11 @@ $(function() {
         editurl: "/admin/griddemo/editdata",
         datatype: 'json',
         caption:'Dummy データ',
-        colNames:['ID', 'カラム1', 'カラム2'],
+        colNames:['ID','カラム1', 'カラム2'],
         colModel:[
             {name:'id', index:'id', width:90, align:'right', editable:true, editoptions:{readonly:true,size:10}},
-            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:40}, editrules:{required:true}},
-            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:40}, editrules:{required:true}},
+            {name:'inf1', index:'inf1', width:300, editable:true, edittype:'text', editoptions:{size:40}},
+            {name:'inf2', index:'inf2', width:300, editable:true, edittype:'text', editoptions:{size:40}}
         ],
         rowNum:20,
         rowList:[10, 20, 30, 50, 100],
@@ -32,10 +31,10 @@ $(function() {
             $grid1.editGridRow(rowid, editOptions);
         }
     });
-    $grid1.navGrid('#pager1',　{
+    $grid1.navGrid('#pager1', {
             add:true, addtext: '新規',
             edit:true, edittext: '編集',
-            del:true,　deltext: '削除',
+            del:true, deltext: '削除',
             search:true, searchtext: '検索'
         },
         editOptions,
