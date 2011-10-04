@@ -81,7 +81,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $smarty = new Smarty();
         foreach ($smartyConfig as $option => $value) {
             if($option == 'plugin_dir') {
-                $smarty->plugins_dir[] = $value;
+                $smarty->addPluginsDir($value);
             } else {
                 $smarty->$option = $value;
             }
