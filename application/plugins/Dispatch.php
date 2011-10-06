@@ -37,55 +37,31 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
         $module = $request->getModuleName();
-        if($module == 'admin') {
-            $this->_checkAdminLogin($request);
-        } else if($module == 'site') {
-            //$this->_checkSiteLogin($request);
+        $controller = $request->getControllerName();
+        $action = $request->getActionName();
+        $passList = array(
+            'admin' => array('error', 'auth'),
+            //'site' => array('index', 'error', 'auth'),
+            //'api' => array('error', 'auth'),
+        );
+        if(isset($passList[$module]) && !in_array($controller, $passList[$module])) {
+            $this->_checkLogin($request, $module);
         }
     }
 
     /**
-     * 管理者ログインチェック
+     * ログインチェック
      */
-    private function _checkAdminLogin($request)
+    private function _checkLogin($request, $module)
     {
-        $module = $request->getModuleName();
-        $controller = $request->getControllerName();
-        $action = $request->getActionName();
-        if($controller == 'error' || $controller == 'auth') {
-            return true;
-        }
         $session = new Lib_App_Session($module);
         $userInfo = $session->getUserInfo();
+        //Lib_Util_Log::log($module, 'SESSION ID:'.Lib_App_Session::getId().' userInfo:'.print_r($userInfo, true));
         if(empty($userInfo)) {
-            $auth = Zend_Auth::getInstance();
-            $auth->clearIdentity();
-            $authSession->requestUri = $request->getRequestUri();
-            $request->setModuleName('admin');
-            $request->setControllerName('auth');
-            $request->setActionName('login');
-        }
-    }
-
-    /**
-     * サイトユーザログインチェック
-     */
-    private function _checkSiteLogin($request)
-    {
-        $module = $request->getModuleName();
-        $controller = $request->getControllerName();
-        $action = $request->getActionName();
-        if(($controller == 'index' && $action == 'index')
-            || $controller == 'error'
-            || $controller == 'auth'
-            || Lib_Util_UserAgent::isCrawler()) {
-            return;
-        }
-        $session = new Lib_App_Session($module);
-        $userInfo = $session->getUserInfo();
-        if(empty($userInfo)) {
-            $session->requestUri = $request->getRequestUri();
-            $request->setModuleName('site');
+            $session->set('requestUri', $request->getRequestUri());
+            //$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
+            //$redirector->gotoUrl('/auth/login')->redirectAndExit();
+            //$request->setModuleName('site');
             $request->setControllerName('auth');
             $request->setActionName('login');
         }

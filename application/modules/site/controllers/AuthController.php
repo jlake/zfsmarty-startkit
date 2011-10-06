@@ -9,7 +9,7 @@ class AuthController extends Lib_App_SiteController
 
     public function init()
     {
-        parent::init();
+        parent::init(false);
     }
 
     public function indexAction()
@@ -28,6 +28,7 @@ class AuthController extends Lib_App_SiteController
             $result = $authAdapter->authenticate($authAdapter);
             if($result->isValid()){
                 $userInfo = $result->getIdentity();
+                $this->_session = new Lib_App_Session($this->_params['module']);
                 $this->_session->setUserInfo($userInfo);
                 $requestUri = $this->_session->get('requestUri');
                 if(isset($requestUri)) {
@@ -49,6 +50,7 @@ class AuthController extends Lib_App_SiteController
         $this->_disableLayout(true);
         $auth = Zend_Auth::getInstance(); 
         $auth->clearIdentity();
+        $this->_session = new Lib_App_Session($this->_params['module']);
         $this->_session->setUserInfo(null);
         $this->_redirect('/');
     }

@@ -24,7 +24,7 @@ class Lib_App_AdminController extends Lib_App_BaseController
     }
 
     /**
-     * jQuery UI を使う (必要な js　と　css　ファイルを追加)
+     * jQuery UI を使う (必要な js と css ファイルを追加)
      * @return void
      */
     protected function _useJqueryUI($theme = self::DEFAULT_THEME)
@@ -40,7 +40,7 @@ class Lib_App_AdminController extends Lib_App_BaseController
     }
 
     /**
-     * jqGird を使う (必要な js　と　css　ファイルを追加)
+     * jqGird を使う (必要な js と css ファイルを追加)
      * @return void
      */
     protected function _useJqGrid($theme = self::DEFAULT_THEME)
