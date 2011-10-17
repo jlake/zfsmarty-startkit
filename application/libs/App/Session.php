@@ -57,10 +57,14 @@ class Lib_App_Session
      *
      * @param string $key  キー
      * @param mixed $value  バリュー
-     * @return mixed
+     * @return void
      */
     public function set($key, $value)
     {
+        if($value === NULL) {
+            unset($this->_session->$key);
+            return;
+        }
         $this->_session->$key = $value;
     }
 
@@ -75,19 +79,29 @@ class Lib_App_Session
     }
 
     /**
-     * ユーザ情報をセットする
+     * ユーザ情報設定
+     *
+     * @param array $userInfo  ユーザ情報
+     * @return void
+     */
+    public function setUserInfo($userInfo)
+    {
+        $this->set('userInfo', $userInfo);
+    }
+
+    /**
+     * ユーザ情報追加
      *
      * @param array $infoList  ユーザ情報
      * @return void
      */
-    public function setUserInfo($infoList)
+    public function appendUserInfo($info)
     {
-        if(is_array($infoList)) {
-            $userInfo = $this->get('userInfo', array());
-            $userInfo = array_merge($userInfo, $infoList);
-            $this->set('userInfo', $userInfo);
-        } else {
-            $this->set('userInfo', $infoList);
+        if(!is_array($info)) {
+            return;
         }
+        $userInfo = $this->get('userInfo', array());
+        $userInfo = array_merge($userInfo, $info);
+        $this->set('userInfo', $userInfo);
     }
 }
