@@ -43,16 +43,15 @@ class Admin_Model_GridDemo
                 'COUNT(1)'
             );
 
-        if(!empty($params['_search'])) {
+        if(isset($params['_search']) && $params['_search'] == 'true') {
             //フィルタ
             if(!empty($params['filters'])) {
                 $filters = json_decode($params['filters'], true);
                 $whereArray = Lib_Db_Util::getWhereByFilter($filters, $aliasMap);
                 if($filters['groupOp'] == 'OR') {
-                    foreach($whereArray as $where) {
-                        $dataSelect->orWhere($where);
-                        $countSelect->orWhere($where);
-                    }
+                    $where = implode(' OR ', $whereArray);
+                    $dataSelect->where($where);
+                    $countSelect->where($where);
                 } else {
                     foreach($whereArray as $where) {
                         $dataSelect->where($where);
@@ -72,7 +71,7 @@ class Admin_Model_GridDemo
             $limit,
             ($page - 1) * $limit
         );
-        if (isset($params['sidx'])) {
+        if (!empty($params['sidx'])) {
             $sortOrder = $params['sidx'];
             if (isset($params['sord'])) {
                 $sortOrder .= ' '.$params['sord'];

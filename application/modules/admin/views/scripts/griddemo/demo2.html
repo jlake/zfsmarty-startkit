@@ -2,10 +2,20 @@
 <script type="text/javascript">
 $(function() {
     $grid1 = $('#grid1');
-    var editOptions = {width:400, height:200, reloadAfterSubmit:true, afterShowForm:function(){
-        $('.FormElement[readonly]').attr('disabled', 'disabled');
-        $('.FormElement#inf1').focus();
-    }};
+    var editOptions = {width:400, height:'auto', reloadAfterSubmit:true,
+        afterShowForm:function(){
+            $('.FormElement[readonly]').attr('disabled', 'disabled');
+            $('.FormElement#inf1').focus();
+        },
+        afterSubmit: function(response, postdata) {
+            if (response.responseText) {
+                alert(response.responseText);
+                return [false, response.responseText];
+            } else {
+                return [true, ''];
+            }
+       }
+    };
     var lastSelId;
     $grid1.jqGrid({
         url:'/admin/griddemo/demo2data',
@@ -56,7 +66,7 @@ $(function() {
     });
     $('#delete').click(function(){
         var rowids = $grid1.getGridParam('selarrrow');
-        console.log(rowids);
+        //console.log(rowids);
         if( rowids != null ) {
             $grid1.delGridRow(rowids, editOptions);
         } else {

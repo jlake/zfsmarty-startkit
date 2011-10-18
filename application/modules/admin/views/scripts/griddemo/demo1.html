@@ -2,10 +2,20 @@
 <script type="text/javascript">
 $(function() {
     $grid1 = $('#grid1');
-    var editOptions = {width:400, height:200, reloadAfterSubmit:true, afterShowForm:function(){
-        $('.FormElement[readonly]').attr('disabled', 'disabled');
-        $('.FormElement#inf1').focus();
-    }};
+    var editOptions = {width:400, height:'auto', reloadAfterSubmit:true,
+        afterShowForm:function(){
+            $('.FormElement[readonly]').attr('disabled', 'disabled');
+            $('.FormElement#inf1').focus();
+        },
+        afterSubmit: function(response, postdata) {
+            if (response.responseText) {
+                alert(response.responseText);
+                return [false, response.responseText];
+            } else {
+                return [true, ''];
+            }
+       }
+    };
     var searchOptions = {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']};
     $grid1.jqGrid({
         url:'/admin/griddemo/demo1data',
