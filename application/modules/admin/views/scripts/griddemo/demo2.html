@@ -3,6 +3,9 @@
 $(function() {
     $grid1 = $('#grid1');
     var editOptions = {width:400, height:'auto', reloadAfterSubmit:true,
+        //closeAfterAdd: true,
+        closeAfterEdit: true,
+        closeOnEscape: true,
         afterShowForm:function(){
             $('.FormElement[readonly]').attr('disabled', 'disabled');
             $('.FormElement#inf1').focus();
