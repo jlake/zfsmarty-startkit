@@ -18,6 +18,9 @@ class Lib_Util_Csv
         if(headers_sent()) {
             return false;
         }
+
+        set_time_limit(600);
+
         header( "Cache-Control: public" );
         header( "Pragma: public" );
         header( "Content-type: text/csv" ) ;
@@ -35,10 +38,16 @@ class Lib_Util_Csv
      * @param     string  $rowData    行データ
      * @param     string  $delimeter  区切り文字
      * @param     string  $quote      コーテーション (" または 空白)
+     * @param     string  $newLineReplace      改行変換文字列
      * @return    string
     */
-    public static function arrayToLine($rowData, $delimeter = ',', $quote = '')
+    public static function arrayToLine($rowData, $delimeter = ',', $quote = '', $newLineReplace = null)
     {
+        if(isset($newLineReplace)) {
+            for($i=0; $i<count($rowData); $i++) {
+                $rowData[$i] = preg_replace('/\r?\n/', $newLineReplace, $rowData[$i]);
+            }
+        }
         return $quote . implode($quote.$delimeter.$quote, $rowData) . $quote;
     }
     

@@ -113,7 +113,8 @@ class Lib_Util_UserAgent
     public static function getAndroidDevCd()
     {
         if(preg_match('/\s([\w-\s]+)\s*(\(ST;|Build\/)/i', $_SERVER['HTTP_USER_AGENT'], $matches)){
-            return str_replace('/SonyEricsson/i', '', trim($matches[1]));
+//            return str_replace('/SonyEricsson/i', '', trim($matches[1]));
+            return strtr(trim($matches[1]), array('SonyEricsson'=> ''));
         }
         return '';
     }
@@ -121,19 +122,21 @@ class Lib_Util_UserAgent
     /**
      * Android OSの取得
      *
-     * @param   なし
+     * @param   $numOnly
      * @return  string
      */
-    public static function getAndroidOsVer()
+    public static function getAndroidOsVer($numOnly = false)
     {
         $ua = $_SERVER['HTTP_USER_AGENT'];
+        $ver = '';
         if (self::fromDocomoStore()) {
             $checkKey = 0;
             $arrTmp  = split(";", trim($ua));
             foreach ($arrTmp as $key => $tmpUA) {
                 if ($tmpUA == 'Android') {
                     $checkKey = $key + 1;
-                    return $arrTmp[$checkKey];
+                    $ver = $arrTmp[$checkKey];
+                    break;
                 }
             }
         } else {
@@ -141,11 +144,15 @@ class Lib_Util_UserAgent
             foreach ($arrTmp as $tmpVal) {
                 if (preg_match("/\bAndroid\b/", $tmpVal)) {
                     $arrOs = split(" ", trim($tmpVal));
-                    return $arrOs[count($arrOs)-1];
+                    $ver = $arrOs[count($arrOs)-1];
+                    break;
                 }
             }
         }
-        return '';
+        if($numOnly) {
+            $ver = preg_replace('/-.*$/', '', $ver);
+        }
+        return $ver;
     }
 
     /**
@@ -156,50 +163,53 @@ class Lib_Util_UserAgent
      */
     public static function isCrawler()
     {
+        /*
         if(ini_get('browscap')) {
             $browser= get_browser(NULL, true);
             if($browser['crawler']) {
                 return true;
             }
-        } else {
-            $agent= $_SERVER['HTTP_USER_AGENT'];
-            $crawlers= array(
-                '/Googlebot/',
-                '/Yahoo!\sSlurp/',
-                '/msnbot/',
-                '/Mediapartners-Google/',
-                '/Y!J-SRD/',
-                '/Y!J-MBS/',
-                '/Y!J-BSC/',
-                '/YahooFeedSeeker/',
-                '/LD_mobile_bot/',
-                '/Baiduspider/i',
-                '/BaiduMobaider/i',
-                '/Ask\sJeeves/',
-                '/Ask.jp/',
-                /*
-                '/Scooter/',
-                '/Yahoo-MMCrawler/',
-                '/FAST-WebCrawler/',
-                '/Yahoo-MMCrawler/',
-                '/FAST-WebCrawler/',
-                '/FAST Enterprise Crawler/',
-                '/grub-client-/',
-                '/MSIECrawler/',
-                '/NPBot/',
-                '/NameProtect/i',
-                '/ZyBorg/i',
-                '/worio bot heritrix/i',
-                '/libwww-perl/i',
-                '/Gigabot/i',
-                '/bot@bot.bot/i',
-                '/SeznamBot/i',
-                */
-            );
-            foreach($crawlers as $c) {
-                if(preg_match($c, $agent)) {
-                    return true;
-                }
+        }
+        */
+        $agent= $_SERVER['HTTP_USER_AGENT'];
+        $crawlers= array(
+            '/mixi-check/i',
+            '/facebookexternalhit/i',
+            /*
+            '/Googlebot/',
+            '/Yahoo!\sSlurp/',
+            '/msnbot/',
+            '/Mediapartners-Google/',
+            '/Y!J-SRD/',
+            '/Y!J-MBS/',
+            '/Y!J-BSC/',
+            '/YahooFeedSeeker/',
+            '/LD_mobile_bot/',
+            '/Baiduspider/i',
+            '/BaiduMobaider/i',
+            '/Ask\sJeeves/',
+            '/Ask.jp/',
+            '/Scooter/',
+            '/Yahoo-MMCrawler/',
+            '/FAST-WebCrawler/',
+            '/Yahoo-MMCrawler/',
+            '/FAST-WebCrawler/',
+            '/FAST Enterprise Crawler/',
+            '/grub-client-/',
+            '/MSIECrawler/',
+            '/NPBot/',
+            '/NameProtect/i',
+            '/ZyBorg/i',
+            '/worio bot heritrix/i',
+            '/libwww-perl/i',
+            '/Gigabot/i',
+            '/bot@bot.bot/i',
+            '/SeznamBot/i',
+            */
+        );
+        foreach($crawlers as $c) {
+            if(preg_match($c, $agent)) {
+                return true;
             }
         }
         return false;

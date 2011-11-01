@@ -57,7 +57,7 @@ class Lib_Util_String
     }
 
     /**
-     * マルチバイトに対応した指定した幅(バイト数)で文字列を丸める関数
+     * マルチバイトに対応した指定した幅で文字列を丸める関数(バイト数)
      *
      * @param   string $string  元の文字列
      * @param   int $length  元の文字列
@@ -68,7 +68,7 @@ class Lib_Util_String
     public static function mbFixWidthB($string, $length = 80, $etc = '...', $encoding = 'UTF-8')
     {
         if (strlen($string) > $length) {
-            return mb_strimwidth($string, 0, $length - strlen($etc), $etc, $encoding);
+            return mb_strcut($string, 0, $length - strlen($etc), $encoding).$etc;
         }
         return $string;
     }
