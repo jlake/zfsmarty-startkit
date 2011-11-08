@@ -344,7 +344,6 @@ class Lib_Db_DataObject
     {
         $this->setDb($this->_writeDb);
         //$data = $this->_addExtraInfo($data);
-        $data['ins_dt'] = new Zend_Db_Expr('CURRENT_TIMESTAMP');
         if($this->_autoLog) {
             $log = $this->_getLogText('INSERT', $data);
             $this->appendLog($log);
