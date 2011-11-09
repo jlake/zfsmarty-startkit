@@ -15,11 +15,11 @@ class Lib_App_AdminController extends Lib_App_BaseController
     public function init($infoFlg = true)
     {
         parent::init($infoFlg);
+        $this->_appendJs('/js/jquery-1.7.min.js');
         if($this->_infoFlg) {
             // ページタイトル先頭文字列指定
             $this->view->headTitle()->setPrefix('My Site Admin');
             $this->view->headTitle()->setSeparator(' - ');
-            $this->_appendJs('/js/jquery-1.6.2.min.js');
         }
     }
 
