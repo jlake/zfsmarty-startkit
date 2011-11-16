@@ -6,7 +6,6 @@
  */
 class Lib_Util_Date
 {
-
     /**
      * 現在の日時文字列の取得
      *
@@ -29,6 +28,17 @@ class Lib_Util_Date
         $db = Zend_Registry::get('db');
         $format = $db->quote($format);
         return $db->fetchOne("SELECT date_format(CURRENT_TIMESTAMP, $format) as result");
+    }
+
+    /**
+     * 指定日付の当月の日数（最終日）の取得
+     *
+     * @param   string $dateStr 日付の文字列
+     * @return  string
+     */
+    public static function getMonthDays($dateStr)
+    {
+        return date('t', strtotime($dateStr));
     }
 
     /**
