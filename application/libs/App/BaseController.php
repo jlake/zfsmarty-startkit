@@ -249,11 +249,13 @@ class Lib_App_BaseController extends Zend_Controller_Action
      * @param string $scrollingStyle スクロールスタイル
      * @return void
      */
-    protected function _setPaginatorTemplate($template, $scrollingStyle = 'Sliding')
+    protected function _setPaginatorTemplate($template, $scrollingStyle = NULL)
     {
         //ページングスタイル指定
-        Zend_Paginator::setDefaultScrollingStyle($scrollingStyle);
         Zend_View_Helper_PaginationControl::setDefaultViewPartial($template);
+        if(!empty($scrollingStyle)) {
+            Zend_Paginator::setDefaultScrollingStyle($scrollingStyle);
+        }
     }
 
     /**

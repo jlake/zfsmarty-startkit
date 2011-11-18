@@ -98,6 +98,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->setViewScriptPathSpec('scripts/:controller/:action.:suffix')
             ->setViewSuffix('html');
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
+        Zend_Paginator::setDefaultScrollingStyle('Sliding');
 
         return $view;
     }
