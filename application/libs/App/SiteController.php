@@ -18,6 +18,19 @@ class Lib_App_SiteController extends Lib_App_BaseController
             $this->view->headTitle()->setPrefix('My Site');
             $this->view->headTitle()->setSeparator(' - ');
             $this->_appendJs('/js/jquery-1.7.min.js');
+            /*
+            $cookieTest = $this->_getCookie('cookieTest', true);
+            Lib_Util_Log::log('site', 'cookieTest='.print_r($cookieTest, 1));
+            if(empty($cookieTest)){
+                $cookieTest = array(
+                    'access_id' => zend_Session::getId() .'_'. time(),
+                    'access_cnt' => 1,
+                );
+            } else {
+                $cookieTest['access_cnt'] += 1;
+            }
+            $this->_setCookie('cookieTest', $cookieTest, 3600);
+            */
         }
     }
 }

@@ -43,6 +43,50 @@ class Lib_App_BaseController extends Zend_Controller_Action
     }
 
     /**
+     * Cookie設定
+     * @param string $key Cookieキー
+     * @param string/array $value  Cookie値
+     * @param integer $lifeTime  有効期限(秒)
+     * @param integer $path  パス
+     * @param integer $domain  ドメイン
+     * @return void
+     */
+    protected function _setCookie($key, $value, $lifeTime = null, $path = null, $domain = null)
+    {
+        if(is_array($value)) {
+            $value = json_encode($value);
+        }
+        $cookie = $key. '=' . $value;
+        if(!empty($lifeTime)) {
+            $expireDt = new Zend_Date();
+            $expireDt->addSecond($lifeTime);
+            $cookie .= '; expires=' . $expireDt->get(Zend_Date::COOKIE);
+        }
+        if(!empty($path)) {
+            $cookie .= '; path=' . $path;
+        }
+        if(!empty($domain)) {
+            $cookie .= '; domain=' . $domain;
+        }
+        $this->getResponse()->setHeader('Set-Cookie', $cookie);
+    }
+
+    /**
+     * Cookie取得
+     * @param string $key Cookieキー
+     * @param boolean $decodeFlg  デコードフラグ
+     * @return void
+     */
+    protected function _getCookie($key, $decodeFlg = false)
+    {
+        $value = $this->getRequest()->getCookie($key);
+        if($decodeFlg && !empty($value)) {
+            $value = json_decode($value, true);
+        }
+        return $value;
+    }
+
+    /**
      * Viewにスクリプトの追加
      * @param mixed $scriptPath スクリプトのパス(配列可)
      * @return void

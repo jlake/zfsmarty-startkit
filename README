@@ -16,4 +16,3 @@ require_once 'Smarty2/SmartyView.php';
 // If you use Smarty 3
 require_once 'Smarty3/SmartyView.php';
 
-
