@@ -68,7 +68,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
         if(!empty($domain)) {
             $cookie .= '; domain=' . $domain;
         }
-        $this->getResponse()->setHeader('Set-Cookie', $cookie);
+        $this->getResponse()->setHeader('Set-Cookie', $cookie, true);
     }
 
     /**

@@ -6,6 +6,26 @@
 class Lib_Db_Util
 {
     /**
+     * DB接続の取得
+     * 
+     * @param object $dbConfig DB接続設定情報
+     * @return Zend_Db
+     */
+    public static function getZendDb($dbConfig)
+    {
+        if(!isset($dbConfig->adapter)) {
+            return null;
+        }
+        try {
+            $db = Zend_Db::factory($dbConfig->adapter, $dbConfig->toArray());
+            $db->getConnection();
+        } catch (Zend_Exception $e){
+            $db = null;
+        }
+        return $db;
+    }
+
+    /**
      * テーブル名から DataObject の作成
      *
      * @param string $tableName  テーブル名
@@ -63,10 +83,18 @@ class Lib_Db_Util
         $whereStr = '';
         switch($op) {
             case 'eq':
-                $whereStr = $field ." = " . $db->quote($value);
+                if($value === NULL) {
+                    $whereStr = $field ." IS NULL";
+                } else {
+                    $whereStr = $field ." = " . $db->quote($value);
+                }
                 break;
             case 'ne':
-                $whereStr = $field ." <> " . $db->quote($value);
+                if($value === NULL) {
+                    $whereStr = $field ." IS NOT NULL";
+                } else {
+                    $whereStr = $field ." <> " . $db->quote($value);
+                }
                 break;
             case 'lt':
                 $whereStr = $field ." < " . $db->quote($value);
@@ -101,9 +129,10 @@ class Lib_Db_Util
      * 
      * @param $filter  フィルタ
      * @param $aliasMap  テーブル別名 → カラム のマップ
+     * @param $emptyAsNull  空文字列は NULL として検索
      * @return  Array   Where条件配列
      */
-    public static function getWhereByFilter($filter, $aliasMap = array())
+    public static function getWhereByFilter($filter, $aliasMap = array(), $emptyAsNull = false)
     {
         $whereArray = array();
         if(empty($filter)) {
@@ -122,8 +151,21 @@ class Lib_Db_Util
                     $field = $alias.'.'.$field;
                     break;
                 }
+                if(isset($fields[$field])) {
+                    if(preg_match('/(count|sum|max|min|avg)\(/i', $fields[$field])) {
+                        $field = '';
+                    } else {
+                        $field = $fields[$field];
+                    }
+                    break;
+                }
             }
-            $whereArray[] = self::getWhereString($field, $rule['op'], $rule['data']);
+            if($field != '') {
+                if($emptyAsNull && $rule['data'] === '') {
+                    $rule['data'] = NULL;
+                }
+                $whereArray[] = self::getWhereString($field, $rule['op'], $rule['data']);
+            }
         }
         return $whereArray;
     }
