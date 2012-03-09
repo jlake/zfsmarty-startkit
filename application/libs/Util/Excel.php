@@ -13,8 +13,8 @@ class Lib_Util_Excel
     protected $_workBook;
     protected $_workSheet;
     protected $_sheetId;
-    protected $_rowIdArr;
-
+    protected $_currentRowId = array();
+    protected $_columnName = array();
     /**
      * コンストラクタ
      *
@@ -70,8 +70,8 @@ class Lib_Util_Excel
     {
         $this->_workSheet = $this->_workBook->setActiveSheetIndex($sheetId);
         $this->_sheetId = $sheetId;
-        if(!isset($this->_rowIdArr[$sheetId])) {
-            $this->_rowIdArr[$sheetId] = 1;
+        if(!isset($this->_currentRowId[$sheetId])) {
+            $this->_currentRowId[$sheetId] = 1;
         }
         return $this;
     }
@@ -83,7 +83,7 @@ class Lib_Util_Excel
      */
     public function getActiveSheet()
     {
-        return $this->_workSheet->getActiveSheetIndex();
+        return $this->_workSheet;
     }
 
     /**
@@ -109,7 +109,7 @@ class Lib_Util_Excel
         if($rowId < 1) {
             throw new Exception('row id must greater than 1');
         } else {
-            $this->_rowIdArr[$this->_sheetId] = $rowId;
+            $this->_currentRowId[$this->_sheetId] = $rowId;
         }
         return $this;
     }
@@ -121,21 +121,93 @@ class Lib_Util_Excel
      */
     public function nextRow()
     {
-        $this->_rowIdArr[$this->_sheetId] += 1;
+        $this->_currentRowId[$this->_sheetId] += 1;
         return $this;
+    }
+
+    /**
+     * 現在の行ID設定
+     *
+     * @return  int
+     */
+    public function getCurrentRowId()
+    {
+        return $this->_currentRowId[$this->_sheetId];
     }
 
     /**
      * 行データ設定
      *
      * @param array  $data シート
+     * @param array  $style スタイル
      * @return  object
      */
-    public function setRowData($data = array())
+    public function setRowData($data = array(), $style = array())
     {
+        if(!is_array($data)) {
+            $data = array($data);
+        }
+        $rowId = $this->_currentRowId[$this->_sheetId];
         foreach($data as $i => $value) {
-            $cellId = self::getColumnName($i) . $this->_rowIdArr[$this->_sheetId];
-            $this->_workSheet->setCellValue($cellId, $value);
+            if(!isset($this->_columnName[$i])) {
+                //重複計算を避けるため
+                $this->_columnName[$i] = self::getColumnName($i);
+            }
+            $cellId = $this->_columnName[$i] . $rowId;
+            if(is_numeric($value) && $value != '0' && $value{0} == '0') {
+                //$this->_workSheet->getStyle($cellId)->getNumberFormat()->setFormatCode('@');
+                $this->_workSheet->setCellValueExplicit($cellId, $value, PHPExcel_Cell_DataType::TYPE_STRING);
+            } else {
+                $this->_workSheet->setCellValue($cellId, $value);
+            }
+            if(!empty($style)) {
+                $this->_workSheet->getStyle($cellId)->applyFromArray($style);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * 現在行の指定カラムをマージする
+     *
+     * @param int  $startId 開始ID
+     * @param int  $endId 終了ID
+     * @return  object
+     */
+    public function mergeColumns($startId, $endId)
+    {
+        $rowId = $this->_currentRowId[$this->_sheetId];
+        $range = self::getColumnName($startId). $rowId. ':' . self::getColumnName($endId). $rowId;
+        $this->_workSheet->mergeCells($range);
+        return $this;
+    }
+
+    /**
+     * 現在行の指定カラムのスタイルを指定する
+     *
+     * @param int  $startId 開始ID
+     * @param int  $endId 終了ID
+     * @param array  $style スタイル
+     * @return  object
+     */
+    public function setColumnsStyle($startId, $endId, $style)
+    {
+        $rowId = $this->_currentRowId[$this->_sheetId];
+        $range = self::getColumnName($startId). $rowId. ':' . self::getColumnName($endId). $rowId;
+        $this->_workSheet->getStyle($range)->applyFromArray($style);
+        return $this;
+    }
+
+    /**
+     * カラムの横幅指定
+     *
+     * @param int  $colWidths 開始ID
+     * @return  object
+     */
+    public function setColumnWidths($colWidths = array())
+    {
+        foreach($colWidths as $colName => $width) {
+            $this->_workSheet->getColumnDimension($colName)->setWidth($width);
         }
         return $this;
     }

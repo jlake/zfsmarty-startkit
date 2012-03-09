@@ -51,15 +51,17 @@ class Lib_App_BaseController extends Zend_Controller_Action
      * @param integer $domain  ドメイン
      * @return void
      */
-    protected function _setCookie($key, $value, $lifeTime = null, $path = null, $domain = null)
+    protected function _setCookie($key, $value, $lifeTime = NULL, $path = '', $domain = '')
     {
         if(is_array($value)) {
             $value = json_encode($value);
         }
+        $expires = empty($lifeTime) ? 0 : $_SERVER['REQUEST_TIME'] + $lifeTime;
+        setcookie($key, $value, $expires, $path, $domain);
+        /*
         $cookie = $key. '=' . $value;
         if(!empty($lifeTime)) {
-            $expireDt = new Zend_Date();
-            $expireDt->addSecond($lifeTime);
+            $expireDt = new Zend_Date($_SERVER['REQUEST_TIME'] + $lifeTime);
             $cookie .= '; expires=' . $expireDt->get(Zend_Date::COOKIE);
         }
         if(!empty($path)) {
@@ -68,7 +70,9 @@ class Lib_App_BaseController extends Zend_Controller_Action
         if(!empty($domain)) {
             $cookie .= '; domain=' . $domain;
         }
+        //error_log('Set-Cookie: '.$cookie);
         $this->getResponse()->setHeader('Set-Cookie', $cookie, true);
+        */
     }
 
     /**
