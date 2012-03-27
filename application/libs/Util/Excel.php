@@ -23,7 +23,8 @@ class Lib_Util_Excel
     public function __construct($title = '', $subject = '', $description = '', $keywords = '', $category = '')
     {
         //PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp, array('memoryCacheSize' => '8MB'));
-        PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip);
+        //PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip);
+        PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_in_memory_serialized);
         $this->_workBook = new PHPExcel();
         $this->_workBook->getProperties()->setCreator(self::DOC_AUTHOR)
             ->setLastModifiedBy(self::DOC_AUTHOR)
