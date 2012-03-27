@@ -22,6 +22,8 @@ class Lib_Util_Excel
      */
     public function __construct($title = '', $subject = '', $description = '', $keywords = '', $category = '')
     {
+        //PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp, array('memoryCacheSize' => '8MB'));
+        PHPExcel_Settings::setCacheStorageMethod(PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip);
         $this->_workBook = new PHPExcel();
         $this->_workBook->getProperties()->setCreator(self::DOC_AUTHOR)
             ->setLastModifiedBy(self::DOC_AUTHOR)
@@ -57,6 +59,17 @@ class Lib_Util_Excel
     public function getWorkBook($sheetId)
     {
         return $this->_workBook;
+    }
+
+    /**
+     * シート作成（新規）
+     *
+     * @return  object
+     */
+    public function createSheet()
+    {
+        $this->_workBook->createSheet();
+        return $this;
     }
 
     /**
@@ -236,5 +249,16 @@ class Lib_Util_Excel
         $writer = PHPExcel_IOFactory::createWriter($this->_workBook, 'Excel2007');
         $writer->save($filePath);
         return $this;
+    }
+
+    /**
+     * メモリ解放
+     *
+     * @return  void
+     */
+    public function disconnect()
+    {
+        $this->_workBook->disconnectWorksheets();  
+        unset($this->_workBook); 
     }
 }
