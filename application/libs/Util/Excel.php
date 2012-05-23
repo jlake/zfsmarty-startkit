@@ -213,6 +213,23 @@ class Lib_Util_Excel
     }
 
     /**
+     * ブロックのスタイルを指定する
+     *
+     * @param int  $startRowId 開始行ID
+     * @param int  $startColId 開始カラムID
+     * @param int  $endRowId 終了行ID
+     * @param int  $endColId 終了カラムID
+     * @param array  $style スタイル
+     * @return  object
+     */
+    public function setBlockStyle($startRowId, $startColId, $endRowId, $endColId, $style)
+    {
+        $range = self::getColumnName($startColId). $startRowId. ':' . self::getColumnName($endColId). $endRowId;
+        $this->_workSheet->getStyle($range)->applyFromArray($style);
+        return $this;
+    }
+
+    /**
      * カラムの横幅指定
      *
      * @param int  $colWidths 開始ID
