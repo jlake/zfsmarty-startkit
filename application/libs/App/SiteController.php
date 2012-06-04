@@ -17,7 +17,6 @@ class Lib_App_SiteController extends Lib_App_BaseController
             // ページタイトル先頭文字列指定
             $this->view->headTitle()->setPrefix('My Site');
             $this->view->headTitle()->setSeparator(' - ');
-            $this->_appendJs('/js/jquery-1.7.min.js');
         }
 
         $cookieTest = $this->_getCookie('cookieTest', true);

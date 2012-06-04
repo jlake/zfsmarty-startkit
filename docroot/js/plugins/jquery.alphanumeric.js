@@ -25,7 +25,7 @@
 				if (ch.indexOf(k) != -1) e.preventDefault();
 				if (e.ctrlKey&&k=='v') e.preventDefault();
 				*/
-				// Ctrl+V でペーストをできるように
+				// Ctrl+V 縺ｧ繝壹�ｼ繧ｹ繝医ｒ縺ｧ縺阪ｋ繧医≧縺ｫ
 				if(!e.ctrlKey && ch.indexOf(k) != -1) e.preventDefault();
 			});
 
