@@ -101,10 +101,10 @@ class Lib_App_BaseController extends Zend_Controller_Action
         if(empty($scriptPath)) return;
         if(is_array($scriptPath)) {
             foreach($scriptPath as $path) {
-                $this->view->headScript()->appendFile($path);
+                $this->view->headScript()->appendFile($path, 'text/javascript', array('charset'=>'utf-8'));
             }
         } else {
-            $this->view->headScript()->appendFile($scriptPath);
+            $this->view->headScript()->appendFile($scriptPath, 'text/javascript', array('charset'=>'utf-8'));
         }
     }
 

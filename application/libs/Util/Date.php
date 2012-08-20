@@ -59,16 +59,22 @@ class Lib_Util_Date
      *
      * @param   string $dateStr 日付の文字列
      * @param   string $format 日付の形式文字列
+     * @param   string $msFlg ミリ秒フラグ
      * @return  string
      */
-    public static function local2utc($dateStr, $format = 'Y-m-d H:i:s')
+    public static function local2utc($dateStr, $format = 'Y-m-d H:i:s', $msFlg = false)
     {
+        $ms = '';
+        if(preg_match('/(\.\d+)/', $dateStr, $matches)) {
+            $ms = $matches[1];
+            $dateStr = str_replace($ms, '', $dateStr);
+        }
         $tz = date_default_timezone_get();
         $time = strtotime($dateStr);
         date_default_timezone_set('UTC');
         $utcDate = date($format, $time);
         date_default_timezone_set($tz);
-        return $utcDate;
+        return $utcDate.($msFlg ? $ms : '');
     }
 
     /**
@@ -76,12 +82,18 @@ class Lib_Util_Date
      *
      * @param   string $dateStr 日付の文字列
      * @param   string $format 日付の形式文字列
+     * @param   string $msFlg ミリ秒フラグ
      * @return  string
      */
-    public static function utc2local($dateStr, $format = 'Y-m-d H:i:s')
+    public static function utc2local($dateStr, $format = 'Y-m-d H:i:s', $msFlg = false)
     {
+        $ms = '';
+        if(preg_match('/(\.\d+)/', $dateStr, $matches)) {
+            $ms = $matches[1];
+            $dateStr = str_replace($ms, '', $dateStr);
+        }
         $time = strtotime($dateStr. ' UTC');
-        return date($format, $time);
+        return date($format, $time).($msFlg ? $ms : '');
     }
 
     /**

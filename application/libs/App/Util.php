@@ -11,11 +11,10 @@ class Lib_App_Util
      */
     public static function getRemoteAddr()
     {
-        $request = Zend_Registry::get('request');
-        if(empty($request)) $request = new Zend_Controller_Request_Http();
-        $forwardFor = $request->getHeader('X-Forwarded-For');
-        if(!empty($forwardFor)) {
-            return $forwardFor;
+        if(!empty($_SERVER['HTTP_X_REAL_IP'])) {
+            return $_SERVER['HTTP_X_REAL_IP'];
+        } else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
         return $_SERVER['REMOTE_ADDR'];
     }
