@@ -1,7 +1,6 @@
 Thumbs.db
-#data/logs/*/*
-#data/cache/*/*
-#data/sessions/*/*
-#smarty/cache/*/*
-#smarty/compiled/*/*
-
+data/logs/*/*
+data/cache/*/*
+data/sessions/*/*
+smarty/cache/*/*
+smarty/compiled/*/*
