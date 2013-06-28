@@ -13,7 +13,7 @@ These folders need write permission：
 ./smarty/compiled
 
 (Optional)
-./docroot/images/thumb
+./public/images/thumb
 
 For example:
 -------------------------------------------------
