@@ -15,7 +15,7 @@ $(document).ready(function() {
     {$this->errMsg}
 </div>
 {/if}
-<form id="login_form" action="/{$params.controller}/{$params.action}" method="post">
+<form id="login_form" action="{$smarty.const.REWRITE_BASE}/{$params.controller}/{$params.action}" method="post">
     <fieldset>
         <legend>ログイン（テストアカウント）</legend>
         <p>

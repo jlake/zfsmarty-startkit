@@ -1,7 +1,7 @@
 <div id="user-info" class="box">
     <div>管理者情報</div>
     {if $this->userInfo && $this->userInfo.admin_user_id}
-        <form action="/admin/auth/logout" method="post" accept-charset="utf-8">
+        <form action="{$smarty.const.REWRITE_BASE}/admin/auth/logout" method="post" accept-charset="utf-8">
             <div><label for="admin_user_nm">ユーザ名：</label>
                 {$this->userInfo.admin_user_nm}
             </div>
@@ -9,7 +9,7 @@
         </form>
     {else}
         <ul>
-            <li><a href="/admin/auth/login" title="">ログイン</a></li>
+            <li><a href="{$smarty.const.REWRITE_BASE}/admin/auth/login" title="">ログイン</a></li>
         </ul>
     {/if}
 </div>

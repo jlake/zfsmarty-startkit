@@ -30,10 +30,10 @@ class AuthController extends Lib_App_SiteController
                 $userInfo = $result->getIdentity();
                 $this->_session = new Lib_App_Session($this->_params['module']);
                 $this->_session->setUserInfo($userInfo);
-                $requestUri = $this->_session->get('requestUri');
-                if(isset($requestUri)) {
-                    $this->_session->set('requestUri', null);
-                    $this->_redirect($requestUri);
+                $returnUri = $this->_session->get('returnUri');
+                if(isset($returnUri)) {
+                    $this->_session->set('returnUri', null);
+                    $this->_redirect($returnUri);
                 } else {
                     $this->_redirect('/');
                 }

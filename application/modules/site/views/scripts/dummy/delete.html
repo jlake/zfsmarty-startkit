@@ -4,7 +4,7 @@
 カラム1: {$this->row.inf1} <br />
 カラム2: {$this->row.inf2} <br />
 </p>
-<form action="/dummy/delete/" method="post">
+<form action="{$smarty.const.REWRITE_BASE}/dummy/delete/" method="post">
 <div>
 <input type="hidden" name="id" value="{$this->row.id}" />
 <input type="submit" name="OK" value="はい" />

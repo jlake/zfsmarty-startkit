@@ -4,7 +4,7 @@
     {$errMsg}
 </div>
 {/if}
-<form id="upload_test" action="/{$params.controller}/{$params.action}" method="post" enctype="multipart/form-data" >
+<form id="upload_test" action="{$smarty.const.REWRITE_BASE}/{$params.controller}/{$params.action}" method="post" enctype="multipart/form-data" >
     <fieldset>
         <legend>ファイルアップロードテスト</legend>
         <p>

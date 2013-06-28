@@ -23,7 +23,7 @@ class Lib_App_Session
         if(empty($module)) {
             $module = 'common';
         }
-        $rootName = ucwords($module) . '_Root';
+        $rootName = ucwords($module);
         $this->_session = new Zend_Session_Namespace($rootName);
         if(isset($expirationSeconds)) {
             $this->_session->setExpirationSeconds($expirationSeconds);

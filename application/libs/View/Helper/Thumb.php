@@ -1,11 +1,12 @@
 <?php
+
 class Lib_View_Helper_Thumb extends Zend_View_Helper_Abstract {
-	public function thumb($imgPath, $width = 100, $height = 100) {
+    public function thumb($imgPath, $width = 100, $height = 100) {
         $srcPath = ROOT_PATH .'/data/'.$imgPath;
         $thumbSubDir = dirname($imgPath).'/'.$width.'x'.$height;
-        $imgName = $thumbSubDir . '/' . basename($imgPath);
-        $destPath = THUMB_ROOT.'/'.$imgName;
-        $imgTag = '<img src="'.THUMB_BASE_URI.'/'.$imgName.'" />';
+        $imgName = '/public/images/thumb/' . basename($imgPath);
+        $destPath = self::THUMB_ROOT.'/'.$imgName;
+        $imgTag = '<img src="/images/thumb/'.$imgName.'" />';
         if(!file_exists($destPath)) {
             $thumbDir = dirname($destPath);
             if(!file_exists($thumbDir)) {
@@ -19,5 +20,5 @@ class Lib_View_Helper_Thumb extends Zend_View_Helper_Abstract {
             }
         }
         return $imgTag;
-	}
+    }
 }

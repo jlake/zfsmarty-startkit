@@ -22,8 +22,10 @@ $(function() {
     };
     var searchOptions = {multipleSearch:true, sopt:['cn','bw','eq','ne','lt','gt','ew']};
     $grid1.jqGrid({
-        url:'/admin/griddemo/demo1data',
-        editurl: "/admin/griddemo/editdata",
+{/literal}
+        url:"{$smarty.const.REWRITE_BASE}/admin/griddemo/demo1data",
+        editurl: "{$smarty.const.REWRITE_BASE}/admin/griddemo/editdata",
+{literal}
         datatype: 'json',
         caption:'Dummy データ',
         colNames:['ID','カラム1', 'カラム2'],

@@ -11,17 +11,13 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
+// rewrite 設定
+defined('REWRITE_BASE')
+    || define('REWRITE_BASE', (getenv('REWRITE_BASE') ? getenv('REWRITE_BASE') : ''));
+
 // ドメイン名
 defined('FQDN')
     || define('FQDN', $_SERVER['SERVER_NAME']);
-
-// サムネイル画像パス
-defined('THUMB_ROOT')
-    || define('THUMB_ROOT', ROOT_PATH . '/docroot/images/thumb');
-
-// サムネイル画像ベースURL
-defined('THUMB_BASE_URI')
-    || define('THUMB_BASE_URI', '/images/thumb');
 
 // 言語コード指定
 defined('LANG')

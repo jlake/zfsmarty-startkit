@@ -33,7 +33,7 @@ class Lib_App_AdminController extends Lib_App_BaseController
         ));
         if(!empty($theme)) {
             $this->_appendCss(array(
-                "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
+                REWRITE_BASE . "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
             ));
         }
     }
@@ -45,15 +45,15 @@ class Lib_App_AdminController extends Lib_App_BaseController
     protected function _useJqGrid($theme = self::DEFAULT_THEME)
     {
         $this->_appendJs(array(
-            '/js/jqGrid/js/i18n/grid.locale-ja.js',
-            '/js/jqGrid/js/jquery.jqGrid.min.js'
+            REWRITE_BASE . '/js/jqGrid/js/i18n/grid.locale-ja.js',
+            REWRITE_BASE . '/js/jqGrid/js/jquery.jqGrid.min.js'
         ));
         $this->_appendCss(array(
-            '/js/jqGrid/css/ui.jqgrid.css'
+            REWRITE_BASE . '/js/jqGrid/css/ui.jqgrid.css'
         ));
         if(!empty($theme)) {
             $this->_appendCss(array(
-                "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
+                REWRITE_BASE . "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
             ));
         }
     }

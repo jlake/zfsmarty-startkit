@@ -58,10 +58,12 @@ class Plugin_Dispatch extends Zend_Controller_Plugin_Abstract
         $userInfo = $session->getUserInfo();
         //Lib_Util_Log::log($module, 'SESSION ID:'.Lib_App_Session::getId().' userInfo:'.print_r($userInfo, true));
         if(empty($userInfo)) {
-            $session->set('requestUri', $request->getRequestUri());
-            //$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
-            //$redirector->gotoUrl('/auth/login')->redirectAndExit();
-            //$request->setModuleName('site');
+            $returnUri = $request->getRequestUri();
+            $baseLength = strlen(REWRITE_BASE);
+            if($baseLength > 0) {
+                $returnUri = substr($returnUri, $baseLength);
+            }
+            $session->set('returnUri', $returnUri);
             $request->setControllerName('auth');
             $request->setActionName('login');
         }

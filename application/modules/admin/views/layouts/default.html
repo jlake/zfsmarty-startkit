@@ -6,12 +6,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     {$this->headMeta()}
     {$this->headTitle()}
-    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
-    <!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-    <link rel="stylesheet" href="/css/blueprint/plugins/link-icons/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/print.css" type="text/css" media="print">
+    <!--[if IE]><link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/plugins/link-icons/screen.css" type="text/css" media="screen, projection">
     {$this->headLink()}
-    <link rel="stylesheet" href="/css/admin.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/admin.css" type="text/css" media="screen, projection">
     {$this->headScript()}
 </head>
 
@@ -20,10 +20,10 @@
 {include file='../partials/admin_header.html'}
     <div id="left_sidebar" class="span-5 sidebar">
         <div id="top-block" class="box">
-            ・<a href="/admin/">TOPページ</a><br />
-            ・<a href="/admin/griddemo/demo1">Gridデモ1</a><br />
-            ・<a href="/admin/griddemo/demo2">Gridデモ2</a><br />
-            ・<a href="/">サイトへ</a>
+            ・<a href="{$smarty.const.REWRITE_BASE}/admin/">TOPページ</a><br />
+            ・<a href="{$smarty.const.REWRITE_BASE}/admin/griddemo/demo1">Gridデモ1</a><br />
+            ・<a href="{$smarty.const.REWRITE_BASE}/admin/griddemo/demo2">Gridデモ2</a><br />
+            ・<a href="{$smarty.const.REWRITE_BASE}/">サイトへ</a>
         </div>
         {* ユーザー情報 *}
         {include file='../partials/sidebar_user_info.html'}

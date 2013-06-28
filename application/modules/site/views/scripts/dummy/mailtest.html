@@ -14,7 +14,7 @@ $(document).ready(function() {
     {$errMsg}
 </div>
 {/if}
-<form id="mail_test" action="/{$params.controller}/{$params.action}" method="post" >
+<form id="mail_test" action="{$smarty.const.REWRITE_BASE}/{$params.controller}/{$params.action}" method="post" >
     <fieldset>
         <legend>メール送信テスト</legend>
         <p>

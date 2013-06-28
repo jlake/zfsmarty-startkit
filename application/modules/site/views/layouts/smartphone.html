@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     {$this->headMeta()}
     {$this->headTitle()}
-    <link rel="stylesheet" href="/css/smartphone.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/smartphone.css" type="text/css" media="screen, projection">
     {$this->headLink()}
     {$this->headScript()}
 </head>
@@ -14,7 +14,7 @@
 <div id="container">
     <header class="center">
         <hgroup>
-            <a href="/"><img src="/images/site-logo.gif" alt="サイトLogo画像" /></a>
+            <a href="{$smarty.const.REWRITE_BASE}/"><img src="{$smarty.const.REWRITE_BASE}/images/site-logo.gif" alt="サイトLogo画像" /></a>
         </hgroup>
     </header>
     <div id="content">

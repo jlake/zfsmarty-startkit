@@ -30,13 +30,13 @@ class Admin_AuthController extends Lib_App_AdminController
                 $userInfo = $result->getIdentity();
                 $this->_session = new Lib_App_Session($this->_params['module']);
                 $this->_session->setUserInfo($userInfo);
-                $requestUri = $this->_session->get('requestUri');
-                if(empty($requestUri)) {
-                    $requestUri = '/admin/';
+                $returnUri = $this->_session->get('returnUri');
+                if(empty($returnUri)) {
+                    $returnUri = '/admin/';
                 } else {
-                    $this->_session->set('requestUri', null);
+                    $this->_session->set('returnUri', null);
                 }
-                $this->_redirect($requestUri);
+                $this->_redirect($returnUri);
             } else {
                 $auth->clearIdentity();
                 $this->view->error_msg = "ログインできませんでした、ユーザ名とパスワードを確認してください。";

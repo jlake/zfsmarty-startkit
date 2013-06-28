@@ -1,7 +1,8 @@
 SetEnv APPLICATION_ENV development
+# SetEnv REWRITE_BASE /subdir
 
 RewriteEngine on
-RewriteBase /
+# RewriteBase /subdir
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
