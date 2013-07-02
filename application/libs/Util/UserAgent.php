@@ -96,7 +96,7 @@ class Lib_Util_UserAgent
      * @param   なし
      * @return  boolean
      */
-    public static function fromDocomoStore()
+    public static function isFromDocomoStore()
     {
         if(preg_match('/DOCOMO\/2.0\s[\w-]*\(ST;/i', $_SERVER['HTTP_USER_AGENT'])){
             return true;
@@ -110,49 +110,27 @@ class Lib_Util_UserAgent
      * @param   なし
      * @return  string
      */
-    public static function getAndroidDevCd()
+    public static function getAndroidDeviceCode()
     {
         if(preg_match('/\s([\w-\s]+)\s*(\(ST;|Build\/)/i', $_SERVER['HTTP_USER_AGENT'], $matches)){
-//            return str_replace('/SonyEricsson/i', '', trim($matches[1]));
-            return strtr(trim($matches[1]), array('SonyEricsson'=> ''));
+            return preg_replace('/SonyEricsson/i', '', trim($matches[1]));
         }
         return '';
     }
 
     /**
-     * Android OSの取得
+     * Android OSバージョンの取得
      *
      * @param   $numOnly
      * @return  string
      */
-    public static function getAndroidOsVer($numOnly = false)
+    public static function getAndroidVersion($numOnly = false)
     {
         $ua = $_SERVER['HTTP_USER_AGENT'];
-        $ver = '';
-        if (self::fromDocomoStore()) {
-            $checkKey = 0;
-            $arrTmp  = split(";", trim($ua));
-            foreach ($arrTmp as $key => $tmpUA) {
-                if ($tmpUA == 'Android') {
-                    $checkKey = $key + 1;
-                    $ver = $arrTmp[$checkKey];
-                    break;
-                }
-            }
-        } else {
-            $arrTmp  = split(";", trim($ua));
-            foreach ($arrTmp as $tmpVal) {
-                if (preg_match("/\bAndroid\b/", $tmpVal)) {
-                    $arrOs = split(" ", trim($tmpVal));
-                    $ver = $arrOs[count($arrOs)-1];
-                    break;
-                }
-            }
+        if(preg_match("/Android\s+([0-9.]*?);/", $_SERVER['HTTP_USER_AGENT'], $matches)) {
+            return $matches[1];
         }
-        if($numOnly) {
-            $ver = preg_replace('/-.*$/', '', $ver);
-        }
-        return $ver;
+        return '';
     }
 
     /**
@@ -163,15 +141,6 @@ class Lib_Util_UserAgent
      */
     public static function isCrawler()
     {
-        /*
-        if(ini_get('browscap')) {
-            $browser= get_browser(NULL, true);
-            if($browser['crawler']) {
-                return true;
-            }
-        }
-        */
-        $agent= $_SERVER['HTTP_USER_AGENT'];
         $crawlers= array(
             '/mixi-check/i',
             '/facebookexternalhit/i',
@@ -208,7 +177,7 @@ class Lib_Util_UserAgent
             */
         );
         foreach($crawlers as $c) {
-            if(preg_match($c, $agent)) {
+            if(preg_match($c, $_SERVER['HTTP_USER_AGENT'])) {
                 return true;
             }
         }
