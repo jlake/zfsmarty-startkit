@@ -3,7 +3,7 @@
  * Zend プラグインのテンプレート（参考用）
  * @author ou
  */
-class Btwsales_Plugin_Template extends Zend_Controller_Plugin_Abstract
+class Plugin_Template extends Zend_Controller_Plugin_Abstract
 {
     public function routeStartup(Zend_Controller_Request_Abstract $request)
     {
