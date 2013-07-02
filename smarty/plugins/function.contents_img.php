@@ -12,7 +12,7 @@
 function smarty_function_contents_img($params, $template)
 {
     if (empty($params['src'])) return '<!-- 画像ファイルを指定してください -->';
-    $src = '/image/contents?src='.$params['src'];
+    $src = REWRITE_BASE . '/image/contents?src='.$params['src'];
     if($params['w']) {
         $src .= '&w=' . $params['w'];
     }

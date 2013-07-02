@@ -17,11 +17,11 @@ $(document).ready(function() {
     }
     function loadMore() {
         $('#loading').show();
-        $.get('/dummy/booklist', function(itemList) {
+        $.get('{/literal}{$smarty.const.REWRITE_BASE}{literal}/dummy/booklist', function(itemList) {
             $('#loading').hide();
             for(var i=0, len=itemList.length; i<len; i++) {
                 var item = itemList[i];
-                $('#booklist').append('<li class="bookitem"><img src="' + item.image + '?' + randStr() + '" />' + item.text + '</li>');
+                $('#booklist').append('<li class="bookitem"><img src="{/literal}{$smarty.const.REWRITE_BASE}{literal}/' + item.image + '?' + randStr() + '" />' + item.text + '</li>');
                 totalSize += item.size;
             }
             $('#totalsize').html(convertSize(totalSize));
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <a name="more" />
 <div id="loading" class="center">
-    <img src="img/ajax-loader2.gif" />
+    <img src="{$smarty.const.REWRITE_BASE}/images/ajax-loader2.gif" />
 </div>
 <h2>総サイズ: <span id="totalsize">0 Bytes</span></h2>
 <div class="center">

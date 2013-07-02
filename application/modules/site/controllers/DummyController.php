@@ -148,8 +148,8 @@ class DummyController extends Lib_App_SiteController
     {
         $outData = array(
             'data' => array(
-            	'a' => "test",
-            	'b' => array(1,2,3,4)
+                'a' => "test",
+                'b' => array(1,2,3,4)
             ),
             'error' => false
         );

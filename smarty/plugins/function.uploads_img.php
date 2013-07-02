@@ -12,7 +12,7 @@
 function smarty_function_uploads_img($params, $template)
 {
     if (empty($params['src'])) return '<!-- 画像ファイルを指定してください -->';
-    $src = '/image/uploads?src='.$params['src'];
+    $src = REWRITE_BASE . '/image/uploads?src='.$params['src'];
     if($params['w']) {
         $src .= '&w=' . $params['w'];
     }
