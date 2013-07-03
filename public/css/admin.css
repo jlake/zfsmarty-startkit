@@ -16,3 +16,17 @@
 .ui-widget table tfoot {
     background-color: transparent !important;
 }
+
+.ui-jqgrid .ui-pg-div {
+    font-size: 1.2em !important;
+}
+
+.ui-jqgrid .ui-icon {
+    margin-top: -4px !important;
+}
+
+.ui-jqgrid-pager input {
+    display: inline-block !important;
+    width: auto !important;
+    height: 13px !important;
+}
