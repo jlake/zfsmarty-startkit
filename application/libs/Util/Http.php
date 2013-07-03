@@ -1,9 +1,9 @@
 <?php
 /**
- * App共通関数
+ * Http関連共通関数
  * @author ou
  */
-class Lib_App_Util
+class Lib_Util_Http
 {
     /**
      * ヘッダからリモートIPアドレスの取得

@@ -26,7 +26,6 @@ class AuthController extends Lib_App_SiteController
                 $this->_params['user_pwd']
             );
             $result = $authAdapter->authenticate($authAdapter);
-error_log(print_r($result, 1));
             if($result->isValid()){
                 $userInfo = $result->getIdentity();
                 $this->_session = new Lib_App_Session($this->_params['module']);
