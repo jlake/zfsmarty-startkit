@@ -45,7 +45,7 @@ class Lib_App_BaseForm extends Zend_Form
             return;
         }
         $lang = defined(LANG) ? LANG : 'jp';
-        $translate = new Zend_Translate('array', APPLICATION_PATH . '/configs/lang/'.$lang.'/Zend_Validate.php', 'jp');
+        $translate = new Zend_Translate('array', APPLICATION_PATH . '/configs/lang/'.$lang.'/Zend_Validate.php', $lang);
         Zend_Form::setDefaultTranslator($translate);
     }
 

@@ -249,35 +249,6 @@ class DummyController extends Lib_App_SiteController
     }
 
     /**
-     * 「もっと見る」サンプル
-     */
-    public function loadmoreAction()
-    {
-        $this->_setLayout('smartphone');
-    }
-
-    /**
-     * 「もっと見る」サンプル
-     */
-    public function booklistAction()
-    {
-        $listCount = 10;
-        $items = array();
-        $image = '/images/world-book.gif';
-        $text = '世界一の経営者、アップルのスティーブ・ジョブズCEO--。スティーブ・ジョブズのプレゼンテーションは、聴衆を魅了し、熱狂させ、製品を輝かせる。そのプレゼンを徹底的に分析し、18の法則に体系づけ、過去のプレゼンとともに解説。';
-        $itemSize = filesize(dirname(__FILE__) . '/../' . $image) + strlen($text);
-
-        for($i = 0; $i < $listCount; $i++) {
-            $items[] = array(
-                'image' => $image,
-                'text' => $text,
-                'size' => $itemSize
-            );
-        }
-        $this->_sendJson($items);
-    }
-
-    /**
      * Soap サーバ (テスト用)
      */
     public function soapserverAction()

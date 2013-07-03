@@ -1,58 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {$this->headMeta()}
-    {$this->headTitle()}
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/print.css" type="text/css" media="print">
-    <!--[if IE]><link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/plugins/link-icons/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/style.css" type="text/css" media="screen, projection">
-    {$this->headLink()}
-    {$this->headScript()}
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	{$this->headMeta()}
+	{$this->headTitle()}
+	<link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/foundation.css" />
+	{$this->headLink()}
+	<script src="{$smarty.const.REWRITE_BASE}/js/vendor/custom.modernizr.js"></script>
+	{$this->headScript()}
+
 </head>
-<body class="reset">
-<div id="wrap" class="container">
-    <div id="header" class="span-24 last">
-        <a href="{$smarty.const.REWRITE_BASE}/"><img src="{$smarty.const.REWRITE_BASE}/images/site-logo.gif" alt="サイトLogo画像" /></a>
-    </div>
-    <div id="left_sidebar" class="span-5 sidebar">
-        <div id="top-block" class="box">
-            ・<a href="{$smarty.const.REWRITE_BASE}/" title="TOPページ">TOPページ</a><br />
-            ・<a href="{$smarty.const.REWRITE_BASE}/admin/" title="TOPページ">管理画面へ</a>
-        </div>
-        {* フリーワード検索 *}
-        {include file='../partials/free_word_search.html'}
-        {* ユーザー情報 *}
-        {include file='../partials/sidebar_user_info.html'}
-        {* マイアカウント *}
-        {include file='../partials/sidebar_my_account.html'}
-        {* 共通リンク *}
-        {include file='../partials/sidebar_site_links.html'}
-    </div>
-    <div id="content" class="span-13">
-        {if isset($flashMsg)}
-            <div id="flash_msg" class="info">{$flashMsg}</div>
-        {/if}
-        {assign var=layout value=$this->layout()}
-        {$layout->content}
-    </div>
-    <div id="right_sidebar" class="span-5 sidebar last">
-        {if $this->params.controller == 'dummy'}
-            {* Dummy ブロック（サンプル用） *}
-            {include file='../scripts/dummy/sidebar_dummy.html'}
-        {elseif $this->params.controller == 'contentsdetails' && $this->params.action == 'detail'}
-            {* カート（右側） *}
-            {include file='../partials/sidebar_cart_box.html'}
-        {/if}
-    </div>
-    <div id="footer" class="clear span-24 last">
-        <div id="copyright">Copyright(c) Company Name.</div>
-    </div>
-</div>
+<body>
+
+	<div class="row">
+		<div class="large-12 columns">
+			<a href="{$smarty.const.REWRITE_BASE}/"><img src="{$smarty.const.REWRITE_BASE}/img/site-logo.gif" alt="サイトLogo画像" /></a>
+			<hr />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-3 columns">
+			{* フリーワード検索 *}
+			{include file='../partials/sidebar_search_box.html'}
+			{* ユーザー情報 *}
+			{include file='../partials/sidebar_user_info.html'}
+			{* 共通リンク *}
+			{include file='../partials/sidebar_site_links.html'}
+		</div>
+		<div class="large-6 columns">
+			{if $this->flashMsg}
+				<div id="flash_msg" class="panel">{$this->flashMsg}</div>
+			{/if}
+			{assign var=layout value=$this->layout()}
+			{$layout->content}
+		</div>
+		<div class="large-3 columns">
+			{if $this->params.controller == 'dummy'}
+				{* Dummy ブロック（サンプル用） *}
+				{include file='../scripts/dummy/sidebar_dummy.html'}
+			{/if}
+		</div>
+	</div>
+
+	<footer class="row">
+		<div class="large-12 columns">
+			<hr />
+			{include file='../partials/site_footer.html'}
+		</div>
+	</footer>
+  
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.min.js"></script>
+	<!--
+
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.alerts.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.clearing.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.cookie.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.dropdown.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.forms.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.joyride.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.magellan.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.orbit.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.reveal.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.section.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.tooltips.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.topbar.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.interchange.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.placeholder.js"></script>
+
+	-->
+	<script>
+		$(document).foundation();
+	</script>
 </body>
 </html>
-

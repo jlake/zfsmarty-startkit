@@ -7,12 +7,12 @@ $(document).ready(function() {
 });
 </script>
 {/literal}
-<div id="top-box" class="box">
+<div id="top-box" class="panel">
     <strong>ログイン</strong>
 </div>
-{if $this->errMsg}
+{if isset($errMsg)}
 <div class="error">
-    {$this->errMsg}
+    {$errMsg}
 </div>
 {/if}
 <form id="login_form" action="{$smarty.const.REWRITE_BASE}/{$params.controller}/{$params.action}" method="post">
@@ -20,12 +20,12 @@ $(document).ready(function() {
         <legend>ログイン（テストアカウント）</legend>
         <p>
             <label for="user_nm" class="required">ユーザID:</label><br>
-            <input type="text" name="user_nm" id="user_nm" class="required" style="width:220px;" maxlength="20" value="{$params.user_nm}" />
+            <input type="text" name="user_nm" id="user_nm" class="required" style="width:220px;" maxlength="20" value="{if isset($params.user_pwd)}{$params.user_nm}{/if}" />
         </p>
 
         <p>
             <label for="user_pwd" class="required">パスワード:</label><br />
-            <input type="password" name="user_pwd" id="user_pwd" class="required" style="width:220px;" maxlength="20" value="{$params.user_pwd}" />
+            <input type="password" name="user_pwd" id="user_pwd" class="required" style="width:220px;" maxlength="20" value="{if isset($params.user_pwd)}{$params.user_pwd}{/if}" />
         </p>
 
         <p>

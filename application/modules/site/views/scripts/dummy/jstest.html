@@ -2,7 +2,7 @@
 <script>
     $(document).ready(function() {
         $('#test_form').validate({
-            errorClass: 'input-error'
+            errorClass: 'error'
         });
         $('#ajaxtext').click(function(e) {
             jQuery.post('/dummy/jsontest', function(json) {
@@ -16,9 +16,9 @@
 <br />
 Validation テスト:
 <form id="test_form" action="" method="post">
-    <table class="extrainfo">
+    <table width="100%">
         <tr>
-            <td align="right" width="100">
+            <td align="right">
                 <label for="text1">１文字以上入力:</label>
             </td>
             <td align="left">
@@ -26,7 +26,7 @@ Validation テスト:
             </td>
         </tr>
         <tr>
-            <td align="right" width="100">
+            <td align="right">
                 <label for="text2" class="required">英数字入力:</label>
             </td>
             <td align="left">
@@ -34,7 +34,7 @@ Validation テスト:
             </td>
         </tr>
         <tr>
-            <td align="right" width="100">
+            <td align="right">
                 <label for="text3" class="required">数字入力（１）:</label>
             </td>
             <td align="left">
@@ -42,7 +42,7 @@ Validation テスト:
             </td>
         </tr>
         <tr>
-            <td align="right" width="100">
+            <td align="right">
                 <label for="text4" class="required">数字入力（２）:</label>
             </td>
             <td align="left">
@@ -54,12 +54,12 @@ Validation テスト:
                 &nbsp;
             </td>
             <td align="left">
-                <input type="submit" name="submit" id="submit" value="ＯＫ" /></form>
+                <input type="submit" name="submit" id="submit" value="ＯＫ" class="small button" /></form>
             </td>
         </tr>
     </table>
 </form>
-<input type="button" name="ajaxtext" id="ajaxtext" value="AJAXテスト" />
+<input type="button" name="ajaxtext" id="ajaxtext" value="AJAXテスト" class="small button" />
 <br />
 <br />
 メッセージテスト: <br />

@@ -1,15 +1,14 @@
-<div id="user-info" class="box">
-    <div>管理者情報</div>
-    {if $this->userInfo && $this->userInfo.admin_user_id}
-        <form action="{$smarty.const.REWRITE_BASE}/admin/auth/logout" method="post" accept-charset="utf-8">
-            <div><label for="admin_user_nm">ユーザ名：</label>
-                {$this->userInfo.admin_user_nm}
-            </div>
-            <div><input type="submit" name="logout_submit" value="ログアウト" id="logout_submit"></div>
-        </form>
-    {else}
-        <ul>
-            <li><a href="{$smarty.const.REWRITE_BASE}/admin/auth/login" title="">ログイン</a></li>
-        </ul>
-    {/if}
+<div id="user-info">
+	{if $this->userInfo && $this->userInfo.admin_user_id}
+		<form action="{$smarty.const.REWRITE_BASE}/admin/auth/logout" method="post" accept-charset="utf-8">
+			<div>
+				ユーザ名：{$this->userInfo.admin_user_nm}
+			</div>
+			<input type="submit" id="logout_submit" value="ログアウト" class="small button">
+		</form>
+	{else}
+		<div class="text-center">
+			<a href="{$smarty.const.REWRITE_BASE}/admin/auth/login" class="small button">ログイン</a>
+		</div>
+	{/if}
 </div>

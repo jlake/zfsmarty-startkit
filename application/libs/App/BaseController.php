@@ -25,7 +25,7 @@ class Lib_App_BaseController extends Zend_Controller_Action
             // ログインユーザ情報
             $this->_session = new Lib_App_Session($this->_params['module']);
             $this->_userInfo = $this->_session->getUserInfo();
-            $this->_appendJs(REWRITE_BASE . '/js/jquery-1.7.2.min.js');
+            $this->_appendJs(REWRITE_BASE . '/js/vendor/jquery-1.9.0.min.js');
         }
     }
 
@@ -59,21 +59,6 @@ class Lib_App_BaseController extends Zend_Controller_Action
         }
         $expires = empty($lifeTime) ? 0 : $_SERVER['REQUEST_TIME'] + $lifeTime;
         setcookie($key, $value, $expires, $path, $domain);
-        /*
-        $cookie = $key. '=' . $value;
-        if(!empty($lifeTime)) {
-            $expireDt = new Zend_Date($_SERVER['REQUEST_TIME'] + $lifeTime);
-            $cookie .= '; expires=' . $expireDt->get(Zend_Date::COOKIE);
-        }
-        if(!empty($path)) {
-            $cookie .= '; path=' . $path;
-        }
-        if(!empty($domain)) {
-            $cookie .= '; domain=' . $domain;
-        }
-        //error_log('Set-Cookie: '.$cookie);
-        $this->getResponse()->setHeader('Set-Cookie', $cookie, true);
-        */
     }
 
     /**
@@ -132,9 +117,9 @@ class Lib_App_BaseController extends Zend_Controller_Action
     protected function _appendValidationJs()
     {
         $this->_appendJs(array(
-            REWRITE_BASE . '/js/plugins/jquery.validate.js',
-            REWRITE_BASE . '/js/plugins/jquery.alphanumeric.js',
-            REWRITE_BASE . '/js/custom_validators.js'
+            REWRITE_BASE . '/js/vendor/plugins/jquery.validate.js',
+            REWRITE_BASE . '/js/vendor/plugins/jquery.alphanumeric.js',
+            REWRITE_BASE . '/js/vendor/custom_validators.js'
         ));
     }
 

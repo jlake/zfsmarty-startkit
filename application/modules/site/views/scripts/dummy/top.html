@@ -1,12 +1,15 @@
 {include file='scripts/dummy/topmsg_dummy.html'}
 <p>サンプル用Dummyデータです。</p>
 {$paginator}
-<table>
+<table width="100%">
+    <thead>
     <tr>
         <th>カラム1</th>
         <th>カラム2</th>
         <th>操作</th>
     </tr>
+    </thead>
+    <tbody>
 {foreach key=i item=row from=$paginator}
     <tr>
         <td>{$row->inf1|escape}</td>
@@ -17,6 +20,7 @@
         </td>
     </tr>
 {/foreach}
+    </tbody>
 </table>
 <a href="{$smarty.const.REWRITE_BASE}/dummy/edit">追加</a>
 <br />

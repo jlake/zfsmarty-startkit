@@ -2,7 +2,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#login_form').validate({
-        errorClass: 'input-error'
+        errorClass: 'error'
     });
 });
 </script>
@@ -22,7 +22,7 @@ $(document).ready(function() {
             <input type="text" name="to" id="to" style="width:220px;" class="required email" value="" />
         </p>
         <p>
-          <input type="submit" name="submit" id="submit"  value="送信">
+          <input type="submit" name="submit" id="submit"  value="送信" class="small button">
         </p>
     </fieldset>
 </form>

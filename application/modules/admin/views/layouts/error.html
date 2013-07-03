@@ -1,32 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {$this->headMeta()}
-    {$this->headTitle()}
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/print.css" type="text/css" media="print">
-    <!--[if IE]><link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/blueprint/plugins/link-icons/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/style.css" type="text/css" media="screen, projection">
-    {$this->headLink()}
-    {$this->headScript()}
-</head>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 
-<body class="reset">
-<div id="wrap" class="container">
-{include file='../partials/admin_header.html'}
-    <div id="content" class="span-24 last">
-        {if $this->flashMsg}
-            <div id="flash_msg" class="info">{$this->flashMsg}</div>
-        {/if}
-        {assign var=layout value=$this->layout()}
-        {$layout->content}
-    </div>
-{include file='../partials/admin_footer.html'}
-</div>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	{$this->headMeta()}
+	{$this->headTitle()}
+	<link rel="stylesheet" href="{$smarty.const.REWRITE_BASE}/css/foundation.css" />
+	{$this->headLink()}
+	<script src="{$smarty.const.REWRITE_BASE}/js/vendor/custom.modernizr.js"></script>
+	{$this->headScript()}
+
+</head>
+<body>
+
+	<div class="row">
+		<div class="large-12 columns">
+		{if $this->flashMsg}
+			<div id="flash_msg" class="info">{$this->flashMsg}</div>
+		{/if}
+		{assign var=layout value=$this->layout()}
+		{$layout->content}
+		</div>
+	</div>
+
+	<hr />
+	{include file='../partials/admin_footer.html'}
+
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.min.js"></script>
+	<!--
+
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.alerts.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.clearing.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.cookie.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.dropdown.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.forms.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.joyride.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.magellan.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.orbit.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.reveal.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.section.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.tooltips.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.topbar.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.interchange.js"></script>
+	<script src="{$smarty.const.REWRITE_BASE}/js/foundation.placeholder.js"></script>
+
+	-->
+	<script>
+		$(document).foundation();
+	</script>
 </body>
 </html>
 

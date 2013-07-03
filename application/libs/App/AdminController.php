@@ -5,7 +5,7 @@
  */
 class Lib_App_AdminController extends Lib_App_BaseController
 {
-    const DEFAULT_THEME = 'south-street';
+    const DEFAULT_THEME = 'redmond';
 
     /**
      * 初期化
@@ -29,11 +29,11 @@ class Lib_App_AdminController extends Lib_App_BaseController
     protected function _useJqueryUI($theme = self::DEFAULT_THEME)
     {
         $this->_appendJs(array(
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js'
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'
         ));
         if(!empty($theme)) {
             $this->_appendCss(array(
-                REWRITE_BASE . "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
+                REWRITE_BASE . "/css/jqThemes/$theme/jquery-ui-1.10.3.custom.css",
             ));
         }
     }
@@ -45,15 +45,15 @@ class Lib_App_AdminController extends Lib_App_BaseController
     protected function _useJqGrid($theme = self::DEFAULT_THEME)
     {
         $this->_appendJs(array(
-            REWRITE_BASE . '/js/jqGrid/js/i18n/grid.locale-ja.js',
-            REWRITE_BASE . '/js/jqGrid/js/jquery.jqGrid.min.js'
+            REWRITE_BASE . '/js/vendor/jqGrid/js/i18n/grid.locale-ja.js',
+            REWRITE_BASE . '/js/vendor/jqGrid/js/jquery.jqGrid.min.js'
         ));
         $this->_appendCss(array(
-            REWRITE_BASE . '/js/jqGrid/css/ui.jqgrid.css'
+            REWRITE_BASE . '/js/vendor/jqGrid/css/ui.jqgrid.css'
         ));
         if(!empty($theme)) {
             $this->_appendCss(array(
-                REWRITE_BASE . "/css/themes/$theme/jquery-ui-1.8.15.custom.css",
+                REWRITE_BASE . "/css/jqThemes/$theme/jquery-ui-1.10.3.custom.css",
             ));
         }
     }

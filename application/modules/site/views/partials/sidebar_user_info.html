@@ -1,15 +1,14 @@
-<div id="user-info" class="box">
-    <label>ユーザ情報</label><br />
+<div class="side-nav">
 {if $this->userInfo && $this->userInfo.user_id}
-    <form action="{$smarty.const.REWRITE_BASE}/auth/logout" method="post" accept-charset="utf-8">
-        <div><label for="user_id">ユーザID：</label>
-            {$this->userInfo.user_id}
-        </div>
-        <div><input type="submit" name="logout_submit" value="ログアウト" id="logout_submit"></div>
-    </form>
+	<form action="{$smarty.const.REWRITE_BASE}/auth/logout" method="post" accept-charset="utf-8">
+		<div>
+		    ユーザID：{$this->userInfo.user_id}
+		</div>
+		<input type="submit" id="logout_submit" value="ログアウト" class="small button">
+	</form>
 {else}
-    <ul>
-        <li><a href="{$smarty.const.REWRITE_BASE}/auth/login" title="">ログイン</a></li>
-    </ul>
+	<div class="text-center">
+		<a href="{$smarty.const.REWRITE_BASE}/auth/login" class="small button">ログイン</a>
+	</div>
 {/if}
 </div>

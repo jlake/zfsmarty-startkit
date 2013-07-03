@@ -1,26 +1,26 @@
 {if $totalItemCount > 1}
-<p><strong>{$firstItemNumber}</strong>件から<strong>{$lastItemNumber}</strong>件 （検索結果<strong>{$totalItemCount}</strong>件中）</p>
+<div><strong>{$firstItemNumber}</strong>件から<strong>{$lastItemNumber}</strong>件 （検索結果<strong>{$totalItemCount}</strong>件中）</div>
 {/if}
 {if $pageCount > 1}
-<div class="pagination">
-    {if isset($previous)}
-      <a href="{$this->baseUrl}page={$previous}">前ページ</a>
-    {else}
-      <span class="disabled">前ページ</span>
-    {/if}
+<ul class="pagination">
+	{if isset($previous)}
+		<li class="arrow"><a href="{$this->baseUrl}page={$previous}">&laquo;</a></li>
+	{else}
+		<li class="arrow unavailable"><a href="">&laquo;</a></li>
+	{/if}
 
-    {foreach from=$pagesInRange item=page}
-        {if $page == $current}
-            <span class="disabled">{$page}</span>
-        {else}
-            <a href="{$this->baseUrl}page={$page}">{$page}</a>
-        {/if}
-    {/foreach}
+	{foreach from=$pagesInRange item=page}
+		{if $page == $current}
+			<li class="current">{$page}</li>
+		{else}
+			<li><a href="{$this->baseUrl}page={$page}">{$page}</a></li>
+		{/if}
+	{/foreach}
 
-    {if isset($next)}
-      <a href="{$this->baseUrl}page={$next}">次ページ</a>
-    {else}
-      <span class="disabled">次ページ</span>
-    {/if}
-</div>
+	{if isset($next)}
+		<li class="arrow"><a href="{$this->baseUrl}page={$next}">&raquo;</a></li>
+	{else}
+		<li class="arrow unavailable"><a href="">&raquo;</a></li>
+	{/if}
+</ul>
 {/if}
