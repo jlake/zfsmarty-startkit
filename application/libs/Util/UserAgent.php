@@ -126,7 +126,6 @@ class Lib_Util_UserAgent
      */
     public static function getAndroidVersion($numOnly = false)
     {
-        $ua = $_SERVER['HTTP_USER_AGENT'];
         if(preg_match("/Android\s+([0-9.]*?);/", $_SERVER['HTTP_USER_AGENT'], $matches)) {
             return $matches[1];
         }

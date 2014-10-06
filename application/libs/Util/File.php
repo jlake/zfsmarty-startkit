@@ -8,6 +8,29 @@
 class Lib_Util_File
 {
     /**
+     * ファイル一覧を取得
+     * @param   int $dir   ファイルフォルダ
+     * @param   array $filter   フィルタ（ファイルの種類）
+     * @return   array
+    **/
+    public static function findFiles($dir, $filter = array('jpg', 'jpeg', 'png', 'gif')) {
+        $result = array();
+        $files = scandir($dir);
+        foreach($files as $file){
+            if($file === '.' || $file === '..') {
+                continue;
+            }
+            $full_path = $dir.DIRECTORY_SEPARATOR.$file;
+            if(is_dir($full_path)){
+                $result = array_merge($result, self::find_files($full_path, $filter));
+            } elseif(in_array(substr($file, strrpos($file, '.') + 1), $filter)) {
+                $result[] = $full_path;
+            }
+        }
+        return $result;
+    }
+
+    /**
      * ファイルサイズを KB, MB, GB ... で取得
      * @param   int $size   ファイルサイズ, Byte単位
      * @param   boolean $asArray   trueの場合、結果は配列で返す
@@ -121,7 +144,7 @@ class Lib_Util_File
     **/
     public static function upload($inputName, $destPath, $maxSize=2048, $newFileName='', $allowTypes='', $refuseTypes='.php|.jsp|.pl|.sh|.csh|.asp|.exe')
     {
-        $uploadInfo =& $_FILES["$inputName"];
+        $uploadInfo =& $_FILES[$inputName];
 
         if(!empty($uploadInfo['error'])) {
             switch($uploadInfo['error']) {
@@ -191,6 +214,7 @@ class Lib_Util_File
         }
 
         if(!empty($newFileName)) {
+            //$fileName = $newFileName . '.' . pathinfo($uploadName, PATHINFO_EXTENSION);
             $fileName = $newFileName;
         } else {
             $fileName = $uploadName;
